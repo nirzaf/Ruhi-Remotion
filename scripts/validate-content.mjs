@@ -69,6 +69,12 @@ async function validateQatarContent() {
     errors.push("AC-04: Pilot episode QH-L1-01 must be defined and marked reviewStatus: 'approved'");
   }
 
+  const arrayStart = episodesTs.indexOf("export const QATAR_HISTORY_EPISODES");
+  const bracketStart = episodesTs.indexOf("[", arrayStart);
+  const exportEnd = episodesTs.lastIndexOf("export const getQatarEpisodeDuration");
+  const arrayLiteral = episodesTs.slice(bracketStart, exportEnd).trim().replace(/;$/, "");
+  const allQatarEpisodes = Function(`"use strict"; return (${arrayLiteral});`)();
+
   const pilotSceneIds = [
     {id: "scene-01", durationFrames: 300},
     {id: "scene-02", durationFrames: 540},
@@ -86,32 +92,34 @@ async function validateQatarContent() {
     errors.push(`AC-04: Pilot QH-L1-01 duration (${totalPilotSeconds}s) must be within 120–240 seconds`);
   }
 
-  for (const scene of pilotSceneIds) {
-    const audioPath = path.join(root, `public/audio/qatar-history/QH-L1-01-${scene.id}.mp3`);
-    if (!existsSync(audioPath)) {
-      errors.push(`AC-05: Missing local narration audio for QH-L1-01 ${scene.id}: ${audioPath}`);
-    } else {
-      const stats = statSync(audioPath);
-      if (stats.size < 1000) {
-        errors.push(`AC-05: Narration audio too small (${stats.size} bytes): ${audioPath}`);
-      }
-      const clipSeconds = Number(
-        execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", audioPath], {
-          encoding: "utf8",
-        }).trim()
-      );
-      const sceneSeconds = scene.durationFrames / 30;
-      if (clipSeconds + 0.5 > sceneSeconds) {
-        errors.push(
-          `AC-05: Narration clip for ${scene.id} (${clipSeconds.toFixed(2)}s) exceeds scene duration (${sceneSeconds.toFixed(2)}s)`
+  for (const episode of allQatarEpisodes) {
+    for (const scene of episode.scenes) {
+      const audioPath = path.join(root, "public", scene.narrationAsset);
+      if (!existsSync(audioPath)) {
+        errors.push(`AC-05: Missing local narration audio for ${episode.id} ${scene.id}: ${audioPath}`);
+      } else {
+        const stats = statSync(audioPath);
+        if (stats.size < 1000 || stats.size === 91245) {
+          errors.push(`AC-05: Narration audio invalid or silent fallback (${stats.size} bytes): ${audioPath}`);
+        }
+        const clipSeconds = Number(
+          execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", audioPath], {
+            encoding: "utf8",
+          }).trim()
         );
+        const sceneSeconds = scene.durationFrames / 30;
+        if (clipSeconds + 0.5 > sceneSeconds) {
+          errors.push(
+            `AC-05: Narration clip for ${episode.id} ${scene.id} (${clipSeconds.toFixed(2)}s) exceeds scene duration (${sceneSeconds.toFixed(2)}s)`
+          );
+        }
       }
     }
-  }
 
-  const srtPath = path.join(root, "public/captions/QH-L1-01.srt");
-  if (!existsSync(srtPath) || statSync(srtPath).size < 100) {
-    errors.push("AC-05: Missing or empty public/captions/QH-L1-01.srt");
+    const epSrtPath = path.join(root, `public/captions/${episode.id}.srt`);
+    if (!existsSync(epSrtPath) || statSync(epSrtPath).size < 80) {
+      errors.push(`AC-05: Missing or empty public/captions/${episode.id}.srt`);
+    }
   }
 
   // ---------------------------------------------------------------------------

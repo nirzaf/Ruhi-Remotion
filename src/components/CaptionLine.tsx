@@ -5,9 +5,22 @@ import {QATAR_HISTORY_TOKENS} from "../design/tokens";
 type CaptionLineProps = {
   narrationText: string;
   onScreenText: string[];
+  durationFrames?: number;
 };
 
-export const CaptionLine: React.FC<CaptionLineProps> = ({narrationText, onScreenText}) => {
+function splitIntoCaptionSegments(text: string): string[] {
+  const sentences = text
+    .split(/(?<=[.!?])\s+/)
+    .map((s) => s.trim())
+    .filter(Boolean);
+  return sentences.length > 0 ? sentences : [text];
+}
+
+export const CaptionLine: React.FC<CaptionLineProps> = ({
+  narrationText,
+  onScreenText,
+  durationFrames = 300,
+}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
 
@@ -19,6 +32,21 @@ export const CaptionLine: React.FC<CaptionLineProps> = ({narrationText, onScreen
 
   const translateY = interpolate(enter, [0, 1], [18, 0]);
   const opacity = interpolate(enter, [0, 1], [0, 1]);
+
+  const segments = splitIntoCaptionSegments(narrationText);
+  const totalChars = Math.max(1, segments.reduce((sum, s) => sum + s.length, 0));
+  const speechWindowFrames = Math.max(1, durationFrames * 0.92);
+  const progress = Math.max(0, Math.min(0.999, frame / speechWindowFrames));
+
+  let cumulative = 0;
+  let activeSegment = segments[segments.length - 1];
+  for (const seg of segments) {
+    cumulative += seg.length / totalChars;
+    if (progress <= cumulative) {
+      activeSegment = seg;
+      break;
+    }
+  }
 
   return (
     <div
@@ -103,7 +131,7 @@ export const CaptionLine: React.FC<CaptionLineProps> = ({narrationText, onScreen
             letterSpacing: 0.2,
           }}
         >
-          {narrationText}
+          {activeSegment}
         </div>
       </div>
     </div>

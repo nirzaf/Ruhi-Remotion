@@ -6,10 +6,10 @@ import {ConclusionVisual, OpeningVisual} from "./ExplainerOpenClose";
 import {SceneShell} from "./ExplainerShell";
 
 const AUDIO_FOR_SCENE: Record<string, string> = {
-  opening: "audio/qatar-history/QH-L1-01-scene-01.mp3",
-  morning: "audio/qatar-history/QH-L1-01-scene-03.mp3",
-  daytime: "audio/qatar-history/QH-L1-01-scene-04.mp3",
-  conclusion: "audio/qatar-history/QH-L1-01-scene-06.mp3",
+  opening: "audio/qatar-history/explainer-daily-routine-opening.mp3",
+  morning: "audio/qatar-history/explainer-daily-routine-morning.mp3",
+  daytime: "audio/qatar-history/explainer-daily-routine-daytime.mp3",
+  conclusion: "audio/qatar-history/explainer-daily-routine-conclusion.mp3",
 };
 
 export const DailyRoutineExplainer: React.FC = () => {

@@ -28,26 +28,26 @@ export const DAILY_ROUTINE_SCENES: ExplainerScene[] = [
   {
     id: "opening",
     heading: "My Daily Routine",
-    narration: "Today we will learn about our daily routine.",
-    caption: "Today we will learn about our daily routine.",
+    narration: "Welcome to Class 1! Today we will learn about our daily routine in order.",
+    caption: "Welcome to Class 1! Today we will learn about our daily routine in order.",
     keywords: ["Every day", "In order"],
-    durationInFrames: 175, // 0-5.83s (fits 5.29s audio + breathing room)
+    durationInFrames: 175, // 0-5.83s (fits 5.74s audio)
   },
   {
     id: "morning",
     heading: "Morning",
-    narration: "In the morning, we wake up and brush our teeth.",
-    caption: "In the morning, we wake up and brush our teeth.",
+    narration: "First, in the morning, we wake up early feeling rested, wash, and brush our teeth.",
+    caption: "First, in the morning, we wake up early feeling rested, wash, and brush our teeth.",
     keywords: ["Wake up", "Brush teeth"],
-    durationInFrames: 205, // 5.83-12.67s (fits 6.29s audio + breathing room)
+    durationInFrames: 205, // 5.83-12.67s (fits ~6.0s audio)
   },
   {
     id: "daytime",
     heading: "Daytime",
-    narration: "We eat breakfast, get dressed, and go to school.",
-    caption: "We eat breakfast, get dressed, and go to school.",
+    narration: "Next, during the daytime, we eat breakfast, get dressed, and go to school.",
+    caption: "Next, during the daytime, we eat breakfast, get dressed, and go to school.",
     keywords: ["Breakfast", "School"],
-    durationInFrames: 167, // 12.67-18.23s (fits 5.05s audio + breathing room)
+    durationInFrames: 167, // 12.67-18.23s (fits ~5.0s audio)
   },
   {
     id: "conclusion",
@@ -55,7 +55,7 @@ export const DAILY_ROUTINE_SCENES: ExplainerScene[] = [
     narration: "At night we sleep on time. That is our daily routine!",
     caption: "At night we sleep on time. That is our daily routine!",
     keywords: ["Bedtime", "Healthy habit"],
-    durationInFrames: 150, // 18.23-23.23s (fits 4.50s audio + breathing room)
+    durationInFrames: 150, // 18.23-23.23s (fits 4.46s audio)
   },
 ];
 

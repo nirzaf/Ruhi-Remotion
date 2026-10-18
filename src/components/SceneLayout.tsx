@@ -163,7 +163,11 @@ export const SceneLayout: React.FC<SceneLayoutProps> = ({
       </div>
 
       {/* Synchronized Burned-in Captions & On-Screen Keywords */}
-      <CaptionLine narrationText={scene.narrationText} onScreenText={scene.onScreenText} />
+      <CaptionLine
+        narrationText={scene.narrationText}
+        onScreenText={scene.onScreenText}
+        durationFrames={scene.durationFrames}
+      />
 
       {/* Subtle Bottom Progress Strip inside Safe Area */}
       <div

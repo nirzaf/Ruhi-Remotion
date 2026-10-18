@@ -54,12 +54,28 @@ for (const episode of episodes) {
     }
 
     console.log(`🎙️  Generating narration for ${episode.id} -> ${scene.id}...`);
-    execFileSync("say", ["-v", voice, "-r", voiceRate, "-o", aiffPath, scene.narration], {stdio: "inherit"});
-    execFileSync(
-      "ffmpeg",
-      ["-hide_banner", "-loglevel", "error", "-y", "-i", aiffPath, "-ar", String(sampleRate), "-ac", "1", "-b:a", mp3Bitrate, mp3Path],
-      {stdio: "inherit"}
-    );
+    if (process.platform === "darwin") {
+      execFileSync("say", ["-v", voice, "-r", voiceRate, "-o", aiffPath, scene.narration], {stdio: "inherit"});
+      execFileSync(
+        "ffmpeg",
+        ["-hide_banner", "-loglevel", "error", "-y", "-i", aiffPath, "-ar", String(sampleRate), "-ac", "1", "-b:a", mp3Bitrate, mp3Path],
+        {stdio: "inherit"}
+      );
+    } else {
+      const winPython = "C:\\Users\\DELL\\AppData\\Local\\Python\\bin\\python.exe";
+      const pythonBin = existsSync(winPython) ? winPython : "python";
+      const rawEdgeMp3 = path.join(tempDir, `${baseName}-edge.mp3`);
+      execFileSync(
+        pythonBin,
+        ["-m", "edge_tts", "--voice", "en-US-AvaMultilingualNeural", "--rate=-10%", "--text", scene.narration, "--write-media", rawEdgeMp3],
+        {stdio: "inherit"}
+      );
+      execFileSync(
+        "ffmpeg",
+        ["-hide_banner", "-loglevel", "error", "-y", "-i", rawEdgeMp3, "-ar", String(sampleRate), "-ac", "1", "-b:a", mp3Bitrate, mp3Path],
+        {stdio: "inherit"}
+      );
+    }
     const seconds = Number(
       execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", mp3Path], {encoding: "utf8"}).trim()
     );

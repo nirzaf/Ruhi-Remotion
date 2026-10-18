@@ -45,8 +45,8 @@ export const EpisodeVideo: React.FC<EpisodeVideoProps> = ({episodeId}) => {
               )}
             </SceneLayout>
 
-            {/* Play local narration audio for approved episodes */}
-            {episode.reviewStatus === "approved" && (
+            {/* Play local narration audio for all episode scenes */}
+            {scene.narrationAsset && (
               <Audio src={staticFile(scene.narrationAsset)} />
             )}
           </Sequence>

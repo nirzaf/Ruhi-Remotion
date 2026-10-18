@@ -5,10 +5,10 @@ import {fileURLToPath} from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 const scenes = [
-  {id: "opening", frames: 175, mp3: "public/audio/qatar-history/QH-L1-01-scene-01.mp3"},
-  {id: "morning", frames: 205, mp3: "public/audio/qatar-history/QH-L1-01-scene-03.mp3"},
-  {id: "daytime", frames: 167, mp3: "public/audio/qatar-history/QH-L1-01-scene-04.mp3"},
-  {id: "conclusion", frames: 150, mp3: "public/audio/qatar-history/QH-L1-01-scene-06.mp3"},
+  {id: "opening", frames: 175, mp3: "public/audio/qatar-history/explainer-daily-routine-opening.mp3"},
+  {id: "morning", frames: 205, mp3: "public/audio/qatar-history/explainer-daily-routine-morning.mp3"},
+  {id: "daytime", frames: 167, mp3: "public/audio/qatar-history/explainer-daily-routine-daytime.mp3"},
+  {id: "conclusion", frames: 150, mp3: "public/audio/qatar-history/explainer-daily-routine-conclusion.mp3"},
 ];
 
 const FPS = 30;
