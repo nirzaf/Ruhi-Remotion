@@ -1,10 +1,22 @@
 import React from "react";
 import {AbsoluteFill, Audio, Sequence, interpolate, spring, staticFile, useCurrentFrame} from "remotion";
 import {Illustration} from "./Illustration";
-import {durationForEpisode, durationForScene, EPISODES, FPS} from "./timing";
+import {AUDIO_DURATIONS, durationForEpisode, durationForScene, EPISODES, FPS} from "./timing";
 import type {Episode, Scene} from "./types";
 
-const palette = ["#FFF4E4", "#F3F8FF", "#F1F8EB", "#FFF2F0"];
+const episodeBackgrounds = [
+  "linear-gradient(180deg, #F0F9FF 0%, #FFFDF7 70%, #FFFFFF 100%)", // Ep 1: Playground Sky
+  "linear-gradient(180deg, #FEF3C7 0%, #FFFDF7 70%, #FFFFFF 100%)", // Ep 2: Market Amber
+  "linear-gradient(180deg, #ECFDF5 0%, #FFFDF7 70%, #FFFFFF 100%)", // Ep 3: Garden Mint
+  "linear-gradient(180deg, #FFF1F2 0%, #FFFDF7 70%, #FFFFFF 100%)", // Ep 4: Art Room Rose
+];
+
+const episodeThemes = [
+  {accent: "#FF6E7F", badge: "FAIRNESS AT THE PLAYGROUND"},
+  {accent: "#F59E0B", badge: "MORE THAN MONEY"},
+  {accent: "#10B981", badge: "EVERYONE GETS A CHANCE"},
+  {accent: "#3B82F6", badge: "MAKE THINGS RIGHT"},
+];
 
 type SceneProps = {
   episode: Episode;
@@ -14,52 +26,346 @@ type SceneProps = {
   episodeFrame: number;
 };
 
-const LessonScene: React.FC<SceneProps> = ({episode, scene, sceneIndex, sceneDuration, episodeFrame}) => {
-  const frame = useCurrentFrame();
-  const headingIn = spring({frame: Math.max(0, frame - 4), fps: FPS, config: {damping: 15, stiffness: 100}});
-  const fade = sceneIndex === 0
-    ? interpolate(frame, [sceneDuration - 10, sceneDuration], [1, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp"})
-    : interpolate(frame, [0, 12, sceneDuration - 10, sceneDuration], [0, 1, 1, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
-  const progress = episodeFrame / Math.max(1, durationForEpisode(episode));
-  const bg = palette[Number(episode.number) - 1] ?? palette[0];
+// Word-by-Word Reading Caption for Grade 1 Students
+const KaraokeCaption: React.FC<{
+  text: string;
+  frame: number;
+  audioFrames: number;
+  accentColor: string;
+}> = ({text, frame, audioFrames, accentColor}) => {
+  const words = text.split(" ");
+  // Calculate which word is currently spoken (with a 6-frame lead-in)
+  const effectiveFrame = Math.max(0, frame - 6);
+  const wordProgress = Math.min(words.length - 1, Math.floor((effectiveFrame / Math.max(1, audioFrames)) * words.length));
 
   return (
-    <AbsoluteFill style={{background: `linear-gradient(180deg, ${bg} 0%, #FFFDF8 72%, #FFFFFF 100%)`, color: "#35435B", fontFamily: "'Avenir Next', 'Trebuchet MS', sans-serif", opacity: fade, overflow: "hidden"}}>
-      <div style={{position: "absolute", width: 460, height: 460, borderRadius: "50%", top: -240, right: -70, background: "rgba(255,255,255,.52)"}} />
-      <div style={{position: "absolute", width: 320, height: 320, borderRadius: "50%", bottom: 130, left: -170, background: "rgba(146,201,174,.12)"}} />
+    <div
+      style={{
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        alignItems: "center",
+        gap: "8px 12px",
+        maxWidth: 1380,
+      }}
+    >
+      {words.map((word, index) => {
+        const isCurrent = index === wordProgress && frame < audioFrames + 15;
+        const isPast = index < wordProgress || frame >= audioFrames + 15;
 
-      <div style={{position: "absolute", left: 72, right: 72, top: 34, height: 54, display: "flex", alignItems: "center", justifyContent: "space-between"}}>
-        <div style={{display: "flex", alignItems: "center", gap: 13}}>
-          <div style={{width: 43, height: 43, borderRadius: 15, background: "#F28E9D", display: "grid", placeItems: "center", color: "#FFFFFF", fontSize: 25, fontWeight: 1000, boxShadow: "0 5px 0 #D76F81"}}>R</div>
-          <div style={{fontSize: 19, fontWeight: 900, letterSpacing: 1.2, color: "#627084"}}>RUHI'S GLOBAL CITIZENSHIP</div>
+        return (
+          <span
+            key={index}
+            style={{
+              fontSize: 35,
+              lineHeight: 1.28,
+              fontWeight: isCurrent ? 900 : isPast ? 800 : 700,
+              color: isCurrent ? "#0F172A" : isPast ? "#1E293B" : "#64748B",
+              background: isCurrent ? `${accentColor}28` : "transparent",
+              padding: isCurrent ? "2px 8px" : "2px 0px",
+              borderRadius: 8,
+              borderBottom: isCurrent ? `3.5px solid ${accentColor}` : "3.5px solid transparent",
+              transform: isCurrent ? "scale(1.06)" : "scale(1)",
+              display: "inline-block",
+            }}
+          >
+            {word}
+          </span>
+        );
+      })}
+    </div>
+  );
+};
+
+const LessonScene: React.FC<SceneProps> = ({episode, scene, sceneIndex, sceneDuration, episodeFrame}) => {
+  const frame = useCurrentFrame();
+  const epIndex = Number(episode.number) - 1;
+  const theme = episodeThemes[epIndex] ?? episodeThemes[0];
+  const bg = episodeBackgrounds[epIndex] ?? episodeBackgrounds[0];
+
+  // Smooth entrance & exit animations
+  const headingIn = spring({frame: Math.max(0, frame - 3), fps: FPS, config: {damping: 14, stiffness: 95}});
+  const captionIn = spring({frame: Math.max(0, frame - 6), fps: FPS, config: {damping: 14, stiffness: 90}});
+
+  const fade =
+    sceneIndex === 0
+      ? interpolate(frame, [sceneDuration - 10, sceneDuration], [1, 0], {
+          extrapolateLeft: "clamp",
+          extrapolateRight: "clamp",
+        })
+      : interpolate(frame, [0, 10, sceneDuration - 10, sceneDuration], [0, 1, 1, 0], {
+          extrapolateLeft: "clamp",
+          extrapolateRight: "clamp",
+        });
+
+  const progress = episodeFrame / Math.max(1, durationForEpisode(episode));
+  const audioFrames = AUDIO_DURATIONS[episode.id]?.[scene.id]?.frames ?? Math.round(FPS * 6);
+
+  return (
+    <AbsoluteFill
+      style={{
+        background: bg,
+        color: "#1E293B",
+        fontFamily: "'Avenir Next', 'Nunito', 'Trebuchet MS', system-ui, sans-serif",
+        opacity: fade,
+        overflow: "hidden",
+      }}
+    >
+      {/* Decorative ambient background glows */}
+      <div
+        style={{
+          position: "absolute",
+          width: 500,
+          height: 500,
+          borderRadius: "50%",
+          top: -220,
+          right: -80,
+          background: "radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%)",
+          pointerEvents: "none",
+        }}
+      />
+      <div
+        style={{
+          position: "absolute",
+          width: 380,
+          height: 380,
+          borderRadius: "50%",
+          bottom: 120,
+          left: -140,
+          background: `radial-gradient(circle, ${theme.accent}15 0%, rgba(255,255,255,0) 70%)`,
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* ========================================================================= */}
+      {/* Top Navigation Bar: Branding & Workbook Page                               */}
+      {/* ========================================================================= */}
+      <div
+        style={{
+          position: "absolute",
+          left: 64,
+          right: 64,
+          top: 28,
+          height: 58,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          zIndex: 20,
+        }}
+      >
+        {/* Left Branding */}
+        <div style={{display: "flex", alignItems: "center", gap: 14}}>
+          <div
+            style={{
+              width: 46,
+              height: 46,
+              borderRadius: 14,
+              background: "linear-gradient(135deg, #FF6E7F 0%, #F43F5E 100%)",
+              display: "grid",
+              placeItems: "center",
+              color: "#FFFFFF",
+              fontSize: 26,
+              fontWeight: 900,
+              boxShadow: "0 6px 14px rgba(244, 63, 94, 0.3)",
+            }}
+          >
+            R
+          </div>
+          <div>
+            <div
+              style={{
+                fontSize: 19,
+                fontWeight: 900,
+                letterSpacing: 1.2,
+                color: "#1E293B",
+                lineHeight: 1.1,
+              }}
+            >
+              RUHI'S GLOBAL CITIZENSHIP
+            </div>
+            <div
+              style={{
+                fontSize: 13,
+                fontWeight: 800,
+                letterSpacing: 1.5,
+                color: theme.accent,
+                textTransform: "uppercase",
+              }}
+            >
+              Grade 1 · Social Justice Lessons
+            </div>
+          </div>
         </div>
-        <div style={{padding: "10px 17px", borderRadius: 999, color: "#57667A", background: "rgba(255,255,255,.88)", border: "2px solid rgba(95,112,136,.12)", fontSize: 18, fontWeight: 800}}>{episode.pages}</div>
+
+        {/* Right Workbook Badge */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+            padding: "8px 18px",
+            borderRadius: 999,
+            color: "#334155",
+            background: "rgba(255, 255, 255, 0.92)",
+            backdropFilter: "blur(8px)",
+            border: "2px solid rgba(148, 163, 184, 0.2)",
+            boxShadow: "0 4px 12px rgba(15, 23, 42, 0.05)",
+            fontSize: 17,
+            fontWeight: 800,
+          }}
+        >
+          <span>📖</span>
+          <span>{episode.pages}</span>
+        </div>
       </div>
 
-      <div style={{position: "absolute", top: 102, left: 110, right: 110, textAlign: "center", transform: `translateY(${(1 - headingIn) * 20}px)`}}>
-        <div style={{fontSize: 17, fontWeight: 900, textTransform: "uppercase", letterSpacing: 2.6, color: "#EF8C83", marginBottom: 6}}>Episode {episode.number} · {episode.title} · {episode.subtitle}</div>
-        <div style={{fontSize: 45, lineHeight: 1.08, fontWeight: 1000, letterSpacing: -1.2, color: "#33425A", textShadow: "0 2px 0 rgba(255,255,255,.75)"}}>{scene.heading}</div>
+      {/* ========================================================================= */}
+      {/* Scene Header & Episode Info                                               */}
+      {/* ========================================================================= */}
+      <div
+        style={{
+          position: "absolute",
+          top: 98,
+          left: 90,
+          right: 90,
+          textAlign: "center",
+          transform: `translateY(${(1 - headingIn) * 20}px)`,
+          zIndex: 20,
+        }}
+      >
+        <div
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: 8,
+            padding: "5px 16px",
+            borderRadius: 999,
+            background: `${theme.accent}18`,
+            border: `1.5px solid ${theme.accent}33`,
+            fontSize: 15,
+            fontWeight: 900,
+            textTransform: "uppercase",
+            letterSpacing: 2,
+            color: theme.accent,
+            marginBottom: 8,
+          }}
+        >
+          <span>EPISODE {episode.number}</span>
+          <span>·</span>
+          <span>{episode.title}</span>
+          <span>·</span>
+          <span>{theme.badge}</span>
+        </div>
+
+        <div
+          style={{
+            fontSize: 46,
+            lineHeight: 1.1,
+            fontWeight: 900,
+            letterSpacing: -1,
+            color: "#0F172A",
+            textShadow: "0 2px 4px rgba(255,255,255,0.8)",
+          }}
+        >
+          {scene.heading}
+        </div>
       </div>
 
-      <div style={{position: "absolute", top: 226, left: 0, right: 0, height: 562, display: "flex", alignItems: "center", justifyContent: "center"}}>
+      {/* ========================================================================= */}
+      {/* Central Illustration Area                                                 */}
+      {/* ========================================================================= */}
+      <div
+        style={{
+          position: "absolute",
+          top: 215,
+          left: 0,
+          right: 0,
+          height: 565,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         <Illustration scene={scene} frame={frame} durationInFrames={sceneDuration} />
       </div>
 
-      <div style={{position: "absolute", left: 240, right: 240, bottom: 65, minHeight: 125, padding: "22px 34px", borderRadius: 30, background: "rgba(255,255,255,.94)", border: "3px solid rgba(88,102,126,.12)", boxShadow: "0 15px 36px rgba(76,83,99,.09)", display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center"}}>
-        <div style={{maxWidth: 1370, fontSize: 35, lineHeight: 1.28, fontWeight: 800, letterSpacing: -0.35, color: "#394860"}}>{scene.narration}</div>
+      {/* ========================================================================= */}
+      {/* Dynamic Karaoke Narration Card for Early Readers                         */}
+      {/* ========================================================================= */}
+      <div
+        style={{
+          position: "absolute",
+          left: 180,
+          right: 180,
+          bottom: 60,
+          minHeight: 120,
+          padding: "20px 36px",
+          borderRadius: 28,
+          background: "rgba(255, 255, 255, 0.96)",
+          backdropFilter: "blur(12px)",
+          border: `3px solid ${theme.accent}2A`,
+          boxShadow: "0 16px 36px rgba(15, 23, 42, 0.1), 0 4px 10px rgba(15, 23, 42, 0.05)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center",
+          transform: `translateY(${(1 - captionIn) * 16}px)`,
+          zIndex: 25,
+        }}
+      >
+        <KaraokeCaption
+          text={scene.narration}
+          frame={frame}
+          audioFrames={audioFrames}
+          accentColor={theme.accent}
+        />
       </div>
 
-      {scene.visual === "quiz" && frame > sceneDuration - 110 && (
-        <div style={{position: "absolute", top: 798, left: 0, right: 0, textAlign: "center", fontSize: 21, fontWeight: 900, color: "#6E7E91", letterSpacing: 1.7}}>PAUSE THE VIDEO AND THINK OF YOUR ANSWER</div>
-      )}
-
-      <div style={{position: "absolute", left: 74, right: 74, bottom: 25, height: 8, borderRadius: 99, background: "rgba(71,84,108,.13)"}}>
-        <div style={{width: `${Math.max(1, progress * 100)}%`, height: "100%", borderRadius: 99, background: "linear-gradient(90deg,#F28E9D,#F4C95D,#8FC9A8)"}} />
+      {/* ========================================================================= */}
+      {/* Bottom Progress Bar & Scene Counter                                       */}
+      {/* ========================================================================= */}
+      <div
+        style={{
+          position: "absolute",
+          left: 64,
+          right: 64,
+          bottom: 22,
+          height: 8,
+          borderRadius: 99,
+          background: "rgba(148, 163, 184, 0.2)",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            width: `${Math.max(1, progress * 100)}%`,
+            height: "100%",
+            borderRadius: 99,
+            background: `linear-gradient(90deg, #FF6E7F 0%, #FBBF24 50%, #34D399 100%)`,
+          }}
+        />
       </div>
-      <div style={{position: "absolute", right: 78, bottom: 40, color: "#8190A2", fontSize: 16, fontWeight: 800}}>{sceneIndex + 1} / {episode.scenes.length}</div>
 
+      {/* Scene number pill */}
+      <div
+        style={{
+          position: "absolute",
+          right: 68,
+          bottom: 34,
+          color: "#64748B",
+          fontSize: 15,
+          fontWeight: 800,
+          letterSpacing: 0.5,
+        }}
+      >
+        Scene {sceneIndex + 1} of {episode.scenes.length}
+      </div>
+
+      {/* Narration Spoken Audio */}
       <Audio src={staticFile(`audio/${episode.id}-${scene.id}.mp3`)} />
-      {scene.visual === "quiz" && <Audio src={staticFile("audio/quiz-chime.wav")} volume={0.42} />}
+
+      {/* Quiz Chime Audio for interactive moments */}
+      {scene.visual === "quiz" && <Audio src={staticFile("audio/quiz-chime.wav")} volume={0.4} />}
     </AbsoluteFill>
   );
 };
@@ -78,7 +384,13 @@ export const LessonVideo: React.FC<{episodeId: string}> = ({episodeId}) => {
         cursor += sceneDuration;
         return (
           <Sequence key={scene.id} from={from} durationInFrames={sceneDuration}>
-            <LessonScene episode={episode} scene={scene} sceneIndex={sceneIndex} sceneDuration={sceneDuration} episodeFrame={from + Math.min(episodeFrame - from, sceneDuration)} />
+            <LessonScene
+              episode={episode}
+              scene={scene}
+              sceneIndex={sceneIndex}
+              sceneDuration={sceneDuration}
+              episodeFrame={from + Math.min(episodeFrame - from, sceneDuration)}
+            />
           </Sequence>
         );
       })}

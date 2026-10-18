@@ -3,168 +3,1669 @@ import {interpolate, spring} from "remotion";
 import {Character, friends, type Friend} from "./Character";
 import type {Scene} from "./types";
 
-type ArtProps = {scene: Scene; frame: number; durationInFrames: number};
+type ArtProps = {
+  scene: Scene;
+  frame: number;
+  durationInFrames: number;
+};
 
-const characterPositions = [90, 500, 910];
+// --- Shared Scenery Components ---
 
-const Person: React.FC<{friend: Friend; left: number; frame: number; width?: number; pose?: "stand" | "wave" | "reach"}> = ({friend, left, frame, width = 220, pose}) => {
-  const entrance = spring({frame: Math.max(0, frame - Math.max(0, left - 150) / 22), fps: 30, config: {damping: 15, stiffness: 105}});
-  const bob = Math.sin((frame + left) / 18) * 5;
+export const SceneryBackground: React.FC<{frame: number; variant?: "outdoor" | "garden" | "market" | "art"}> = ({
+  frame,
+  variant = "outdoor",
+}) => {
+  // Animated drifting clouds
+  const cloud1X = ((frame * 0.75) % 1520) - 160;
+  const cloud2X = (((frame * 0.45) + 520) % 1520) - 160;
+  const cloud3X = (((frame * 0.25) + 1040) % 1520) - 160;
+
+  // Sun gentle rotation and breathing
+  const sunRotate = frame * 0.35;
+  const sunPulse = 1 + Math.sin(frame / 18) * 0.03;
+
+  if (variant === "art") {
+    // Indoor Classroom Art Setting
+    return (
+      <div style={{position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none"}}>
+        {/* Soft pastel wall */}
+        <div style={{position: "absolute", inset: 0, background: "linear-gradient(180deg, #FFF6E8 0%, #FFF0D6 60%, #EAD8BD 100%)"}} />
+        {/* Colorful triangle pennant bunting across top */}
+        <svg style={{position: "absolute", top: 0, left: 0, width: "100%", height: 60}} viewBox="0 0 1320 60" preserveAspectRatio="none">
+          <path d="M0 8 Q660 30 1320 8" fill="none" stroke="#D1B898" strokeWidth="2.5" />
+          {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map((i) => {
+            const x = i * 90 + 30;
+            const y = 8 + Math.sin((i / 14) * Math.PI) * 14;
+            const colors = ["#FF6E7F", "#FBBF24", "#34D399", "#60A5FA", "#A78BFA", "#F472B6"];
+            return (
+              <polygon
+                key={i}
+                points={`${x},${y} ${x + 40},${y} ${x + 20},${y + 40}`}
+                fill={colors[i % colors.length]}
+                opacity="0.9"
+              />
+            );
+          })}
+        </svg>
+
+        {/* Classroom pictures hanging on the wall */}
+        <div
+          style={{
+            position: "absolute",
+            left: 70,
+            top: 50,
+            width: 110,
+            height: 85,
+            background: "#FFFFFF",
+            border: "4px solid #DFCCA9",
+            borderRadius: 8,
+            boxShadow: "0 6px 12px rgba(100,80,50,0.08)",
+            padding: 6,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <div style={{fontSize: 28}}>🎨</div>
+          <div style={{fontSize: 11, fontWeight: 900, color: "#927150", marginTop: 2}}>ART CORNER</div>
+        </div>
+
+        <div
+          style={{
+            position: "absolute",
+            right: 80,
+            top: 50,
+            width: 110,
+            height: 85,
+            background: "#FFFFFF",
+            border: "4px solid #DFCCA9",
+            borderRadius: 8,
+            boxShadow: "0 6px 12px rgba(100,80,50,0.08)",
+            padding: 6,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <div style={{fontSize: 28}}>⭐</div>
+          <div style={{fontSize: 11, fontWeight: 900, color: "#927150", marginTop: 2}}>GOOD EFFORT</div>
+        </div>
+
+        {/* Art table surface */}
+        <div
+          style={{
+            position: "absolute",
+            left: 20,
+            right: 20,
+            bottom: 0,
+            height: 120,
+            background: "linear-gradient(180deg, #D4A373 0%, #BC8A5F 100%)",
+            borderRadius: "18px 18px 0 0",
+            boxShadow: "0 -8px 24px rgba(139, 90, 43, 0.15)",
+            borderTop: "6px solid #E6BA8E",
+          }}
+        >
+          {/* Wood grain subtle lines */}
+          <div style={{position: "absolute", top: 22, left: 40, right: 40, height: 2, background: "rgba(255,255,255,0.25)"}} />
+          <div style={{position: "absolute", top: 58, left: 80, right: 60, height: 2, background: "rgba(0,0,0,0.06)"}} />
+        </div>
+      </div>
+    );
+  }
+
+  // Outdoor / Garden / Market Environment
   return (
-    <div style={{position: "absolute", left, bottom: 8, transform: `translateY(${(1 - entrance) * 45 + bob}px) scale(${0.94 + entrance * 0.06})`, transformOrigin: "bottom center"}}>
-      <Character friend={friend} width={width} pose={pose} />
+    <div style={{position: "absolute", inset: 0, overflow: "hidden", pointerEvents: "none"}}>
+      {/* Dynamic Animated Sun */}
+      <div
+        style={{
+          position: "absolute",
+          left: 95,
+          top: 35,
+          width: 90,
+          height: 90,
+          transform: `scale(${sunPulse})`,
+          transformOrigin: "center center",
+        }}
+      >
+        {/* Soft Sun Glow */}
+        <div
+          style={{
+            position: "absolute",
+            inset: -24,
+            borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(254, 240, 138, 0.45) 0%, rgba(254, 240, 138, 0) 70%)",
+          }}
+        />
+        {/* Rotating Sunrays */}
+        <svg
+          style={{position: "absolute", inset: 0, transform: `rotate(${sunRotate}deg)`}}
+          viewBox="0 0 90 90"
+        >
+          {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
+            <line
+              key={angle}
+              x1="45"
+              y1="5"
+              x2="45"
+              y2="15"
+              stroke="#FDE047"
+              strokeWidth="4"
+              strokeLinecap="round"
+              transform={`rotate(${angle} 45 45)`}
+            />
+          ))}
+        </svg>
+        {/* Sun Core */}
+        <div
+          style={{
+            position: "absolute",
+            inset: 16,
+            borderRadius: "50%",
+            background: "linear-gradient(135deg, #FDE047 0%, #F59E0B 100%)",
+            boxShadow: "0 0 20px rgba(245, 158, 11, 0.4)",
+          }}
+        />
+      </div>
+
+      {/* Floating Fluffy Clouds */}
+      <svg
+        style={{position: "absolute", left: cloud1X, top: 40, opacity: 0.88}}
+        width="140"
+        height="60"
+        viewBox="0 0 140 60"
+      >
+        <path
+          d="M20 45 Q5 45 5 32 Q5 20 22 20 Q30 5 50 6 Q68 6 75 18 Q85 10 100 12 Q115 14 118 28 Q135 28 135 42 Q135 55 120 55 H20 Z"
+          fill="#FFFFFF"
+        />
+      </svg>
+      <svg
+        style={{position: "absolute", left: cloud2X, top: 75, opacity: 0.72}}
+        width="110"
+        height="50"
+        viewBox="0 0 140 60"
+      >
+        <path
+          d="M20 45 Q5 45 5 32 Q5 20 22 20 Q30 5 50 6 Q68 6 75 18 Q85 10 100 12 Q115 14 118 28 Q135 28 135 42 Q135 55 120 55 H20 Z"
+          fill="#FFFFFF"
+        />
+      </svg>
+      <svg
+        style={{position: "absolute", left: cloud3X, top: 25, opacity: 0.65}}
+        width="160"
+        height="70"
+        viewBox="0 0 140 60"
+      >
+        <path
+          d="M20 45 Q5 45 5 32 Q5 20 22 20 Q30 5 50 6 Q68 6 75 18 Q85 10 100 12 Q115 14 118 28 Q135 28 135 42 Q135 55 120 55 H20 Z"
+          fill="#FFFFFF"
+        />
+      </svg>
+
+      {/* Background Soft Rolling Hill */}
+      <div
+        style={{
+          position: "absolute",
+          left: -40,
+          right: -40,
+          bottom: 40,
+          height: 140,
+          borderRadius: "50% 50% 0 0",
+          background: "linear-gradient(180deg, #A7E3B6 0%, #8FD3A2 100%)",
+          opacity: 0.6,
+        }}
+      />
+
+      {/* Foreground Meadow Hill with highlight curve */}
+      <div
+        style={{
+          position: "absolute",
+          left: 10,
+          right: 10,
+          bottom: 0,
+          height: 115,
+          borderRadius: "45% 45% 24px 24px",
+          background: "linear-gradient(180deg, #86EFAC 0%, #4ADE80 50%, #22C55E 100%)",
+          boxShadow: "inset 0 4px 12px rgba(255,255,255,0.6)",
+          border: "4px solid rgba(255,255,255,0.7)",
+        }}
+      >
+        {/* Swaying Wildflowers on the grass */}
+        {[80, 220, 390, 650, 820, 1020, 1180, 1260].map((posX, i) => {
+          const sway = Math.sin((frame + i * 22) / 14) * 6;
+          const flowerColors = ["#F43F5E", "#FBBF24", "#A855F7", "#38BDF8", "#FB7185"];
+          const col = flowerColors[i % flowerColors.length];
+          return (
+            <div
+              key={posX}
+              style={{
+                position: "absolute",
+                left: posX,
+                top: 18 + (i % 3) * 6,
+                transform: `rotate(${sway}deg)`,
+                transformOrigin: "bottom center",
+              }}
+            >
+              <svg width="24" height="28" viewBox="0 0 24 28">
+                {/* Stem */}
+                <path d="M12 28 Q11 16 12 10" stroke="#166534" strokeWidth="2.5" fill="none" />
+                {/* Leaves */}
+                <path d="M12 18 Q6 16 7 20" stroke="#15803D" strokeWidth="2" fill="none" />
+                {/* Petals */}
+                <circle cx="12" cy="8" r="6" fill={col} />
+                <circle cx="12" cy="8" r="2.5" fill="#FEF08A" />
+              </svg>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Decorative Tree on the Left */}
+      <div style={{position: "absolute", left: 18, bottom: 65}}>
+        <svg width="120" height="180" viewBox="0 0 120 180">
+          {/* Trunk */}
+          <path d="M52 180 L52 110 Q52 95 62 85 L62 180 Z" fill="#854D0E" />
+          {/* Canopy Layers */}
+          <circle cx="60" cy="80" r="48" fill="#15803D" />
+          <circle cx="45" cy="65" r="34" fill="#22C55E" />
+          <circle cx="75" cy="65" r="32" fill="#4ADE80" />
+          <circle cx="60" cy="50" r="30" fill="#86EFAC" />
+          {/* Little red apples */}
+          <circle cx="45" cy="72" r="5" fill="#EF4444" />
+          <circle cx="72" cy="82" r="5" fill="#EF4444" />
+          <circle cx="58" cy="54" r="4.5" fill="#EF4444" />
+        </svg>
+      </div>
     </div>
   );
 };
 
-const Candy: React.FC<{left: number; top: number; color: string; rotation?: number}> = ({left, top, color, rotation = 0}) => (
-  <div style={{position: "absolute", left, top, width: 48, height: 30, borderRadius: 15, background: color, border: "4px solid white", boxShadow: "0 5px 9px rgba(74,65,60,.15)", transform: `rotate(${rotation}deg)`}}>
-    <div style={{position: "absolute", width: 10, height: 19, left: -9, top: 1, borderRadius: 5, background: color, transform: "rotate(-28deg)"}} />
-    <div style={{position: "absolute", width: 10, height: 19, right: -9, top: 1, borderRadius: 5, background: color, transform: "rotate(28deg)"}} />
-    <div style={{position: "absolute", left: 16, top: 3, width: 4, height: 16, borderRadius: 3, background: "rgba(255,255,255,.7)"}} />
-  </div>
-);
+// --- Character Positioning Helper ---
+const Person: React.FC<{
+  friend: Friend;
+  left: number;
+  frame: number;
+  width?: number;
+  pose?: "stand" | "wave" | "reach" | "thinking" | "cheer";
+}> = ({friend, left, frame, width = 230, pose}) => {
+  const entrance = spring({
+    frame: Math.max(0, frame - Math.max(0, left - 150) / 24),
+    fps: 30,
+    config: {damping: 14, stiffness: 100},
+  });
+  const bob = Math.sin((frame + left) / 16) * 4;
 
-const Coin: React.FC<{left: number; top: number; size?: number; color?: string; frame?: number; delay?: number}> = ({left, top, size = 54, color = "#F6BE47", frame = 0, delay = 0}) => {
-  const drift = interpolate(frame - delay, [0, 45], [42, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
   return (
-    <svg style={{position: "absolute", left, top: top + drift, filter: "drop-shadow(0 6px 2px rgba(102,72,19,.12))"}} width={size} height={size} viewBox="0 0 60 60">
-      <circle cx="30" cy="30" r="25" fill={color} stroke="#D7932D" strokeWidth="4" />
-      <circle cx="30" cy="30" r="17" fill="none" stroke="#FFE8A5" strokeWidth="3" />
-      <path d="M30 19v22M36 23c-2-4-12-4-12 1 0 7 13 2 13 9 0 5-10 8-15 3" fill="none" stroke="#A36C27" strokeWidth="3" strokeLinecap="round" />
+    <div
+      style={{
+        position: "absolute",
+        left,
+        bottom: 12,
+        transform: `translateY(${(1 - entrance) * 50 + bob}px) scale(${0.92 + entrance * 0.08})`,
+        transformOrigin: "bottom center",
+        zIndex: 5,
+      }}
+    >
+      <Character friend={friend} width={width} pose={pose} frame={frame} />
+    </div>
+  );
+};
+
+// --- Rich Interactive Props & Illustrations ---
+
+// 1. Playground Slide
+const PlaygroundSlide: React.FC<{frame: number}> = ({frame}) => {
+  const flagWave = Math.sin(frame / 5) * 6;
+  return (
+    <svg
+      style={{position: "absolute", right: 28, top: 32, filter: "drop-shadow(0 12px 20px rgba(0,0,0,0.12))"}}
+      width="390"
+      height="370"
+      viewBox="0 0 390 370"
+    >
+      {/* Wooden support posts */}
+      <rect x="78" y="90" width="14" height="230" rx="4" fill="#B45309" />
+      <rect x="156" y="90" width="14" height="230" rx="4" fill="#92400E" />
+
+      {/* Ladder steps */}
+      {[130, 168, 206, 244, 282].map((y) => (
+        <rect key={y} x="82" y={y} width="84" height="8" rx="4" fill="#FBBF24" stroke="#D97706" strokeWidth="1.5" />
+      ))}
+
+      {/* Top platform with safe railings */}
+      <rect x="70" y="80" width="105" height="16" rx="5" fill="#EF4444" />
+      <path d="M72 80 V50 Q120 40 172 50 V80" fill="none" stroke="#F87171" strokeWidth="6" strokeLinecap="round" />
+
+      {/* Cute Flag at the top */}
+      <line x1="72" y1="50" x2="72" y2="18" stroke="#475569" strokeWidth="4" />
+      <path
+        d={`M72 20 L108 ${28 + flagWave} L72 38 Z`}
+        fill="#3B82F6"
+        stroke="#1D4ED8"
+        strokeWidth="1.5"
+      />
+
+      {/* Curved slide chute */}
+      {/* Outer red rail */}
+      <path
+        d="M170 92 Q230 140 290 230 Q330 290 380 300"
+        fill="none"
+        stroke="#DC2626"
+        strokeWidth="32"
+        strokeLinecap="round"
+      />
+      {/* Inner yellow slide surface */}
+      <path
+        d="M170 92 Q230 140 290 230 Q330 290 380 300"
+        fill="none"
+        stroke="#FDE047"
+        strokeWidth="20"
+        strokeLinecap="round"
+      />
+      {/* End curve ground stopper */}
+      <path d="M360 305 L385 305" stroke="#475569" strokeWidth="10" strokeLinecap="round" />
     </svg>
   );
 };
 
-const Heart: React.FC<{left: number; top: number; size?: number; color?: string; frame?: number}> = ({left, top, size = 100, color = "#F28E9D", frame = 0}) => {
-  const pulse = 1 + Math.sin(frame / 9) * 0.045;
-  return <svg style={{position: "absolute", left, top, transform: `scale(${pulse})`, filter: "drop-shadow(0 8px 6px rgba(104,60,66,.1))"}} width={size} height={size} viewBox="0 0 100 90"><path d="M50 82 14 48C-10 24 20-6 44 14l6 6 6-6c24-20 54 10 30 34Z" fill={color} stroke="#C76879" strokeWidth="4" /></svg>;
-};
-
-const Slide: React.FC = () => (
-  <svg style={{position: "absolute", right: 42, top: 45}} width="370" height="360" viewBox="0 0 370 360">
-    <path d="M89 45h74l127 188H164Z" fill="#F4C95D" stroke="#D99737" strokeWidth="10" strokeLinejoin="round" />
-    <path d="M159 233h145l-27 53H137Z" fill="#8CC7AA" stroke="#62A27F" strokeWidth="9" strokeLinejoin="round" />
-    <path d="M272 286v38M160 283v41M117 325h199" stroke="#52647F" strokeWidth="13" strokeLinecap="round" />
-    <circle cx="91" cy="60" r="19" fill="#F28E9D" />
-    <circle cx="165" cy="59" r="19" fill="#F28E9D" />
-  </svg>
+// 2. Shiny Candy Sweets
+const Candy: React.FC<{left: number; top: number; color: string; rotation?: number; scale?: number}> = ({
+  left,
+  top,
+  color,
+  rotation = 0,
+  scale = 1,
+}) => (
+  <div
+    style={{
+      position: "absolute",
+      left,
+      top,
+      width: 54,
+      height: 34,
+      borderRadius: 18,
+      background: `linear-gradient(135deg, ${color} 0%, #FFFFFF 140%)`,
+      border: "3.5px solid #FFFFFF",
+      boxShadow: "0 6px 14px rgba(0,0,0,0.15)",
+      transform: `rotate(${rotation}deg) scale(${scale})`,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    }}
+  >
+    {/* Left twist wrapper */}
+    <div
+      style={{
+        position: "absolute",
+        width: 12,
+        height: 22,
+        left: -11,
+        borderRadius: 5,
+        background: color,
+        border: "2px solid #FFFFFF",
+        transform: "rotate(-32deg)",
+      }}
+    />
+    {/* Right twist wrapper */}
+    <div
+      style={{
+        position: "absolute",
+        width: 12,
+        height: 22,
+        right: -11,
+        borderRadius: 5,
+        background: color,
+        border: "2px solid #FFFFFF",
+        transform: "rotate(32deg)",
+      }}
+    />
+    {/* Center white shimmer line */}
+    <div style={{width: 6, height: 18, borderRadius: 3, background: "rgba(255,255,255,0.85)"}} />
+  </div>
 );
 
-const Fruit: React.FC<{left: number; top: number; kind: "mango" | "cucumber" | "apple"}> = ({left, top, kind}) => {
-  const body = kind === "mango" ? "#FFB94E" : kind === "cucumber" ? "#69B979" : "#F2756A";
+// 3. Golden Star Coins with Sparkle
+const StarCoin: React.FC<{left: number; top: number; size?: number; frame?: number; delay?: number}> = ({
+  left,
+  top,
+  size = 62,
+  frame = 0,
+  delay = 0,
+}) => {
+  const drift = interpolate(frame - delay, [0, 36], [40, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
+  const shimmer = Math.sin((frame - delay) / 8) * 0.15;
+
   return (
-    <svg style={{position: "absolute", left, top}} width="112" height="106" viewBox="0 0 112 106">
-      <ellipse cx="55" cy="58" rx={kind === "cucumber" ? 24 : 40} ry={kind === "cucumber" ? 42 : 37} fill={body} transform={kind === "mango" ? "rotate(22 55 58)" : undefined} />
-      <path d="M54 23Q51 8 65 6" fill="none" stroke="#557E47" strokeWidth="9" strokeLinecap="round" />
-      <path d="M62 12Q83 6 84 23Q68 30 62 12Z" fill="#68A86F" />
-      {kind !== "cucumber" && <><circle cx="42" cy="53" r="4" fill="#824D40"/><circle cx="68" cy="53" r="4" fill="#824D40"/><path d="M45 70Q55 79 66 69" fill="none" stroke="#824D40" strokeWidth="3" strokeLinecap="round"/></>}
-      {kind === "cucumber" && <path d="M42 41h6m13 17h7m-25 16h6" stroke="#C2E6A4" strokeWidth="5" strokeLinecap="round" />}
+    <svg
+      style={{
+        position: "absolute",
+        left,
+        top: top + drift,
+        filter: "drop-shadow(0 8px 14px rgba(180, 83, 9, 0.35))",
+        transform: `scale(${1 + shimmer})`,
+      }}
+      width={size}
+      height={size}
+      viewBox="0 0 60 60"
+    >
+      <circle cx="30" cy="30" r="27" fill="#F59E0B" stroke="#B45309" strokeWidth="3" />
+      <circle cx="30" cy="30" r="23" fill="#FBBF24" />
+      <circle cx="30" cy="30" r="18" fill="none" stroke="#FDE68A" strokeWidth="2.5" />
+      {/* Embossed Star */}
+      <path
+        d="M30 16 L34 24 L42 25 L36 31 L38 39 L30 35 L22 39 L24 31 L18 25 L26 24 Z"
+        fill="#D97706"
+      />
+      {/* Catchlight glint */}
+      <circle cx="21" cy="21" r="3.5" fill="#FFFFFF" opacity="0.8" />
     </svg>
   );
 };
 
-const Block: React.FC<{left: number; top: number; color: string; frame?: number; delay?: number; homeTop?: number}> = ({left, top, color, frame = 0, delay = 0, homeTop}) => {
-  const progress = interpolate(frame - delay, [0, 38], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
-  const y = homeTop === undefined ? top : top + (homeTop - top) * progress;
-  return <div style={{position: "absolute", left, top: y, width: 108, height: 78, background: color, border: "5px solid rgba(255,255,255,.86)", borderRadius: 15, boxShadow: "0 10px 0 rgba(62,70,97,.12)", transform: `rotate(${interpolate(progress, [0, 1], [-14, 0])}deg)`}}><span style={{display: "block", margin: "13px auto", width: 26, height: 26, border: "4px solid rgba(255,255,255,.7)", borderRadius: 8}} /></div>;
+// 4. Floating Beating Heart
+const Heart: React.FC<{left: number; top: number; size?: number; color?: string; frame?: number}> = ({
+  left,
+  top,
+  size = 90,
+  color = "#FB7185",
+  frame = 0,
+}) => {
+  const pulse = 1 + Math.sin(frame / 8) * 0.08;
+  const floatY = Math.sin(frame / 12) * 5;
+
+  return (
+    <svg
+      style={{
+        position: "absolute",
+        left,
+        top: top + floatY,
+        transform: `scale(${pulse})`,
+        filter: "drop-shadow(0 10px 16px rgba(225, 29, 72, 0.22))",
+        zIndex: 10,
+      }}
+      width={size}
+      height={size * 0.9}
+      viewBox="0 0 100 90"
+    >
+      <path
+        d="M50 82 L14 46 C-10 22 20 -8 46 14 L50 18 L54 14 C80 -8 110 22 86 46 Z"
+        fill={color}
+        stroke="#FFFFFF"
+        strokeWidth="3.5"
+      />
+    </svg>
+  );
 };
 
-const Speech: React.FC<{left: number; top: number; text: string; color?: string}> = ({left, top, text, color = "#FFFFFF"}) => (
-  <div style={{position: "absolute", left, top, maxWidth: 280, padding: "16px 22px", borderRadius: 24, background: color, color: "#45526C", border: "3px solid #E8E3DC", boxShadow: "0 8px 20px rgba(58,61,81,.1)", fontSize: 26, lineHeight: 1.2, fontWeight: 800, textAlign: "center"}}>
-    {text}<div style={{position: "absolute", bottom: -13, left: 34, width: 22, height: 22, transform: "rotate(45deg)", background: color, borderRight: "3px solid #E8E3DC", borderBottom: "3px solid #E8E3DC"}} />
+// 5. Speech Bubble
+const SpeechBubble: React.FC<{
+  left: number;
+  top: number;
+  text: string;
+  speaker?: string;
+  badgeColor?: string;
+}> = ({left, top, text, speaker, badgeColor = "#FF6E7F"}) => (
+  <div
+    style={{
+      position: "absolute",
+      left,
+      top,
+      maxWidth: 340,
+      padding: "16px 24px",
+      borderRadius: 24,
+      background: "#FFFFFF",
+      border: `3px solid ${badgeColor}`,
+      boxShadow: "0 12px 28px rgba(30, 41, 59, 0.12)",
+      zIndex: 12,
+      display: "flex",
+      flexDirection: "column",
+      gap: 4,
+    }}
+  >
+    {speaker && (
+      <span style={{fontSize: 14, fontWeight: 900, color: badgeColor, textTransform: "uppercase", letterSpacing: 1}}>
+        {speaker} says:
+      </span>
+    )}
+    <span style={{fontSize: 24, fontWeight: 800, color: "#1E293B", lineHeight: 1.25}}>
+      "{text}"
+    </span>
+    {/* Tail pointer */}
+    <div
+      style={{
+        position: "absolute",
+        bottom: -12,
+        left: 42,
+        width: 20,
+        height: 20,
+        transform: "rotate(45deg)",
+        background: "#FFFFFF",
+        borderRight: `3px solid ${badgeColor}`,
+        borderBottom: `3px solid ${badgeColor}`,
+      }}
+    />
   </div>
 );
+
+// 6. Educational Alphabet / Wooden Blocks
+const Block: React.FC<{
+  left: number;
+  top: number;
+  color: string;
+  letter: string;
+  frame?: number;
+  delay?: number;
+  homeTop?: number;
+  fallen?: boolean;
+}> = ({left, top, color, letter, frame = 0, delay = 0, homeTop, fallen = false}) => {
+  const progress = interpolate(frame - delay, [0, 32], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  const currentY = homeTop !== undefined ? top + (homeTop - top) * progress : top;
+  const rot = fallen ? interpolate(progress, [0, 1], [0, 48]) : 0;
+
+  return (
+    <div
+      style={{
+        position: "absolute",
+        left,
+        top: currentY,
+        width: 82,
+        height: 82,
+        background: color,
+        borderRadius: 14,
+        border: "4px solid rgba(255,255,255,0.92)",
+        boxShadow: "0 10px 20px rgba(0,0,0,0.14)",
+        display: "grid",
+        placeItems: "center",
+        transform: `rotate(${rot}deg)`,
+        zIndex: 6,
+      }}
+    >
+      <span style={{fontSize: 34, fontWeight: 900, color: "#FFFFFF", textShadow: "0 2px 4px rgba(0,0,0,0.25)"}}>
+        {letter}
+      </span>
+    </div>
+  );
+};
+
+// --- Main Illustration Dispatcher ---
 
 export const Illustration: React.FC<ArtProps> = ({scene, frame, durationInFrames}) => {
-  const appear = spring({frame, fps: 30, config: {damping: 16, stiffness: 82}});
-  const questionScale = scene.visual === "quiz" ? spring({frame: Math.max(0, frame - 18), fps: 30, config: {damping: 12, stiffness: 105}}) : 1;
-  const settle = interpolate(frame, [0, Math.max(1, durationInFrames - 90)], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
-  const people = (items: Array<{who: keyof typeof friends; expression?: Friend["expression"]; wheelchair?: boolean}>) => items.map((item, index) => {
-    const base = friends[item.who];
-    const friend = {...base, expression: item.expression ?? base.expression, wheelchair: item.wheelchair ?? base.wheelchair};
-    return <Person key={`${item.who}-${index}`} friend={friend} left={characterPositions[index] ?? 90} frame={frame} pose={scene.visual === "invite" && index === 2 ? "wave" : undefined} />;
+  const appear = spring({frame, fps: 30, config: {damping: 15, stiffness: 85}});
+  const questionScale = spring({
+    frame: Math.max(0, frame - 12),
+    fps: 30,
+    config: {damping: 12, stiffness: 100},
   });
-  const peopleThree = [
-    {who: "ruhi"}, {who: "sami"}, {who: "layla"},
-  ] as Array<{who: keyof typeof friends; expression?: Friend["expression"]; wheelchair?: boolean}>;
+
+  // Three character centered layouts
+  const pos3 = [110, 535, 960];
+  const pos2 = [290, 780];
 
   return (
-    <div style={{position: "relative", width: 1320, height: 560, margin: "0 auto", transform: `scale(${0.96 + appear * 0.04})`, transformOrigin: "center bottom"}}>
-      <div style={{position: "absolute", left: 38, right: 38, bottom: 0, height: 105, borderRadius: "55% 55% 24px 24px", background: "linear-gradient(180deg, #BFE3B0 0%, #A9D294 100%)", border: "4px solid rgba(255,255,255,.76)"}} />
-      <div style={{position: "absolute", left: 112, top: 58, width: 72, height: 72, borderRadius: "50%", background: "#FFD66B", boxShadow: "0 0 0 15px rgba(255,214,107,.18)"}} />
+    <div
+      style={{
+        position: "relative",
+        width: 1320,
+        height: 560,
+        margin: "0 auto",
+        transform: `scale(${0.96 + appear * 0.04})`,
+        transformOrigin: "center bottom",
+      }}
+    >
+      {/* Dynamic Background by visual type */}
+      <SceneryBackground
+        frame={frame}
+        variant={
+          scene.visual.startsWith("art") || scene.visual === "oops" || scene.visual === "truth" || scene.visual === "listen" || scene.visual === "repair"
+            ? "art"
+            : scene.visual === "garden" || scene.visual === "choices"
+            ? "garden"
+            : scene.visual === "market" || scene.visual === "different-coins" || scene.visual === "share-game"
+            ? "market"
+            : "outdoor"
+        }
+      />
 
-      {scene.visual === "playground" && <><Slide />{people([{who: "ruhi"}, {who: "maya"}, {who: "sami"}])}<Heart left={620} top={72} size={92} frame={frame} /></>}
+      {/* ========================================================================= */}
+      {/* EPISODE 1: JUSTICE & FAIRNESS AT PLAYGROUND                              */}
+      {/* ========================================================================= */}
 
-      {scene.visual === "unfair-share" && <>
-        <div style={{position: "absolute", left: 401, top: 295, width: 230, height: 55, borderRadius: "50%", background: "#FFFFFF", border: "8px solid #E9D9C1", boxShadow: "0 18px 0 rgba(101,76,50,.12)"}} />
-        {Array.from({length: 6}, (_, index) => {
-          const drift = interpolate(frame, [0, 48], [180, 0], {extrapolateRight: "clamp"});
-          return <div key={index} style={{position: "absolute", left: 435 + index * 29 - drift, top: 248 + (index % 2) * 18, transform: `rotate(${index * 18}deg)`}}><Candy left={0} top={0} color={["#F27875", "#F1B94D", "#7EB9E1"][index % 3]} /></div>;
-        })}
-        {people([{who: "maya", expression: "happy"}, {who: "ruhi", expression: "sad"}, {who: "noor", expression: "sad"}])}
-        <div style={{position: "absolute", left: 498, top: 204, fontSize: 22, color: "#6D7280", fontWeight: 800}}>All the sweets?</div>
-      </>}
+      {/* 1.1 Welcome Playground */}
+      {scene.visual === "playground" && (
+        <>
+          <PlaygroundSlide frame={frame} />
+          <Person friend={friends.ruhi} left={pos3[0]} frame={frame} pose="wave" />
+          <Person friend={friends.aima} left={pos3[1]} frame={frame} pose="wave" />
+          <Person friend={friends.nuh} left={pos3[2]} frame={frame} pose="wave" />
+          <Heart left={590} top={50} size={88} frame={frame} />
+        </>
+      )}
 
-      {scene.visual === "fair-share" && <>
-        {people([{who: "ruhi"}, {who: "maya"}, {who: "noor"}])}
-        {[202, 590, 980].map((x, index) => <div key={x} style={{position: "absolute", left: x, top: 278, width: 125, height: 38, borderRadius: "50%", background: "#FFFFFF", border: "5px solid #E9D9C1"}}><Candy left={34} top={-12} color={["#F27875", "#F1B94D", "#7EB9E1"][index]} /></div>)}
-        <Heart left={573} top={53} size={94} frame={frame} />
-      </>}
+      {/* 1.2 Unfair Share */}
+      {scene.visual === "unfair-share" && (
+        <>
+          {/* Wooden Picnic Table with Gingham Runner */}
+          <div
+            style={{
+              position: "absolute",
+              left: 180,
+              bottom: 30,
+              width: 960,
+              height: 100,
+              background: "linear-gradient(180deg, #D97706 0%, #B45309 100%)",
+              borderRadius: "16px 16px 8px 8px",
+              boxShadow: "0 14px 28px rgba(0,0,0,0.18)",
+              zIndex: 3,
+            }}
+          >
+            {/* Gingham red-and-white runner */}
+            <div
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 30,
+                right: 30,
+                height: 28,
+                background: "repeating-linear-gradient(90deg, #EF4444 0 20px, #FFFFFF 20px 40px)",
+                opacity: 0.85,
+              }}
+            />
+          </div>
 
-      {scene.visual === "slide-turns" && <><Slide />{people([{who: "ruhi"}, {who: "sami"}, {who: "maya"}])}
-        <div style={{position: "absolute", left: 740, top: 75, display: "flex", gap: 13, alignItems: "center", padding: "12px 20px", borderRadius: 30, background: "#FFFFFF", color: "#53617B", fontSize: 23, fontWeight: 800, boxShadow: "0 7px 15px rgba(60,70,90,.1)"}}><span style={{color: "#79B69A"}}>01</span><span style={{color: "#F2AE4C"}}>02</span><span style={{color: "#F28E9D"}}>03</span> Wait &amp; play</div>
-      </>}
+          {/* Children standing behind the table */}
+          <Person friend={friends.nuh} left={pos3[0]} frame={frame} />
+          <Person friend={{...friends.ruhi, expression: "surprised"}} left={pos3[1]} frame={frame} />
+          <Person friend={{...friends.aima, expression: "sad"}} left={pos3[2]} frame={frame} />
 
-      {scene.visual === "invite" && <>{people([{who: "ruhi"}, {who: "maya"}, {who: "noor", expression: "sad"}])}<div style={{position: "absolute", left: 793, top: 28, opacity: settle}}><Speech left={0} top={0} text="Come play with us!" /></div><Heart left={820} top={176} size={70} frame={frame} /></>}
+          {/* Nuh's full tray with all 6 candies */}
+          <div
+            style={{
+              position: "absolute",
+              left: 210,
+              bottom: 80,
+              width: 170,
+              height: 48,
+              borderRadius: "50%",
+              background: "#FFFFFF",
+              border: "4px solid #F59E0B",
+              boxShadow: "0 8px 18px rgba(0,0,0,0.15)",
+              display: "grid",
+              placeItems: "center",
+              zIndex: 6,
+            }}
+          >
+            <span style={{fontSize: 13, fontWeight: 900, color: "#D97706"}}>All 6 Treats!</span>
+          </div>
+          {[0, 1, 2, 3, 4, 5].map((i) => (
+            <Candy
+              key={i}
+              left={215 + (i % 3) * 38}
+              top={410 - Math.floor(i / 3) * 26}
+              color={["#EF4444", "#F59E0B", "#3B82F6", "#10B981"][i % 4]}
+              rotation={(i - 2.5) * 12}
+            />
+          ))}
 
-      {scene.visual === "remember" && <>{peopleThree.map((item, index) => <Person key={item.who} friend={{...friends[item.who], expression: "happy"}} left={characterPositions[index]} frame={frame} pose="wave" />)}<Heart left={606} top={56} size={80} frame={frame} /><div style={{position: "absolute", left: 335, top: 184, color: "#5A7181", fontSize: 30, fontWeight: 900, background: "#FFFFFF", padding: "12px 22px", borderRadius: 24}}>Share • Take turns • Include</div></>}
+          {/* Empty plates for Ruhi and Aima */}
+          <div
+            style={{
+              position: "absolute",
+              left: 635,
+              bottom: 82,
+              width: 120,
+              height: 40,
+              borderRadius: "50%",
+              background: "#FFFFFF",
+              border: "3px solid #CBD5E1",
+              boxShadow: "0 6px 12px rgba(0,0,0,0.08)",
+              display: "grid",
+              placeItems: "center",
+              zIndex: 6,
+            }}
+          >
+            <span style={{fontSize: 12, fontWeight: 800, color: "#94A3B8"}}>Empty</span>
+          </div>
 
-      {scene.visual === "market" && <><div style={{position: "absolute", left: 338, top: 38, width: 620, height: 180, borderRadius: "28px 28px 12px 12px", background: "#FFFFFF", border: "8px solid #E6DFD5", boxShadow: "0 12px 22px rgba(80,70,55,.12)"}}><div style={{display: "flex", height: "100%", alignItems: "center", justifyContent: "center", gap: 28, color: "#617184", fontWeight: 900, fontSize: 34}}><span style={{color: "#E97C73"}}>PLAY</span><span>COINS</span><Heart left={264} top={47} size={52} color="#F4C95D" frame={frame} /></div><div style={{height: 28, background: "repeating-linear-gradient(90deg,#F28E9D 0 60px,#FFF 60px 120px)", borderRadius: "0 0 6px 6px"}} /></div>{people([{who: "sami"}, {who: "noor"}])}</>}
+          <div
+            style={{
+              position: "absolute",
+              left: 1060,
+              bottom: 82,
+              width: 120,
+              height: 40,
+              borderRadius: "50%",
+              background: "#FFFFFF",
+              border: "3px solid #CBD5E1",
+              boxShadow: "0 6px 12px rgba(0,0,0,0.08)",
+              display: "grid",
+              placeItems: "center",
+              zIndex: 6,
+            }}
+          >
+            <span style={{fontSize: 12, fontWeight: 800, color: "#94A3B8"}}>Empty</span>
+          </div>
 
-      {scene.visual === "different-coins" && <>{people([{who: "sami"}, {who: "noor"}])}
-        {[0, 1, 2, 3, 4].map((i) => <Coin key={`s${i}`} left={306 + (i % 3) * 48} top={152 + Math.floor(i / 3) * 45} frame={frame} delay={i * 5} />)}
-        {[0, 1].map((i) => <Coin key={`n${i}`} left={800 + i * 46} top={220} color="#E4A645" frame={frame} delay={i * 11 + 18} />)}
-        <div style={{position: "absolute", left: 468, top: 140, fontWeight: 900, color: "#607086", background: "#FFF", padding: "12px 22px", borderRadius: 20}}>Different amounts</div>
-      </>}
+          {/* Question Callout */}
+          <div
+            style={{
+              position: "absolute",
+              left: 480,
+              top: 50,
+              padding: "12px 28px",
+              borderRadius: 20,
+              background: "#FFFFFF",
+              border: "3px solid #EF4444",
+              boxShadow: "0 10px 24px rgba(239, 68, 68, 0.15)",
+              color: "#DC2626",
+              fontSize: 26,
+              fontWeight: 900,
+              zIndex: 10,
+            }}
+          >
+            ⚠️ Is taking all six treats fair?
+          </div>
+        </>
+      )}
 
-      {scene.visual === "equal-worth" && <>{people([{who: "sami"}, {who: "noor"}])}<Heart left={554} top={48} size={152} color="#F4AAB0" frame={frame} /><div style={{position: "absolute", left: 409, top: 223, padding: "14px 26px", borderRadius: 24, background: "#FFFFFF", color: "#59677F", fontSize: 27, fontWeight: 900}}>Equally important</div></>}
+      {/* 1.3 Fair Share */}
+      {scene.visual === "fair-share" && (
+        <>
+          {/* Wooden Picnic Table with Gingham Runner */}
+          <div
+            style={{
+              position: "absolute",
+              left: 180,
+              bottom: 30,
+              width: 960,
+              height: 100,
+              background: "linear-gradient(180deg, #D97706 0%, #B45309 100%)",
+              borderRadius: "16px 16px 8px 8px",
+              boxShadow: "0 14px 28px rgba(0,0,0,0.18)",
+              zIndex: 3,
+            }}
+          >
+            <div
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 30,
+                right: 30,
+                height: 28,
+                background: "repeating-linear-gradient(90deg, #10B981 0 20px, #FFFFFF 20px 40px)",
+                opacity: 0.85,
+              }}
+            />
+          </div>
 
-      {scene.visual === "share-game" && <>{people([{who: "sami"}, {who: "noor"}])}<div style={{position: "absolute", left: 415, top: 60, width: 492, height: 188, borderRadius: 28, background: "#FDFEFF", border: "7px solid #D9E2E5", boxShadow: "0 12px 0 rgba(70,83,100,.08)"}}><svg width="100%" height="100%" viewBox="0 0 490 188"><path d="M42 142 Q110 34 181 136 T330 86 T458 123" fill="none" stroke="#F28E9D" strokeWidth="15" strokeLinecap="round"/><circle cx="110" cy="84" r="20" fill="#F4C95D"/><circle cx="327" cy="111" r="16" fill="#84BD9A"/></svg></div><Heart left={570} top={255} size={60} frame={frame} /></>}
+          <Person friend={friends.ruhi} left={pos3[0]} frame={frame} pose="cheer" />
+          <Person friend={friends.aima} left={pos3[1]} frame={frame} pose="cheer" />
+          <Person friend={friends.nuh} left={pos3[2]} frame={frame} pose="cheer" />
 
-      {scene.visual === "friendship" && <>{people([{who: "sami"}, {who: "noor"}])}<Heart left={549} top={52} size={150} color="#F28E9D" frame={frame} /><div style={{position: "absolute", left: 488, top: 229, color: "#59677F", fontSize: 28, fontWeight: 900, background: "#FFFFFF", padding: "12px 20px", borderRadius: 20}}>Friends, not coins</div></>}
+          {/* Three equal plates with 2 candies each placed on the table */}
+          {[220, 645, 1070].map((plateX) => (
+            <React.Fragment key={plateX}>
+              <div
+                style={{
+                  position: "absolute",
+                  left: plateX,
+                  bottom: 80,
+                  width: 130,
+                  height: 42,
+                  borderRadius: "50%",
+                  background: "#FFFFFF",
+                  border: "4px solid #10B981",
+                  boxShadow: "0 8px 16px rgba(16, 185, 129, 0.18)",
+                  display: "grid",
+                  placeItems: "center",
+                  zIndex: 6,
+                }}
+              >
+                <span style={{fontSize: 12, fontWeight: 900, color: "#059669"}}>2 Treats</span>
+              </div>
+              <Candy left={plateX + 10} top={416} color="#EF4444" rotation={-12} />
+              <Candy left={plateX + 65} top={416} color="#3B82F6" rotation={14} />
+            </React.Fragment>
+          ))}
 
-      {scene.visual === "respect" && <>{people([{who: "sami"}, {who: "noor"}])}<Speech left={406} top={54} text="Kind words. No teasing." color="#FFFDF5" /><Heart left={847} top={76} size={68} frame={frame} /></>}
+          <Heart left={580} top={45} size={92} frame={frame} />
+          <div
+            style={{
+              position: "absolute",
+              left: 470,
+              top: 145,
+              padding: "10px 26px",
+              borderRadius: 999,
+              background: "#FFFFFF",
+              border: "3px solid #10B981",
+              color: "#059669",
+              fontSize: 24,
+              fontWeight: 900,
+              boxShadow: "0 8px 20px rgba(16, 185, 129, 0.15)",
+              zIndex: 10,
+            }}
+          >
+            ✨ Two treats for each friend!
+          </div>
+        </>
+      )}
 
-      {scene.visual === "garden" && <>{people([{who: "ruhi"}, {who: "layla"}])}<Fruit left={411} top={128} kind="cucumber"/><Fruit left={540} top={129} kind="mango"/><div style={{position: "absolute", left: 417, top: 85, width: 248, height: 156, borderRadius: "50%", background: "#FFF", border: "8px solid #E7D7C0", zIndex: -1}}/><div style={{position: "absolute", left: 495, top: 40, color: "#598B67", background: "#FFF", padding: "10px 22px", borderRadius: 20, fontSize: 24, fontWeight: 900}}>Our favourites</div></>}
+      {/* 1.4 Slide Turns */}
+      {scene.visual === "slide-turns" && (
+        <>
+          <PlaygroundSlide frame={frame} />
+          {/* Waiting line order */}
+          <Person friend={friends.ruhi} left={140} frame={frame} />
+          <Person friend={friends.aima} left={480} frame={frame} />
+          <Person friend={friends.nuh} left={820} frame={frame} />
 
-      {scene.visual === "choices" && <>{people([{who: "ruhi"}, {who: "layla"}])}<Fruit left={416} top={130} kind="cucumber"/><Fruit left={556} top={130} kind="mango"/><div style={{position: "absolute", left: 438, top: 266, color: "#6A7181", fontSize: 24, fontWeight: 900, background: "#FFFFFF", padding: "9px 17px", borderRadius: 18}}>Both are good choices</div></>}
+          {/* Turn sequence badges */}
+          {[
+            {label: "1st Turn", x: 200, color: "#EF4444"},
+            {label: "2nd Turn", x: 540, color: "#F59E0B"},
+            {label: "3rd Turn", x: 880, color: "#10B981"},
+          ].map((turn, i) => (
+            <div
+              key={i}
+              style={{
+                position: "absolute",
+                left: turn.x,
+                top: 70,
+                padding: "8px 18px",
+                borderRadius: 999,
+                background: "#FFFFFF",
+                border: `3px solid ${turn.color}`,
+                color: turn.color,
+                fontWeight: 900,
+                fontSize: 20,
+                boxShadow: "0 6px 16px rgba(0,0,0,0.08)",
+              }}
+            >
+              {turn.label}
+            </div>
+          ))}
 
-      {scene.visual === "choose" && <>{people([{who: "ruhi"}, {who: "sami"}, {who: "layla"}])}<div style={{position: "absolute", left: 401, top: 55, display: "flex", gap: 20}}>{["#F28E9D", "#F4C95D", "#82BDE2"].map((color, i) => <div key={color} style={{width: 136, height: 116, background: "#FFFFFF", border: `7px solid ${color}`, borderRadius: 26, display: "grid", placeItems: "center", color: "#53627A", fontWeight: 900, fontSize: 22, transform: `translateY(${Math.sin(frame / 16 + i) * 7}px)`}}>{["BALL", "HOOP", "CARDS"][i]}</div>)}</div></>}
+          <div
+            style={{
+              position: "absolute",
+              left: 450,
+              top: 135,
+              padding: "10px 24px",
+              borderRadius: 20,
+              background: "#FFFFFF",
+              color: "#334155",
+              fontSize: 22,
+              fontWeight: 900,
+              boxShadow: "0 8px 18px rgba(0,0,0,0.08)",
+            }}
+          >
+            ⏳ Wait patiently &amp; play happily!
+          </div>
+        </>
+      )}
 
-      {scene.visual === "game-options" && <>{people([{who: "ruhi"}, {who: "layla", wheelchair: true}, {who: "sami"}])}<div style={{position: "absolute", left: 453, top: 65, background: "#FFF", color: "#57726C", borderRadius: 24, padding: "14px 23px", fontSize: 25, fontWeight: 900}}>Many ways to join</div><div style={{position: "absolute", left: 538, top: 136, width: 150, height: 35, background: "#F4C95D", borderRadius: "50%", border: "7px solid #E9A23A", transform: "rotate(-9deg)"}}/><div style={{position: "absolute", left: 728, top: 115, width: 70, height: 70, borderRadius: "50%", background: "#F28E9D", border: "6px solid #FFF"}} /></>}
+      {/* 1.5 Invite a Friend */}
+      {scene.visual === "invite" && (
+        <>
+          {/* Park Bench for Aima */}
+          <div
+            style={{
+              position: "absolute",
+              left: 880,
+              bottom: 40,
+              width: 280,
+              height: 140,
+              zIndex: 3,
+            }}
+          >
+            {/* Wooden slats */}
+            <div style={{width: 280, height: 16, background: "#B45309", borderRadius: 6, marginBottom: 8}} />
+            <div style={{width: 280, height: 16, background: "#92400E", borderRadius: 6, marginBottom: 8}} />
+            <div style={{width: 280, height: 20, background: "#78350F", borderRadius: 6}} />
+            {/* Cast iron legs */}
+            <div style={{position: "absolute", left: 30, bottom: -20, width: 14, height: 60, background: "#334155"}} />
+            <div style={{position: "absolute", right: 30, bottom: -20, width: 14, height: 60, background: "#334155"}} />
+          </div>
 
-      {scene.visual === "make-space" && <>{people([{who: "ruhi"}, {who: "layla", wheelchair: true}, {who: "sami"}])}<Heart left={583} top={43} size={82} frame={frame} /><div style={{position: "absolute", left: 442, top: 155, color: "#597185", background: "#FFFFFF", padding: "10px 18px", borderRadius: 20, fontWeight: 900, fontSize: 23}}>Your turn is next</div></>}
+          <Person friend={friends.ruhi} left={180} frame={frame} pose="reach" />
+          <Person friend={friends.nuh} left={480} frame={frame} pose="wave" />
+          <Person friend={{...friends.aima, expression: "happy"}} left={920} frame={frame} />
 
-      {scene.visual === "opportunity" && <>{people([{who: "ruhi"}, {who: "layla", wheelchair: true}, {who: "sami"}])}<div style={{position: "absolute", left: 442, top: 57, display: "flex", gap: 14, color: "#4F6A62", fontWeight: 900, fontSize: 25}}><span style={{background: "#FFF", padding: "13px 18px", borderRadius: 18}}>Join</span><span style={{background: "#FFF", padding: "13px 18px", borderRadius: 18}}>Choose</span><span style={{background: "#FFF", padding: "13px 18px", borderRadius: 18}}>Try</span></div><Heart left={615} top={169} size={62} color="#8FC9A8" frame={frame} /></>}
+          <SpeechBubble
+            left={540}
+            top={60}
+            text="Would you like to play with us, Aima?"
+            speaker="Ruhi &amp; Nuh"
+            badgeColor="#FF6E7F"
+          />
+          <Heart left={780} top={180} size={76} frame={frame} />
+        </>
+      )}
 
-      {scene.visual === "art-time" && <>{people([{who: "adam"}, {who: "ruhi"}])}<div style={{position: "absolute", left: 483, top: 290, width: 340, height: 44, borderRadius: 12, background: "#D89B68", boxShadow: "0 14px 0 #B9774A"}}/><Block left={563} top={90} color="#F28E9D" frame={frame} delay={15} /><Block left={672} top={90} color="#82BDE2" frame={frame} delay={19} /><Block left={616} top={7} color="#F4C95D" frame={frame} delay={24} /></>}
+      {/* 1.6 Remember & Belong */}
+      {scene.visual === "remember" && (
+        <>
+          <Person friend={friends.ruhi} left={pos3[0]} frame={frame} pose="wave" />
+          <Person friend={friends.aima} left={pos3[1]} frame={frame} pose="cheer" />
+          <Person friend={friends.nuh} left={pos3[2]} frame={frame} pose="wave" />
 
-      {scene.visual === "oops" && <>{people([{who: "adam", expression: "surprised"}, {who: "ruhi", expression: "surprised"}])}<div style={{position: "absolute", left: 434, top: 302, width: 395, height: 35, borderRadius: 12, background: "#D89B68", boxShadow: "0 12px 0 #B9774A"}}/><Block left={500} top={246} color="#F28E9D" frame={frame} delay={70} /><Block left={642} top={290} color="#82BDE2" frame={frame} delay={20} /><Block left={710} top={242} color="#F4C95D" frame={frame} delay={44} /><Block left={593} top={194} color="#8FC9A8" frame={frame} delay={5} /></>}
+          <Heart left={585} top={40} size={95} frame={frame} />
+          {/* Key Message Ribbons */}
+          <div
+            style={{
+              position: "absolute",
+              left: 280,
+              right: 280,
+              top: 155,
+              display: "flex",
+              justifyContent: "center",
+              gap: 16,
+              zIndex: 10,
+            }}
+          >
+            {[
+              {icon: "🤝", text: "Share", color: "#FF6E7F"},
+              {icon: "⏳", text: "Take Turns", color: "#F59E0B"},
+              {icon: "💛", text: "Include Everyone", color: "#10B981"},
+            ].map((badge, i) => (
+              <div
+                key={i}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 10,
+                  padding: "12px 22px",
+                  borderRadius: 999,
+                  background: "#FFFFFF",
+                  border: `3px solid ${badge.color}`,
+                  color: "#1E293B",
+                  fontSize: 22,
+                  fontWeight: 900,
+                  boxShadow: "0 8px 20px rgba(0,0,0,0.08)",
+                }}
+              >
+                <span>{badge.icon}</span>
+                <span>{badge.text}</span>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
 
-      {scene.visual === "truth" && <>{people([{who: "adam", expression: "thinking"}, {who: "ruhi"}])}<Speech left={409} top={67} text="I did it. I'm sorry." color="#FFFDF5"/><div style={{position: "absolute", left: 625, top: 302, width: 355, height: 36, borderRadius: 12, background: "#D89B68", boxShadow: "0 12px 0 #B9774A"}}/><Block left={690} top={223} color="#F28E9D" frame={frame} delay={35} /><Block left={799} top={223} color="#82BDE2" frame={frame} delay={42} /></>}
+      {/* ========================================================================= */}
+      {/* EPISODE 2: WEALTH & POVERTY (MORE THAN MONEY)                             */}
+      {/* ========================================================================= */}
 
-      {scene.visual === "listen" && <>{people([{who: "adam"}, {who: "ruhi"}, {who: "maya"}])}<Speech left={449} top={55} text="Let's rebuild it together." color="#FFFDF5"/><div style={{position: "absolute", left: 475, top: 300, width: 360, height: 34, borderRadius: 12, background: "#D89B68", boxShadow: "0 12px 0 #B9774A"}}/><Block left={528} top={236} color="#F28E9D" frame={frame} delay={4}/><Block left={645} top={252} color="#82BDE2" frame={frame} delay={14}/><Block left={727} top={217} color="#F4C95D" frame={frame} delay={22}/><Heart left={625} top={174} size={65} color="#F4C95D" frame={frame} /></>}
+      {/* 2.1 Market Welcome */}
+      {scene.visual === "market" && (
+        <>
+          {/* Market Booth Stall */}
+          <div
+            style={{
+              position: "absolute",
+              left: 310,
+              top: 25,
+              width: 700,
+              height: 220,
+              background: "#FFFFFF",
+              border: "6px solid #E2E8F0",
+              borderRadius: "24px 24px 12px 12px",
+              boxShadow: "0 14px 28px rgba(0,0,0,0.1)",
+              zIndex: 2,
+              overflow: "hidden",
+            }}
+          >
+            {/* Striped Awning */}
+            <div
+              style={{
+                height: 48,
+                background: "repeating-linear-gradient(90deg, #EF4444 0 45px, #FFFFFF 45px 90px)",
+                borderBottom: "4px solid #DC2626",
+              }}
+            />
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                height: 120,
+                gap: 20,
+              }}
+            >
+              <span style={{fontSize: 32, fontWeight: 900, color: "#1E293B"}}>🏪 SCHOOL PLAY MARKET</span>
+            </div>
+            {/* Counter bar */}
+            <div style={{height: 24, background: "#D97706"}} />
+          </div>
 
-      {scene.visual === "repair" && <>{people([{who: "adam"}, {who: "ruhi"}])}<div style={{position: "absolute", left: 425, top: 300, width: 442, height: 40, borderRadius: 12, background: "#D89B68", boxShadow: "0 13px 0 #B9774A"}}/><Block left={537} top={210} homeTop={214} color="#8FC9A8" frame={frame} delay={0} /><Block left={645} top={210} homeTop={214} color="#82BDE2" frame={frame} delay={12} /><Block left={591} top={124} homeTop={126} color="#F28E9D" frame={frame} delay={24} /><Block left={591} top={40} homeTop={39} color="#F4C95D" frame={frame} delay={35} /><Heart left={850} top={75} size={65} frame={frame} /></>}
+          <Person friend={friends.nuh} left={pos2[0]} frame={frame} pose="wave" />
+          <Person friend={friends.aima} left={pos2[1]} frame={frame} pose="wave" />
+        </>
+      )}
 
-      {scene.visual === "brave" && <>{people([{who: "adam"}, {who: "ruhi"}, {who: "maya"}])}<div style={{position: "absolute", left: 425, top: 58, background: "#FFFFFF", color: "#5C6C7E", borderRadius: 26, padding: "16px 24px", fontSize: 25, fontWeight: 900}}>Kind words • Helpful actions</div><Heart left={578} top={162} size={75} color="#F4C95D" frame={frame} /></>}
+      {/* 2.2 Different Coin Amounts */}
+      {scene.visual === "different-coins" && (
+        <>
+          <Person friend={friends.nuh} left={pos2[0]} frame={frame} />
+          <Person friend={friends.aima} left={pos2[1]} frame={frame} />
 
-      {scene.visual === "quiz" && <>
-        {people([{who: "ruhi", expression: "thinking"}, {who: "sami", expression: "thinking"}, {who: "layla", expression: "thinking", wheelchair: true}])}
-        <div style={{position: "absolute", left: 526, top: 55, width: 218, height: 218, borderRadius: "50%", display: "grid", placeItems: "center", background: "#FFFFFF", color: "#F28E9D", fontSize: 142, fontWeight: 900, boxShadow: "0 16px 0 rgba(71,82,105,.09)", transform: `scale(${questionScale})`}}>?</div>
-        {frame > durationInFrames - 104 && <div style={{position: "absolute", left: 507, top: 286, minWidth: 258, textAlign: "center", padding: "13px 24px", borderRadius: 18, color: "#52637A", background: "#FFF8DD", fontSize: 27, fontWeight: 900}}>PAUSE &amp; THINK</div>}
-      </>}
+          {/* Nuh's 5 Tokens */}
+          <div style={{position: "absolute", left: 470, top: 120, textAlign: "center"}}>
+            <div style={{fontSize: 20, fontWeight: 900, color: "#2563EB", background: "#FFFFFF", padding: "6px 14px", borderRadius: 999, border: "2px solid #93C5FD"}}>
+              Nuh: 5 Tokens
+            </div>
+            {[0, 1, 2, 3, 4].map((i) => (
+              <StarCoin key={`n${i}`} left={(i % 3) * 44 - 40} top={40 + Math.floor(i / 3) * 42} frame={frame} delay={i * 4} />
+            ))}
+          </div>
+
+          {/* Aima's 2 Tokens */}
+          <div style={{position: "absolute", left: 730, top: 120, textAlign: "center"}}>
+            <div style={{fontSize: 20, fontWeight: 900, color: "#059669", background: "#FFFFFF", padding: "6px 14px", borderRadius: 999, border: "2px solid #A7F3D0"}}>
+              Aima: 2 Tokens
+            </div>
+            {[0, 1].map((i) => (
+              <StarCoin key={`a${i}`} left={i * 48 - 20} top={40} frame={frame} delay={i * 8 + 12} />
+            ))}
+          </div>
+
+          {/* Balanced Educational Note */}
+          <div
+            style={{
+              position: "absolute",
+              left: 430,
+              top: 25,
+              padding: "10px 24px",
+              borderRadius: 20,
+              background: "#FFFFFF",
+              border: "3px solid #CBD5E1",
+              fontSize: 22,
+              fontWeight: 900,
+              color: "#475569",
+              boxShadow: "0 8px 18px rgba(0,0,0,0.08)",
+            }}
+          >
+            Different families have different amounts of money
+          </div>
+        </>
+      )}
+
+      {/* 2.3 Equal Worth */}
+      {scene.visual === "equal-worth" && (
+        <>
+          <Person friend={friends.nuh} left={pos2[0]} frame={frame} pose="cheer" />
+          <Person friend={friends.aima} left={pos2[1]} frame={frame} pose="cheer" />
+
+          {/* Golden Balance Scale of Equal Importance */}
+          <div
+            style={{
+              position: "absolute",
+              left: 520,
+              top: 50,
+              width: 280,
+              textAlign: "center",
+              zIndex: 10,
+            }}
+          >
+            <Heart left={90} top={0} size={100} color="#FB7185" frame={frame} />
+            <div
+              style={{
+                marginTop: 100,
+                padding: "12px 24px",
+                borderRadius: 20,
+                background: "#FFFFFF",
+                border: "3px solid #F59E0B",
+                color: "#1E293B",
+                fontSize: 24,
+                fontWeight: 900,
+                boxShadow: "0 10px 24px rgba(245, 158, 11, 0.2)",
+              }}
+            >
+              ⭐ Equal Worth &amp; Importance
+            </div>
+          </div>
+        </>
+      )}
+
+      {/* 2.4 Share Game (Sidewalk Chalk Hopscotch) */}
+      {scene.visual === "share-game" && (
+        <>
+          <Person friend={friends.nuh} left={pos2[0]} frame={frame} pose="reach" />
+          <Person friend={friends.aima} left={pos2[1]} frame={frame} pose="cheer" />
+
+          {/* Colorful Hopscotch drawn in chalk on the ground */}
+          <div
+            style={{
+              position: "absolute",
+              left: 500,
+              bottom: 40,
+              width: 320,
+              height: 220,
+              zIndex: 3,
+            }}
+          >
+            <svg width="320" height="220" viewBox="0 0 320 220">
+              {/* Hopscotch squares */}
+              <rect x="120" y="160" width="80" height="50" fill="none" stroke="#60A5FA" strokeWidth="6" rx="6" />
+              <text x="160" y="195" textAnchor="middle" fill="#2563EB" fontSize="28" fontWeight="900">1</text>
+              <rect x="120" y="105" width="80" height="50" fill="none" stroke="#F472B6" strokeWidth="6" rx="6" />
+              <text x="160" y="140" textAnchor="middle" fill="#DB2777" fontSize="28" fontWeight="900">2</text>
+              <rect x="70" y="50" width="80" height="50" fill="none" stroke="#FBBF24" strokeWidth="6" rx="6" />
+              <text x="110" y="85" textAnchor="middle" fill="#D97706" fontSize="28" fontWeight="900">3</text>
+              <rect x="170" y="50" width="80" height="50" fill="none" stroke="#34D399" strokeWidth="6" rx="6" />
+              <text x="210" y="85" textAnchor="middle" fill="#059669" fontSize="28" fontWeight="900">4</text>
+            </svg>
+          </div>
+
+          <div
+            style={{
+              position: "absolute",
+              left: 510,
+              top: 50,
+              padding: "10px 24px",
+              borderRadius: 20,
+              background: "#FFFFFF",
+              border: "3px solid #3B82F6",
+              color: "#1E293B",
+              fontSize: 22,
+              fontWeight: 900,
+              boxShadow: "0 8px 18px rgba(0,0,0,0.08)",
+            }}
+          >
+            🖍️ Sharing chalk &amp; drawing hopscotch!
+          </div>
+        </>
+      )}
+
+      {/* 2.5 Friendship More Than Coins */}
+      {scene.visual === "friendship" && (
+        <>
+          <Person friend={friends.ruhi} left={pos3[0]} frame={frame} pose="cheer" />
+          <Person friend={friends.aima} left={pos3[1]} frame={frame} pose="cheer" />
+          <Person friend={friends.nuh} left={pos3[2]} frame={frame} pose="cheer" />
+
+          <Heart left={580} top={40} size={110} color="#FB7185" frame={frame} />
+          <div
+            style={{
+              position: "absolute",
+              left: 440,
+              top: 165,
+              padding: "12px 28px",
+              borderRadius: 999,
+              background: "#FFFFFF",
+              border: "3px solid #FB7185",
+              color: "#BE123C",
+              fontSize: 26,
+              fontWeight: 900,
+              boxShadow: "0 10px 24px rgba(225, 29, 72, 0.15)",
+            }}
+          >
+            💖 True Friendship is Priceless!
+          </div>
+        </>
+      )}
+
+      {/* 2.6 Respect & No Teasing */}
+      {scene.visual === "respect" && (
+        <>
+          <Person friend={friends.nuh} left={pos2[0]} frame={frame} pose="wave" />
+          <Person friend={friends.aima} left={pos2[1]} frame={frame} pose="wave" />
+
+          <SpeechBubble
+            left={510}
+            top={70}
+            text="Kind words always. We never tease about money!"
+            speaker="Rule of Respect"
+            badgeColor="#10B981"
+          />
+        </>
+      )}
+
+      {/* ========================================================================= */}
+      {/* EPISODE 3: EQUALITY OF OPPORTUNITY (EVERYONE GETS A CHANCE)                */}
+      {/* ========================================================================= */}
+
+      {/* 3.1 Garden Welcome */}
+      {scene.visual === "garden" && (
+        <>
+          {/* Raised Garden Planter with Fresh Veggies & Sunflowers */}
+          <div
+            style={{
+              position: "absolute",
+              left: 460,
+              bottom: 45,
+              width: 400,
+              height: 160,
+              zIndex: 3,
+            }}
+          >
+            {/* Wooden planter box */}
+            <div style={{position: "absolute", bottom: 0, width: "100%", height: 75, background: "#92400E", borderRadius: 12, border: "4px solid #78350F"}} />
+            {/* Crisp Cucumbers in planter */}
+            <svg style={{position: "absolute", left: 60, bottom: 45}} width="70" height="90" viewBox="0 0 70 90">
+              <ellipse cx="35" cy="50" rx="18" ry="38" fill="#22C55E" transform="rotate(-15 35 50)" />
+              <circle cx="28" cy="40" r="3" fill="#15803D" />
+              <circle cx="42" cy="58" r="3" fill="#15803D" />
+            </svg>
+            {/* Ripe Golden Mango */}
+            <svg style={{position: "absolute", right: 60, bottom: 45}} width="75" height="90" viewBox="0 0 75 90">
+              <ellipse cx="38" cy="50" rx="26" ry="36" fill="#F59E0B" transform="rotate(20 38 50)" />
+              <ellipse cx="34" cy="45" rx="18" ry="26" fill="#FBBF24" transform="rotate(20 38 50)" />
+              <path d="M42 16 Q36 6 48 4" stroke="#15803D" strokeWidth="4" fill="none" />
+            </svg>
+          </div>
+
+          <Person friend={friends.ruhi} left={pos3[0]} frame={frame} pose="wave" />
+          <Person friend={friends.aima} left={pos3[1]} frame={frame} pose="wave" />
+          <Person friend={friends.nuh} left={pos3[2]} frame={frame} pose="wave" />
+        </>
+      )}
+
+      {/* 3.2 Different Choices */}
+      {scene.visual === "choices" && (
+        <>
+          <Person friend={friends.ruhi} left={pos2[0]} frame={frame} />
+          <Person friend={friends.aima} left={pos2[1]} frame={frame} />
+
+          {/* Choice Cards for Cucumbers & Mangoes */}
+          <div
+            style={{
+              position: "absolute",
+              left: 450,
+              top: 80,
+              display: "flex",
+              gap: 24,
+              zIndex: 10,
+            }}
+          >
+            <div
+              style={{
+                width: 190,
+                padding: "16px",
+                borderRadius: 20,
+                background: "#FFFFFF",
+                border: "4px solid #22C55E",
+                textAlign: "center",
+                boxShadow: "0 8px 20px rgba(34, 197, 94, 0.15)",
+              }}
+            >
+              <div style={{fontSize: 42}}>🥒</div>
+              <div style={{fontSize: 18, fontWeight: 900, color: "#15803D", marginTop: 4}}>Ruhi's Pick</div>
+              <div style={{fontSize: 14, fontWeight: 700, color: "#475569"}}>Crisp Cucumber</div>
+            </div>
+
+            <div
+              style={{
+                width: 190,
+                padding: "16px",
+                borderRadius: 20,
+                background: "#FFFFFF",
+                border: "4px solid #F59E0B",
+                textAlign: "center",
+                boxShadow: "0 8px 20px rgba(245, 158, 11, 0.15)",
+              }}
+            >
+              <div style={{fontSize: 42}}>🥭</div>
+              <div style={{fontSize: 18, fontWeight: 900, color: "#D97706", marginTop: 4}}>Aima's Pick</div>
+              <div style={{fontSize: 14, fontWeight: 700, color: "#475569"}}>Sweet Mango</div>
+            </div>
+          </div>
+
+          <div
+            style={{
+              position: "absolute",
+              left: 480,
+              top: 250,
+              padding: "10px 24px",
+              borderRadius: 20,
+              background: "#FFFFFF",
+              border: "3px solid #CBD5E1",
+              fontSize: 22,
+              fontWeight: 900,
+              color: "#334155",
+            }}
+          >
+            ✅ Both are wonderful choices!
+          </div>
+        </>
+      )}
+
+      {/* 3.3 Activity Options (Ball, Hoop, Cards) */}
+      {(scene.visual === "choose" || scene.visual === "game-options") && (
+        <>
+          <Person friend={friends.ruhi} left={pos3[0]} frame={frame} pose="cheer" />
+          <Person friend={friends.aima} left={pos3[1]} frame={frame} pose="cheer" />
+          <Person friend={friends.nuh} left={pos3[2]} frame={frame} pose="cheer" />
+
+          {/* Three Activity Options */}
+          <div
+            style={{
+              position: "absolute",
+              left: 380,
+              top: 50,
+              display: "flex",
+              gap: 20,
+              zIndex: 10,
+            }}
+          >
+            {[
+              {emoji: "⚽", title: "Soft Ball", color: "#3B82F6"},
+              {emoji: "⭕", title: "Fun Hoop", color: "#EC4899"},
+              {emoji: "🃏", title: "Picture Cards", color: "#F59E0B"},
+            ].map((act, i) => (
+              <div
+                key={i}
+                style={{
+                  width: 160,
+                  padding: "16px 10px",
+                  borderRadius: 22,
+                  background: "#FFFFFF",
+                  border: `4px solid ${act.color}`,
+                  textAlign: "center",
+                  boxShadow: "0 10px 24px rgba(0,0,0,0.08)",
+                  transform: `translateY(${Math.sin((frame + i * 20) / 12) * 6}px)`,
+                }}
+              >
+                <div style={{fontSize: 44}}>{act.emoji}</div>
+                <div style={{fontSize: 18, fontWeight: 900, color: "#1E293B", marginTop: 4}}>{act.title}</div>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+
+      {/* 3.4 Make Space for a Friend */}
+      {scene.visual === "make-space" && (
+        <>
+          <Person friend={friends.ruhi} left={160} frame={frame} pose="reach" />
+          <Person friend={friends.nuh} left={480} frame={frame} pose="wave" />
+          <Person friend={friends.aima} left={920} frame={frame} pose="cheer" />
+
+          <Heart left={740} top={70} size={88} frame={frame} />
+          <SpeechBubble
+            left={500}
+            top={75}
+            text="Come on in, Aima! Your turn is right now!"
+            speaker="Ruhi &amp; Nuh"
+            badgeColor="#10B981"
+          />
+        </>
+      )}
+
+      {/* 3.5 Opportunity for Everyone */}
+      {scene.visual === "opportunity" && (
+        <>
+          <Person friend={friends.ruhi} left={pos3[0]} frame={frame} pose="cheer" />
+          <Person friend={friends.aima} left={pos3[1]} frame={frame} pose="cheer" />
+          <Person friend={friends.nuh} left={pos3[2]} frame={frame} pose="cheer" />
+
+          {/* Three golden pillars of Opportunity: Join, Choose, Try */}
+          <div
+            style={{
+              position: "absolute",
+              left: 360,
+              top: 55,
+              display: "flex",
+              gap: 18,
+              zIndex: 10,
+            }}
+          >
+            {[
+              {action: "🌟 JOIN", desc: "Everyone Included", color: "#FF6E7F"},
+              {action: "🎯 CHOOSE", desc: "Favorite Activities", color: "#F59E0B"},
+              {action: "🚀 TRY", desc: "Give Your Best", color: "#10B981"},
+            ].map((item, i) => (
+              <div
+                key={i}
+                style={{
+                  padding: "14px 22px",
+                  borderRadius: 20,
+                  background: "#FFFFFF",
+                  border: `3px solid ${item.color}`,
+                  textAlign: "center",
+                  boxShadow: "0 10px 22px rgba(0,0,0,0.08)",
+                }}
+              >
+                <div style={{fontSize: 22, fontWeight: 900, color: item.color}}>{item.action}</div>
+                <div style={{fontSize: 14, fontWeight: 700, color: "#475569"}}>{item.desc}</div>
+              </div>
+            ))}
+          </div>
+          <Heart left={580} top={175} size={70} color="#34D399" frame={frame} />
+        </>
+      )}
+
+      {/* ========================================================================= */}
+      {/* EPISODE 4: CHALLENGING INJUSTICE (MAKING THINGS RIGHT)                     */}
+      {/* ========================================================================= */}
+
+      {/* 4.1 Art Time Building */}
+      {scene.visual === "art-time" && (
+        <>
+          <Person friend={friends.nuh} left={pos2[0]} frame={frame} />
+          <Person friend={friends.ruhi} left={pos2[1]} frame={frame} />
+
+          {/* Tall magnificent block tower */}
+          <div style={{position: "absolute", left: 610, top: 80, zIndex: 6}}>
+            <Block left={0} top={150} color="#EF4444" letter="A" />
+            <Block left={84} top={150} color="#3B82F6" letter="B" />
+            <Block left={42} top={72} color="#F59E0B" letter="C" />
+            <Block left={42} top={-6} color="#10B981" letter="⭐" />
+          </div>
+        </>
+      )}
+
+      {/* 4.2 Oops! Tower Tumbles */}
+      {scene.visual === "oops" && (
+        <>
+          <Person friend={{...friends.nuh, expression: "surprised"}} left={pos2[0]} frame={frame} />
+          <Person friend={{...friends.ruhi, expression: "surprised"}} left={pos2[1]} frame={frame} />
+
+          {/* Tumbling blocks scattered on table */}
+          <div style={{position: "absolute", left: 560, top: 120, zIndex: 6}}>
+            <Block left={0} top={150} color="#EF4444" letter="A" fallen frame={frame} delay={0} />
+            <Block left={130} top={160} color="#3B82F6" letter="B" fallen frame={frame} delay={5} />
+            <Block left={60} top={180} color="#F59E0B" letter="C" fallen frame={frame} delay={10} />
+            <Block left={200} top={170} color="#10B981" letter="⭐" fallen frame={frame} delay={15} />
+          </div>
+
+          <div
+            style={{
+              position: "absolute",
+              left: 510,
+              top: 50,
+              padding: "12px 28px",
+              borderRadius: 20,
+              background: "#FFFFFF",
+              border: "3px solid #EF4444",
+              color: "#DC2626",
+              fontSize: 26,
+              fontWeight: 900,
+              boxShadow: "0 8px 24px rgba(239, 68, 68, 0.15)",
+            }}
+          >
+            💥 Oops! Accidents can happen!
+          </div>
+        </>
+      )}
+
+      {/* 4.3 Tell Truth & Apologize */}
+      {scene.visual === "truth" && (
+        <>
+          <Person friend={{...friends.nuh, expression: "thinking"}} left={pos3[0]} frame={frame} pose="thinking" />
+          <Person friend={friends.ruhi} left={pos3[1]} frame={frame} />
+          <Person friend={friends.aima} left={pos3[2]} frame={frame} />
+
+          <SpeechBubble
+            left={340}
+            top={60}
+            text="I knocked it over by mistake. I am really sorry!"
+            speaker="Brave Nuh"
+            badgeColor="#3B82F6"
+          />
+
+          <div
+            style={{
+              position: "absolute",
+              left: 520,
+              top: 180,
+              padding: "8px 20px",
+              borderRadius: 999,
+              background: "#FFFFFF",
+              border: "3px solid #F59E0B",
+              color: "#D97706",
+              fontSize: 20,
+              fontWeight: 900,
+            }}
+          >
+            ⭐ Telling the truth takes courage!
+          </div>
+        </>
+      )}
+
+      {/* 4.4 Listen & Work Together */}
+      {scene.visual === "listen" && (
+        <>
+          <Person friend={friends.nuh} left={pos3[0]} frame={frame} />
+          <Person friend={friends.ruhi} left={pos3[1]} frame={frame} pose="reach" />
+          <Person friend={friends.aima} left={pos3[2]} frame={frame} pose="wave" />
+
+          <SpeechBubble
+            left={510}
+            top={50}
+            text="Thank you for being honest! Let us rebuild it together!"
+            speaker="Ruhi &amp; Aima"
+            badgeColor="#FF6E7F"
+          />
+          <Heart left={880} top={140} size={75} color="#F59E0B" frame={frame} />
+        </>
+      )}
+
+      {/* 4.5 Repair & Rebuild */}
+      {scene.visual === "repair" && (
+        <>
+          <Person friend={friends.nuh} left={pos3[0]} frame={frame} pose="reach" />
+          <Person friend={friends.ruhi} left={pos3[1]} frame={frame} pose="reach" />
+          <Person friend={friends.aima} left={pos3[2]} frame={frame} pose="cheer" />
+
+          {/* Blocks hopping back into a tall tower */}
+          <div style={{position: "absolute", left: 605, top: 80, zIndex: 6}}>
+            <Block left={0} top={150} homeTop={150} color="#EF4444" letter="A" frame={frame} delay={0} />
+            <Block left={84} top={150} homeTop={150} color="#3B82F6" letter="B" frame={frame} delay={8} />
+            <Block left={42} top={180} homeTop={72} color="#F59E0B" letter="C" frame={frame} delay={16} />
+            <Block left={42} top={180} homeTop={-6} color="#10B981" letter="⭐" frame={frame} delay={24} />
+          </div>
+
+          <Heart left={590} top={35} size={70} frame={frame} />
+        </>
+      )}
+
+      {/* 4.6 Brave & Make it Right */}
+      {scene.visual === "brave" && (
+        <>
+          <Person friend={friends.ruhi} left={pos3[0]} frame={frame} pose="cheer" />
+          <Person friend={friends.nuh} left={pos3[1]} frame={frame} pose="cheer" />
+          <Person friend={friends.aima} left={pos3[2]} frame={frame} pose="cheer" />
+
+          <div
+            style={{
+              position: "absolute",
+              left: 360,
+              top: 55,
+              padding: "14px 28px",
+              borderRadius: 24,
+              background: "#FFFFFF",
+              border: "4px solid #10B981",
+              color: "#059669",
+              fontSize: 26,
+              fontWeight: 900,
+              boxShadow: "0 10px 28px rgba(16, 185, 129, 0.15)",
+              textAlign: "center",
+            }}
+          >
+            🛡️ Tell the Truth · Apologize · Repair Together!
+          </div>
+          <Heart left={580} top={145} size={80} color="#F59E0B" frame={frame} />
+        </>
+      )}
+
+      {/* ========================================================================= */}
+      {/* 5. INTERACTIVE THINKING / QUIZ SCENE                                       */}
+      {/* ========================================================================= */}
+      {scene.visual === "quiz" && (
+        <>
+          <Person friend={{...friends.ruhi, expression: "thinking"}} left={pos3[0]} frame={frame} pose="thinking" />
+          <Person friend={{...friends.aima, expression: "thinking"}} left={pos3[1]} frame={frame} pose="thinking" />
+          <Person friend={{...friends.nuh, expression: "thinking"}} left={pos3[2]} frame={frame} pose="thinking" />
+
+          {/* Big Golden Question Orb Card */}
+          <div
+            style={{
+              position: "absolute",
+              left: 530,
+              top: 35,
+              width: 250,
+              height: 250,
+              borderRadius: 36,
+              background: "linear-gradient(135deg, #FFFFFF 0%, #FEF9C3 100%)",
+              border: "6px solid #F59E0B",
+              boxShadow: "0 16px 36px rgba(245, 158, 11, 0.22)",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              transform: `scale(${questionScale})`,
+              zIndex: 10,
+            }}
+          >
+            {/* Glowing Big Question Mark */}
+            <span
+              style={{
+                fontSize: 130,
+                fontWeight: 900,
+                color: "#F59E0B",
+                lineHeight: 1,
+                textShadow: "0 4px 8px rgba(217, 119, 6, 0.25)",
+              }}
+            >
+              ?
+            </span>
+            <span style={{fontSize: 16, fontWeight: 900, color: "#B45309", letterSpacing: 1.2}}>
+              WHAT WOULD YOU DO?
+            </span>
+          </div>
+
+          {/* Pause & Think Action Callout in the last 100 frames */}
+          {frame > durationInFrames - 120 && (
+            <div
+              style={{
+                position: "absolute",
+                left: 480,
+                top: 295,
+                padding: "14px 32px",
+                borderRadius: 999,
+                background: "#FEF08A",
+                border: "4px solid #EAB308",
+                boxShadow: "0 10px 24px rgba(234, 179, 8, 0.25)",
+                display: "flex",
+                alignItems: "center",
+                gap: 12,
+                zIndex: 12,
+              }}
+            >
+              <span style={{fontSize: 28}}>⏸️</span>
+              <span style={{fontSize: 24, fontWeight: 900, color: "#854D0E", letterSpacing: 1.2}}>
+                PAUSE THE VIDEO &amp; THINK!
+              </span>
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 };

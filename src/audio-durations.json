@@ -1,122 +1,122 @@
 {
   "episode-1-justice": {
     "welcome": {
-      "seconds": 5.38,
-      "frames": 162
+      "seconds": 6.06,
+      "frames": 182
     },
     "unfair-share": {
-      "seconds": 6,
-      "frames": 180
+      "seconds": 6.25,
+      "frames": 188
     },
     "fair-share": {
-      "seconds": 5.39,
-      "frames": 162
+      "seconds": 6.25,
+      "frames": 188
     },
     "slide-turns": {
-      "seconds": 6.17,
-      "frames": 186
+      "seconds": 6.61,
+      "frames": 199
     },
     "invite": {
-      "seconds": 5.21,
-      "frames": 157
+      "seconds": 5.78,
+      "frames": 174
     },
     "remember": {
-      "seconds": 5.28,
-      "frames": 159
+      "seconds": 5.9,
+      "frames": 177
     },
     "quiz": {
-      "seconds": 5.19,
-      "frames": 156
+      "seconds": 5.77,
+      "frames": 174
     }
   },
   "episode-2-wealth-poverty": {
     "welcome": {
-      "seconds": 4.73,
-      "frames": 142
+      "seconds": 4.96,
+      "frames": 149
     },
     "different-coins": {
-      "seconds": 6.15,
-      "frames": 185
+      "seconds": 6.92,
+      "frames": 208
     },
     "equal-worth": {
-      "seconds": 6.58,
-      "frames": 198
+      "seconds": 6.03,
+      "frames": 181
     },
     "share-game": {
-      "seconds": 5.41,
-      "frames": 163
+      "seconds": 6.67,
+      "frames": 201
     },
     "friendship": {
-      "seconds": 5.33,
-      "frames": 160
+      "seconds": 5.88,
+      "frames": 177
     },
     "respect": {
-      "seconds": 5.28,
-      "frames": 159
+      "seconds": 6.66,
+      "frames": 200
     },
     "quiz": {
-      "seconds": 5.1,
-      "frames": 153
+      "seconds": 6.29,
+      "frames": 189
     }
   },
   "episode-3-opportunity": {
     "welcome": {
-      "seconds": 3.86,
-      "frames": 116
-    },
-    "choices": {
-      "seconds": 5.55,
+      "seconds": 5.53,
       "frames": 167
     },
+    "choices": {
+      "seconds": 6.47,
+      "frames": 195
+    },
     "choose": {
-      "seconds": 4.57,
-      "frames": 138
+      "seconds": 4.84,
+      "frames": 146
     },
     "game-options": {
-      "seconds": 5.16,
-      "frames": 155
+      "seconds": 6.18,
+      "frames": 186
     },
     "make-space": {
-      "seconds": 4.72,
-      "frames": 142
+      "seconds": 5.64,
+      "frames": 170
     },
     "opportunity": {
       "seconds": 5.91,
       "frames": 178
     },
     "quiz": {
-      "seconds": 3.84,
-      "frames": 116
+      "seconds": 5.64,
+      "frames": 170
     }
   },
   "episode-4-challenging-injustice": {
     "welcome": {
-      "seconds": 4.44,
-      "frames": 134
+      "seconds": 5.48,
+      "frames": 165
     },
     "oops": {
-      "seconds": 4.92,
-      "frames": 148
+      "seconds": 5.45,
+      "frames": 164
     },
     "truth": {
-      "seconds": 4.06,
-      "frames": 122
+      "seconds": 4.85,
+      "frames": 146
     },
     "listen": {
-      "seconds": 4.4,
-      "frames": 133
+      "seconds": 5.57,
+      "frames": 167
     },
     "repair": {
-      "seconds": 4.52,
-      "frames": 136
+      "seconds": 4.8,
+      "frames": 144
     },
     "brave": {
-      "seconds": 5.35,
-      "frames": 161
+      "seconds": 6.11,
+      "frames": 184
     },
     "quiz": {
-      "seconds": 4.72,
-      "frames": 142
+      "seconds": 5.27,
+      "frames": 159
     }
   }
 }
