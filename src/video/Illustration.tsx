@@ -1,6 +1,6 @@
 import React from "react";
 import {interpolate, spring} from "remotion";
-import {Character, friends, type Friend} from "./Character";
+import {Character, friends, type Friend, type PoseKind, FourCharacterStaging} from "./Character";
 import type {Scene} from "./types";
 
 type ArtProps = {
@@ -15,12 +15,10 @@ export const SceneryBackground: React.FC<{frame: number; variant?: "outdoor" | "
   frame,
   variant = "outdoor",
 }) => {
-  // Animated drifting clouds
   const cloud1X = ((frame * 0.75) % 1520) - 160;
   const cloud2X = (((frame * 0.45) + 520) % 1520) - 160;
   const cloud3X = (((frame * 0.25) + 1040) % 1520) - 160;
 
-  // Sun gentle rotation and breathing
   const sunRotate = frame * 0.35;
   const sunPulse = 1 + Math.sin(frame / 18) * 0.03;
 
@@ -107,7 +105,6 @@ export const SceneryBackground: React.FC<{frame: number; variant?: "outdoor" | "
             borderTop: "6px solid #E6BA8E",
           }}
         >
-          {/* Wood grain subtle lines */}
           <div style={{position: "absolute", top: 22, left: 40, right: 40, height: 2, background: "rgba(255,255,255,0.25)"}} />
           <div style={{position: "absolute", top: 58, left: 80, right: 60, height: 2, background: "rgba(0,0,0,0.06)"}} />
         </div>
@@ -130,7 +127,6 @@ export const SceneryBackground: React.FC<{frame: number; variant?: "outdoor" | "
           transformOrigin: "center center",
         }}
       >
-        {/* Soft Sun Glow */}
         <div
           style={{
             position: "absolute",
@@ -139,7 +135,6 @@ export const SceneryBackground: React.FC<{frame: number; variant?: "outdoor" | "
             background: "radial-gradient(circle, rgba(254, 240, 138, 0.45) 0%, rgba(254, 240, 138, 0) 70%)",
           }}
         />
-        {/* Rotating Sunrays */}
         <svg
           style={{position: "absolute", inset: 0, transform: `rotate(${sunRotate}deg)`}}
           viewBox="0 0 90 90"
@@ -158,7 +153,6 @@ export const SceneryBackground: React.FC<{frame: number; variant?: "outdoor" | "
             />
           ))}
         </svg>
-        {/* Sun Core */}
         <div
           style={{
             position: "absolute",
@@ -171,41 +165,17 @@ export const SceneryBackground: React.FC<{frame: number; variant?: "outdoor" | "
       </div>
 
       {/* Floating Fluffy Clouds */}
-      <svg
-        style={{position: "absolute", left: cloud1X, top: 40, opacity: 0.88}}
-        width="140"
-        height="60"
-        viewBox="0 0 140 60"
-      >
-        <path
-          d="M20 45 Q5 45 5 32 Q5 20 22 20 Q30 5 50 6 Q68 6 75 18 Q85 10 100 12 Q115 14 118 28 Q135 28 135 42 Q135 55 120 55 H20 Z"
-          fill="#FFFFFF"
-        />
+      <svg style={{position: "absolute", left: cloud1X, top: 40, opacity: 0.88}} width="140" height="60" viewBox="0 0 140 60">
+        <path d="M20 45 Q5 45 5 32 Q5 20 22 20 Q30 5 50 6 Q68 6 75 18 Q85 10 100 12 Q115 14 118 28 Q135 28 135 42 Q135 55 120 55 H20 Z" fill="#FFFFFF" />
       </svg>
-      <svg
-        style={{position: "absolute", left: cloud2X, top: 75, opacity: 0.72}}
-        width="110"
-        height="50"
-        viewBox="0 0 140 60"
-      >
-        <path
-          d="M20 45 Q5 45 5 32 Q5 20 22 20 Q30 5 50 6 Q68 6 75 18 Q85 10 100 12 Q115 14 118 28 Q135 28 135 42 Q135 55 120 55 H20 Z"
-          fill="#FFFFFF"
-        />
+      <svg style={{position: "absolute", left: cloud2X, top: 75, opacity: 0.72}} width="110" height="50" viewBox="0 0 140 60">
+        <path d="M20 45 Q5 45 5 32 Q5 20 22 20 Q30 5 50 6 Q68 6 75 18 Q85 10 100 12 Q115 14 118 28 Q135 28 135 42 Q135 55 120 55 H20 Z" fill="#FFFFFF" />
       </svg>
-      <svg
-        style={{position: "absolute", left: cloud3X, top: 25, opacity: 0.65}}
-        width="160"
-        height="70"
-        viewBox="0 0 140 60"
-      >
-        <path
-          d="M20 45 Q5 45 5 32 Q5 20 22 20 Q30 5 50 6 Q68 6 75 18 Q85 10 100 12 Q115 14 118 28 Q135 28 135 42 Q135 55 120 55 H20 Z"
-          fill="#FFFFFF"
-        />
+      <svg style={{position: "absolute", left: cloud3X, top: 25, opacity: 0.65}} width="160" height="70" viewBox="0 0 140 60">
+        <path d="M20 45 Q5 45 5 32 Q5 20 22 20 Q30 5 50 6 Q68 6 75 18 Q85 10 100 12 Q115 14 118 28 Q135 28 135 42 Q135 55 120 55 H20 Z" fill="#FFFFFF" />
       </svg>
 
-      {/* Background Soft Rolling Hill */}
+      {/* Background Hill */}
       <div
         style={{
           position: "absolute",
@@ -214,12 +184,14 @@ export const SceneryBackground: React.FC<{frame: number; variant?: "outdoor" | "
           bottom: 40,
           height: 140,
           borderRadius: "50% 50% 0 0",
-          background: "linear-gradient(180deg, #A7E3B6 0%, #8FD3A2 100%)",
+          background: variant === "market"
+            ? "linear-gradient(180deg, #FDE68A 0%, #FCD34D 100%)"
+            : "linear-gradient(180deg, #A7E3B6 0%, #8FD3A2 100%)",
           opacity: 0.6,
         }}
       />
 
-      {/* Foreground Meadow Hill with highlight curve */}
+      {/* Foreground Meadow Hill */}
       <div
         style={{
           position: "absolute",
@@ -228,12 +200,14 @@ export const SceneryBackground: React.FC<{frame: number; variant?: "outdoor" | "
           bottom: 0,
           height: 115,
           borderRadius: "45% 45% 24px 24px",
-          background: "linear-gradient(180deg, #86EFAC 0%, #4ADE80 50%, #22C55E 100%)",
+          background: variant === "market"
+            ? "linear-gradient(180deg, #FCD34D 0%, #F59E0B 100%)"
+            : "linear-gradient(180deg, #86EFAC 0%, #4ADE80 50%, #22C55E 100%)",
           boxShadow: "inset 0 4px 12px rgba(255,255,255,0.6)",
           border: "4px solid rgba(255,255,255,0.7)",
         }}
       >
-        {/* Swaying Wildflowers on the grass */}
+        {/* Swaying Wildflowers */}
         {[80, 220, 390, 650, 820, 1020, 1180, 1260].map((posX, i) => {
           const sway = Math.sin((frame + i * 22) / 14) * 6;
           const flowerColors = ["#F43F5E", "#FBBF24", "#A855F7", "#38BDF8", "#FB7185"];
@@ -250,11 +224,8 @@ export const SceneryBackground: React.FC<{frame: number; variant?: "outdoor" | "
               }}
             >
               <svg width="24" height="28" viewBox="0 0 24 28">
-                {/* Stem */}
                 <path d="M12 28 Q11 16 12 10" stroke="#166534" strokeWidth="2.5" fill="none" />
-                {/* Leaves */}
                 <path d="M12 18 Q6 16 7 20" stroke="#15803D" strokeWidth="2" fill="none" />
-                {/* Petals */}
                 <circle cx="12" cy="8" r="6" fill={col} />
                 <circle cx="12" cy="8" r="2.5" fill="#FEF08A" />
               </svg>
@@ -266,14 +237,11 @@ export const SceneryBackground: React.FC<{frame: number; variant?: "outdoor" | "
       {/* Decorative Tree on the Left */}
       <div style={{position: "absolute", left: 18, bottom: 65}}>
         <svg width="120" height="180" viewBox="0 0 120 180">
-          {/* Trunk */}
           <path d="M52 180 L52 110 Q52 95 62 85 L62 180 Z" fill="#854D0E" />
-          {/* Canopy Layers */}
           <circle cx="60" cy="80" r="48" fill="#15803D" />
           <circle cx="45" cy="65" r="34" fill="#22C55E" />
           <circle cx="75" cy="65" r="32" fill="#4ADE80" />
           <circle cx="60" cy="50" r="30" fill="#86EFAC" />
-          {/* Little red apples */}
           <circle cx="45" cy="72" r="5" fill="#EF4444" />
           <circle cx="72" cy="82" r="5" fill="#EF4444" />
           <circle cx="58" cy="54" r="4.5" fill="#EF4444" />
@@ -289,57 +257,58 @@ const Person: React.FC<{
   left: number;
   frame: number;
   width?: number;
-  pose?: "stand" | "wave" | "reach" | "thinking" | "cheer";
-}> = ({friend, left, frame, width = 230, pose}) => {
+  pose?: PoseKind;
+  zIndex?: number;
+  scale?: number;
+  bottom?: number;
+  label?: boolean;
+}> = ({friend, left, frame, width = 230, pose, zIndex = 5, scale = 1, bottom = 12, label = true}) => {
+  const delay = Math.min(8, Math.max(0, Math.floor(left / 180)));
   const entrance = spring({
-    frame: Math.max(0, frame - Math.max(0, left - 150) / 24),
+    frame: Math.max(0, frame - delay),
     fps: 30,
     config: {damping: 14, stiffness: 100},
   });
-  const bob = Math.sin((frame + left) / 16) * 4;
+  const bob = Math.sin((frame + left) / 16) * 3;
 
   return (
     <div
       style={{
         position: "absolute",
         left,
-        bottom: 12,
-        transform: `translateY(${(1 - entrance) * 50 + bob}px) scale(${0.92 + entrance * 0.08})`,
+        bottom,
+        transform: `translateY(${(1 - entrance) * 50 + bob}px) scale(${(0.92 + entrance * 0.08) * scale})`,
         transformOrigin: "bottom center",
-        zIndex: 5,
+        zIndex,
       }}
     >
-      <Character friend={friend} width={width} pose={pose} frame={frame} />
+      <Character friend={friend} width={width} pose={pose} frame={frame} label={label} />
     </div>
   );
 };
 
-// --- Rich Interactive Props & Illustrations ---
+// --- Props & Decorative Illustrations ---
 
-// 1. Playground Slide
+// Playground Slide
 const PlaygroundSlide: React.FC<{frame: number}> = ({frame}) => {
   const flagWave = Math.sin(frame / 5) * 6;
   return (
     <svg
-      style={{position: "absolute", right: 28, top: 32, filter: "drop-shadow(0 12px 20px rgba(0,0,0,0.12))"}}
+      style={{position: "absolute", right: 28, top: 32, filter: "drop-shadow(0 12px 20px rgba(0,0,0,0.12))", zIndex: 4}}
       width="390"
       height="370"
       viewBox="0 0 390 370"
     >
-      {/* Wooden support posts */}
       <rect x="78" y="90" width="14" height="230" rx="4" fill="#B45309" />
       <rect x="156" y="90" width="14" height="230" rx="4" fill="#92400E" />
 
-      {/* Ladder steps */}
       {[130, 168, 206, 244, 282].map((y) => (
         <rect key={y} x="82" y={y} width="84" height="8" rx="4" fill="#FBBF24" stroke="#D97706" strokeWidth="1.5" />
       ))}
 
-      {/* Top platform with safe railings */}
       <rect x="70" y="80" width="105" height="16" rx="5" fill="#EF4444" />
       <path d="M72 80 V50 Q120 40 172 50 V80" fill="none" stroke="#F87171" strokeWidth="6" strokeLinecap="round" />
 
-      {/* Cute Flag at the top */}
       <line x1="72" y1="50" x2="72" y2="18" stroke="#475569" strokeWidth="4" />
       <path
         d={`M72 20 L108 ${28 + flagWave} L72 38 Z`}
@@ -348,263 +317,291 @@ const PlaygroundSlide: React.FC<{frame: number}> = ({frame}) => {
         strokeWidth="1.5"
       />
 
-      {/* Curved slide chute */}
-      {/* Outer red rail */}
       <path
-        d="M170 92 Q230 140 290 230 Q330 290 380 300"
+        d="M172 90 Q225 100 248 180 Q270 255 350 310"
         fill="none"
-        stroke="#DC2626"
-        strokeWidth="32"
+        stroke="#1E40AF"
+        strokeWidth="48"
         strokeLinecap="round"
       />
-      {/* Inner yellow slide surface */}
       <path
-        d="M170 92 Q230 140 290 230 Q330 290 380 300"
+        d="M172 86 Q225 96 248 176 Q270 251 350 306"
         fill="none"
-        stroke="#FDE047"
-        strokeWidth="20"
+        stroke="#3B82F6"
+        strokeWidth="38"
         strokeLinecap="round"
       />
-      {/* End curve ground stopper */}
-      <path d="M360 305 L385 305" stroke="#475569" strokeWidth="10" strokeLinecap="round" />
+      <path
+        d="M172 82 Q225 92 248 172 Q270 247 348 302"
+        fill="none"
+        stroke="#93C5FD"
+        strokeWidth="6"
+        strokeLinecap="round"
+      />
+      <path
+        d="M172 108 Q225 118 248 198 Q270 273 350 328"
+        fill="none"
+        stroke="#1D4ED8"
+        strokeWidth="12"
+        strokeLinecap="round"
+      />
     </svg>
   );
 };
 
-// 2. Shiny Candy Sweets
-const Candy: React.FC<{left: number; top: number; color: string; rotation?: number; scale?: number}> = ({
+// Delicious Cartoon Sweets / Wrapped Candy
+export const Candy: React.FC<{left: number; top: number; color: string; rotation?: number; scale?: number}> = ({
   left,
   top,
   color,
   rotation = 0,
   scale = 1,
-}) => (
-  <div
-    style={{
-      position: "absolute",
-      left,
-      top,
-      width: 54,
-      height: 34,
-      borderRadius: 18,
-      background: `linear-gradient(135deg, ${color} 0%, #FFFFFF 140%)`,
-      border: "3.5px solid #FFFFFF",
-      boxShadow: "0 6px 14px rgba(0,0,0,0.15)",
-      transform: `rotate(${rotation}deg) scale(${scale})`,
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-    }}
-  >
-    {/* Left twist wrapper */}
-    <div
-      style={{
-        position: "absolute",
-        width: 12,
-        height: 22,
-        left: -11,
-        borderRadius: 5,
-        background: color,
-        border: "2px solid #FFFFFF",
-        transform: "rotate(-32deg)",
-      }}
-    />
-    {/* Right twist wrapper */}
-    <div
-      style={{
-        position: "absolute",
-        width: 12,
-        height: 22,
-        right: -11,
-        borderRadius: 5,
-        background: color,
-        border: "2px solid #FFFFFF",
-        transform: "rotate(32deg)",
-      }}
-    />
-    {/* Center white shimmer line */}
-    <div style={{width: 6, height: 18, borderRadius: 3, background: "rgba(255,255,255,0.85)"}} />
-  </div>
-);
-
-// 3. Golden Star Coins with Sparkle
-const StarCoin: React.FC<{left: number; top: number; size?: number; frame?: number; delay?: number}> = ({
-  left,
-  top,
-  size = 62,
-  frame = 0,
-  delay = 0,
 }) => {
-  const drift = interpolate(frame - delay, [0, 36], [40, 0], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
-  const shimmer = Math.sin((frame - delay) / 8) * 0.15;
-
   return (
-    <svg
+    <div
       style={{
         position: "absolute",
         left,
-        top: top + drift,
-        filter: "drop-shadow(0 8px 14px rgba(180, 83, 9, 0.35))",
-        transform: `scale(${1 + shimmer})`,
+        top,
+        transform: `rotate(${rotation}deg) scale(${scale})`,
+        transformOrigin: "center center",
+        filter: "drop-shadow(0 4px 6px rgba(0,0,0,0.15))",
+        zIndex: 10,
       }}
-      width={size}
-      height={size}
-      viewBox="0 0 60 60"
     >
-      <circle cx="30" cy="30" r="27" fill="#F59E0B" stroke="#B45309" strokeWidth="3" />
-      <circle cx="30" cy="30" r="23" fill="#FBBF24" />
-      <circle cx="30" cy="30" r="18" fill="none" stroke="#FDE68A" strokeWidth="2.5" />
-      {/* Embossed Star */}
-      <path
-        d="M30 16 L34 24 L42 25 L36 31 L38 39 L30 35 L22 39 L24 31 L18 25 L26 24 Z"
-        fill="#D97706"
-      />
-      {/* Catchlight glint */}
-      <circle cx="21" cy="21" r="3.5" fill="#FFFFFF" opacity="0.8" />
-    </svg>
+      <svg width="44" height="26" viewBox="0 0 44 26">
+        <path d="M4 13 L0 3 Q6 10 10 13 Q6 16 0 23 Z" fill={color} opacity="0.85" />
+        <path d="M40 13 L44 3 Q38 10 34 13 Q38 16 44 23 Z" fill={color} opacity="0.85" />
+        <ellipse cx="22" cy="13" rx="15" ry="11" fill={color} stroke="#FFFFFF" strokeWidth="2" />
+        <ellipse cx="22" cy="13" rx="9" ry="6" fill="#FFFFFF" opacity="0.35" />
+        <line x1="16" y1="5" x2="28" y2="21" stroke="#FFFFFF" strokeWidth="2" opacity="0.6" strokeLinecap="round" />
+      </svg>
+    </div>
   );
 };
 
-// 4. Floating Beating Heart
-const Heart: React.FC<{left: number; top: number; size?: number; color?: string; frame?: number}> = ({
+// Golden Star Token
+export const StarCoin: React.FC<{left: number; top: number; size?: number; frame?: number; delay?: number}> = ({
   left,
   top,
-  size = 90,
-  color = "#FB7185",
+  size = 46,
+  frame = 0,
+  delay = 0,
+}) => {
+  const shimmer = Math.sin((frame - delay) / 8) * 0.15;
+  return (
+    <div
+      style={{
+        position: "absolute",
+        left,
+        top,
+        width: size,
+        height: size,
+        borderRadius: "50%",
+        background: "linear-gradient(135deg, #FDE047 0%, #F59E0B 70%, #D97706 100%)",
+        border: "3px solid #FEF08A",
+        boxShadow: "0 6px 14px rgba(217, 119, 6, 0.35)",
+        display: "grid",
+        placeItems: "center",
+        transform: `scale(${1 + shimmer})`,
+        zIndex: 10,
+      }}
+    >
+      <span style={{fontSize: size * 0.55, color: "#78350F"}}>★</span>
+    </div>
+  );
+};
+
+// Pulsing Heart Symbol
+export const Heart: React.FC<{left: number; top: number; size?: number; color?: string; frame?: number}> = ({
+  left,
+  top,
+  size = 56,
+  color = "#F43F5E",
   frame = 0,
 }) => {
   const pulse = 1 + Math.sin(frame / 8) * 0.08;
   const floatY = Math.sin(frame / 12) * 5;
 
   return (
-    <svg
+    <div
       style={{
         position: "absolute",
         left,
         top: top + floatY,
         transform: `scale(${pulse})`,
-        filter: "drop-shadow(0 10px 16px rgba(225, 29, 72, 0.22))",
-        zIndex: 10,
+        filter: "drop-shadow(0 6px 12px rgba(244, 63, 94, 0.3))",
+        zIndex: 15,
       }}
-      width={size}
-      height={size * 0.9}
-      viewBox="0 0 100 90"
     >
-      <path
-        d="M50 82 L14 46 C-10 22 20 -8 46 14 L50 18 L54 14 C80 -8 110 22 86 46 Z"
-        fill={color}
-        stroke="#FFFFFF"
-        strokeWidth="3.5"
-      />
-    </svg>
+      <svg width={size} height={size} viewBox="0 0 64 64">
+        <path
+          d="M32 54 C20 44 4 32 4 18 C4 8 12 2 22 2 C28 2 32 6 32 6 C32 6 36 2 42 2 C52 2 60 8 60 18 C60 32 44 44 32 54 Z"
+          fill={color}
+          stroke="#FFFFFF"
+          strokeWidth="3"
+        />
+      </svg>
+    </div>
   );
 };
 
-// 5. Speech Bubble
-const SpeechBubble: React.FC<{
+// Speech Bubble
+export const SpeechBubble: React.FC<{
   left: number;
   top: number;
   text: string;
-  speaker?: string;
-  badgeColor?: string;
-}> = ({left, top, text, speaker, badgeColor = "#FF6E7F"}) => (
-  <div
-    style={{
-      position: "absolute",
-      left,
-      top,
-      maxWidth: 340,
-      padding: "16px 24px",
-      borderRadius: 24,
-      background: "#FFFFFF",
-      border: `3px solid ${badgeColor}`,
-      boxShadow: "0 12px 28px rgba(30, 41, 59, 0.12)",
-      zIndex: 12,
-      display: "flex",
-      flexDirection: "column",
-      gap: 4,
-    }}
-  >
-    {speaker && (
-      <span style={{fontSize: 14, fontWeight: 900, color: badgeColor, textTransform: "uppercase", letterSpacing: 1}}>
-        {speaker} says:
-      </span>
-    )}
-    <span style={{fontSize: 24, fontWeight: 800, color: "#1E293B", lineHeight: 1.25}}>
-      "{text}"
-    </span>
-    {/* Tail pointer */}
-    <div
-      style={{
-        position: "absolute",
-        bottom: -12,
-        left: 42,
-        width: 20,
-        height: 20,
-        transform: "rotate(45deg)",
-        background: "#FFFFFF",
-        borderRight: `3px solid ${badgeColor}`,
-        borderBottom: `3px solid ${badgeColor}`,
-      }}
-    />
-  </div>
-);
-
-// 6. Educational Alphabet / Wooden Blocks
-const Block: React.FC<{
-  left: number;
-  top: number;
-  color: string;
-  letter: string;
-  frame?: number;
-  delay?: number;
-  homeTop?: number;
-  fallen?: boolean;
-}> = ({left, top, color, letter, frame = 0, delay = 0, homeTop, fallen = false}) => {
-  const progress = interpolate(frame - delay, [0, 32], [0, 1], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-  const currentY = homeTop !== undefined ? top + (homeTop - top) * progress : top;
-  const rot = fallen ? interpolate(progress, [0, 1], [0, 48]) : 0;
-
+  arrowDir?: "bottom" | "left" | "right";
+  width?: number;
+}> = ({left, top, text, width = 240}) => {
   return (
     <div
       style={{
         position: "absolute",
         left,
-        top: currentY,
-        width: 82,
-        height: 82,
-        background: color,
-        borderRadius: 14,
-        border: "4px solid rgba(255,255,255,0.92)",
-        boxShadow: "0 10px 20px rgba(0,0,0,0.14)",
-        display: "grid",
-        placeItems: "center",
-        transform: `rotate(${rot}deg)`,
-        zIndex: 6,
+        top,
+        width,
+        padding: "10px 16px",
+        borderRadius: 20,
+        background: "rgba(255, 255, 255, 0.98)",
+        border: "3px solid #3B82F6",
+        boxShadow: "0 8px 20px rgba(15, 23, 42, 0.12)",
+        textAlign: "center",
+        fontSize: 18,
+        fontWeight: 800,
+        color: "#1E293B",
+        zIndex: 20,
       }}
     >
-      <span style={{fontSize: 34, fontWeight: 900, color: "#FFFFFF", textShadow: "0 2px 4px rgba(0,0,0,0.25)"}}>
+      {text}
+      <div
+        style={{
+          position: "absolute",
+          bottom: -10,
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: 0,
+          height: 0,
+          borderLeft: "10px solid transparent",
+          borderRight: "10px solid transparent",
+          borderTop: "10px solid #3B82F6",
+        }}
+      />
+    </div>
+  );
+};
+
+// Wooden Building Block
+export const Block: React.FC<{
+  x: number;
+  y: number;
+  color: string;
+  letter?: string;
+  size?: number;
+  rotation?: number;
+}> = ({x, y, color, letter = "★", size = 46, rotation = 0}) => {
+  return (
+    <div
+      style={{
+        position: "absolute",
+        left: x,
+        top: y,
+        width: size,
+        height: size,
+        borderRadius: 8,
+        background: color,
+        border: "3px solid rgba(255,255,255,0.7)",
+        boxShadow: "0 6px 12px rgba(0,0,0,0.18)",
+        display: "grid",
+        placeItems: "center",
+        transform: `rotate(${rotation}deg)`,
+        transformOrigin: "center center",
+        zIndex: 8,
+      }}
+    >
+      <span style={{fontSize: size * 0.45, fontWeight: 900, color: "#FFFFFF", textShadow: "0 1px 2px rgba(0,0,0,0.3)"}}>
         {letter}
       </span>
     </div>
   );
 };
 
-// --- Main Illustration Dispatcher ---
+// Food Choice Card
+const FoodCard: React.FC<{
+  left: number;
+  top: number;
+  childName: string;
+  foodName: string;
+  emoji: string;
+  color: string;
+  badgeColor: string;
+  frame: number;
+  delay: number;
+}> = ({left, top, childName, foodName, emoji, color, badgeColor, frame, delay}) => {
+  const enter = spring({frame: Math.max(0, frame - delay), fps: 30, config: {damping: 14, stiffness: 90}});
+  const bob = Math.sin((frame + delay * 5) / 14) * 3;
 
-export const Illustration: React.FC<ArtProps> = ({scene, frame, durationInFrames}) => {
+  return (
+    <div
+      style={{
+        position: "absolute",
+        left,
+        top: top + bob,
+        width: 170,
+        padding: "14px 10px",
+        borderRadius: 20,
+        background: "rgba(255, 255, 255, 0.98)",
+        border: `3px solid ${badgeColor}`,
+        boxShadow: "0 10px 24px rgba(15, 23, 42, 0.1)",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        textAlign: "center",
+        transform: `translateY(${(1 - enter) * 40}px) scale(${enter})`,
+        zIndex: 12,
+      }}
+    >
+      <div
+        style={{
+          width: 64,
+          height: 64,
+          borderRadius: 16,
+          background: `${color}25`,
+          border: `2px solid ${color}44`,
+          display: "grid",
+          placeItems: "center",
+          fontSize: 34,
+          marginBottom: 6,
+        }}
+      >
+        {emoji}
+      </div>
+      <div style={{fontSize: 16, fontWeight: 900, color: "#0F172A", lineHeight: 1.1}}>{foodName}</div>
+      <div
+        style={{
+          marginTop: 6,
+          padding: "3px 10px",
+          borderRadius: 999,
+          background: `${badgeColor}22`,
+          color: badgeColor,
+          fontSize: 13,
+          fontWeight: 800,
+        }}
+      >
+        {childName}
+      </div>
+    </div>
+  );
+};
+
+// --- Main Illustration Component ---
+
+export const Illustration: React.FC<ArtProps> = ({scene, frame}) => {
   const appear = spring({frame, fps: 30, config: {damping: 15, stiffness: 85}});
-  const questionScale = spring({
-    frame: Math.max(0, frame - 12),
-    fps: 30,
-    config: {damping: 12, stiffness: 100},
-  });
 
-  // Three character centered layouts
-  const pos3 = [110, 535, 960];
+  // Four-character horizontal layout coordinates across 1320 stage
+  const pos4 = [100, 370, 640, 910];
+  const pos3 = [140, 545, 950];
   const pos2 = [290, 780];
 
   return (
@@ -622,1057 +619,1516 @@ export const Illustration: React.FC<ArtProps> = ({scene, frame, durationInFrames
       <SceneryBackground
         frame={frame}
         variant={
-          scene.visual.startsWith("art") || scene.visual === "oops" || scene.visual === "truth" || scene.visual === "listen" || scene.visual === "repair"
+          scene.visual.startsWith("art") ||
+          scene.visual === "accident" ||
+          scene.visual === "feelings" ||
+          scene.visual === "admit" ||
+          scene.visual === "say-sorry" ||
+          scene.visual === "help-repair" ||
+          scene.visual === "tell-the-truth" ||
+          scene.visual === "respect-things" ||
+          scene.visual === "recap-injustice"
             ? "art"
-            : scene.visual === "garden" || scene.visual === "choices"
+            : scene.visual === "garden" ||
+              scene.visual === "four-favorites" ||
+              scene.visual === "choices-accepted" ||
+              scene.visual === "game-options" ||
+              scene.visual === "chance-to-join" ||
+              scene.visual === "participation" ||
+              scene.visual === "recap-opportunity"
             ? "garden"
-            : scene.visual === "market" || scene.visual === "different-coins" || scene.visual === "share-game"
+            : scene.visual === "market" ||
+              scene.visual === "different-coins" ||
+              scene.visual === "equal-worth" ||
+              scene.visual === "kind-example" ||
+              scene.visual === "respect" ||
+              scene.visual === "kind-or-unkind" ||
+              scene.visual === "recap-wealth"
             ? "market"
             : "outdoor"
         }
       />
 
       {/* ========================================================================= */}
-      {/* EPISODE 1: JUSTICE & FAIRNESS AT PLAYGROUND                              */}
+      {/* EPISODE 1: JUSTICE & INJUSTICE                                            */}
       {/* ========================================================================= */}
 
       {/* 1.1 Welcome Playground */}
       {scene.visual === "playground" && (
         <>
           <PlaygroundSlide frame={frame} />
-          <Person friend={friends.ruhi} left={pos3[0]} frame={frame} pose="wave" />
-          <Person friend={friends.aima} left={pos3[1]} frame={frame} pose="wave" />
-          <Person friend={friends.nuh} left={pos3[2]} frame={frame} pose="wave" />
-          <Heart left={590} top={50} size={88} frame={frame} />
+          {/* Fairness Explorers Banner */}
+          <div
+            style={{
+              position: "absolute",
+              left: 400,
+              top: 25,
+              padding: "8px 24px",
+              borderRadius: 999,
+              background: "rgba(255, 255, 255, 0.95)",
+              border: "3px solid #FF6E7F",
+              boxShadow: "0 6px 16px rgba(255, 110, 127, 0.25)",
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+              zIndex: 10,
+            }}
+          >
+            <span style={{fontSize: 22}}>🌟</span>
+            <span style={{fontSize: 20, fontWeight: 900, color: "#1E293B", letterSpacing: 1}}>
+              FAIRNESS EXPLORERS
+            </span>
+            <span style={{fontSize: 22}}>🌟</span>
+          </div>
+
+          <Person friend={friends.ruhi} left={pos4[0]} frame={frame} pose={frame < 45 ? "wave" : "stand"} />
+          <Person friend={friends.aima} left={pos4[1]} frame={frame} pose={frame >= 20 && frame < 65 ? "wave" : "stand"} />
+          <Person friend={friends.nuh} left={pos4[2]} frame={frame} pose={frame >= 40 && frame < 85 ? "cheer" : "stand"} />
+          <Person friend={friends.fathima} left={pos4[3]} frame={frame} pose={frame >= 60 ? "wave" : "stand"} />
         </>
       )}
 
-      {/* 1.2 Unfair Share */}
-      {scene.visual === "unfair-share" && (
+      {/* 1.2 Sweets Start: 8 Countable Sweets on Mat */}
+      {scene.visual === "sweets-start" && (
         <>
-          {/* Picnic ground blanket */}
+          {/* Picnic Blanket */}
           <div
             style={{
               position: "absolute",
               left: 60,
               right: 60,
-              bottom: 16,
-              height: 48,
+              bottom: 8,
+              height: 68,
               borderRadius: 24,
               background: "repeating-linear-gradient(90deg, #FDE68A 0 25px, #FEF3C7 25px 50px)",
               border: "3px dashed #F59E0B",
-              opacity: 0.8,
+              opacity: 0.9,
               zIndex: 2,
             }}
           />
 
-          {/* Characters */}
-          <Person friend={friends.nuh} left={pos3[0]} frame={frame} />
-          <Person friend={{...friends.ruhi, expression: "surprised"}} left={pos3[1]} frame={frame} />
-          <Person friend={{...friends.aima, expression: "sad"}} left={pos3[2]} frame={frame} />
+          <Person friend={{...friends.ruhi, expression: "thinking"}} left={pos4[0]} frame={frame} pose="stand" bottom={68} label={false} />
+          <Person friend={{...friends.aima, expression: "thinking"}} left={pos4[1]} frame={frame} pose="stand" bottom={68} label={false} />
+          <Person friend={{...friends.nuh, expression: "thinking"}} left={pos4[2]} frame={frame} pose="stand" bottom={68} label={false} />
+          <Person friend={{...friends.fathima, expression: "thinking"}} left={pos4[3]} frame={frame} pose="stand" bottom={68} label={false} />
 
-          {/* Nuh's full tray with all 6 candies */}
+          {/* Central Sharing Platter with exactly 8 visible sweets */}
+          <div
+            style={{
+              position: "absolute",
+              left: 470,
+              bottom: 18,
+              width: 380,
+              height: 82,
+              borderRadius: 41,
+              background: "linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%)",
+              border: "4px solid #F59E0B",
+              boxShadow: "0 10px 24px rgba(245, 158, 11, 0.25)",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              zIndex: 8,
+            }}
+          >
+            <div
+              style={{
+                position: "absolute",
+                top: -14,
+                padding: "2px 14px",
+                borderRadius: 999,
+                background: "#F59E0B",
+                color: "#FFFFFF",
+                fontSize: 14,
+                fontWeight: 900,
+                letterSpacing: 0.5,
+              }}
+            >
+              8 SWEETS TO SHARE
+            </div>
+
+            {/* 8 sweets placed neatly on platter */}
+            <div style={{position: "relative", width: 340, height: 36}}>
+              {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => {
+                const colors = ["#EF4444", "#3B82F6", "#10B981", "#8B5CF6", "#F59E0B", "#EC4899", "#14B8A6", "#6366F1"];
+                const sweetX = i * 42 + 8;
+                return <Candy key={i} left={sweetX} top={5} color={colors[i]} rotation={(i % 2 === 0 ? 1 : -1) * 8} />;
+              })}
+            </div>
+          </div>
+
+        </>
+      )}
+
+      {/* 1.3 Share Equally: Sweets Travel Exactly 2 per Child (8 total conserved) */}
+      {scene.visual === "share-equally" && (
+        <>
+          <div
+            style={{
+              position: "absolute",
+              left: 60,
+              right: 60,
+              bottom: 8,
+              height: 68,
+              borderRadius: 24,
+              background: "repeating-linear-gradient(90deg, #FDE68A 0 25px, #FEF3C7 25px 50px)",
+              border: "3px dashed #F59E0B",
+              opacity: 0.9,
+              zIndex: 2,
+            }}
+          />
+
+          <Person friend={{...friends.ruhi, expression: "happy"}} left={pos4[0]} frame={frame} pose={frame > 40 ? "cheer" : "reach"} bottom={68} label={false} />
+          <Person friend={{...friends.aima, expression: "happy"}} left={pos4[1]} frame={frame} pose={frame > 40 ? "cheer" : "reach"} bottom={68} label={false} />
+          <Person friend={{...friends.nuh, expression: "happy"}} left={pos4[2]} frame={frame} pose={frame > 40 ? "cheer" : "reach"} bottom={68} label={false} />
+          <Person friend={{...friends.fathima, expression: "happy"}} left={pos4[3]} frame={frame} pose={frame > 40 ? "cheer" : "reach"} bottom={68} label={false} />
+
+          {/* 4 Child Sharing Plates with Continuous Moving Sweets */}
+          {[
+            {name: "Ruhi", x: pos4[0] + 35, colors: ["#EF4444", "#3B82F6"], border: "#FF6E7F"},
+            {name: "Aima", x: pos4[1] + 35, colors: ["#10B981", "#8B5CF6"], border: "#10B981"},
+            {name: "Nuh", x: pos4[2] + 35, colors: ["#F59E0B", "#EC4899"], border: "#3B82F6"},
+            {name: "Fathima", x: pos4[3] + 35, colors: ["#14B8A6", "#6366F1"], border: "#8B5CF6"},
+          ].map((plate, pIdx) => {
+            const animProgress = interpolate(frame, [10 + pIdx * 6, 35 + pIdx * 6], [0, 1], {
+              extrapolateLeft: "clamp",
+              extrapolateRight: "clamp",
+            });
+            const startX = 630;
+            const startY = 320;
+            const targetX = plate.x + 25;
+            const targetY = 485;
+            const curX = startX + (targetX - startX) * animProgress;
+            const arcHeight = Math.sin(animProgress * Math.PI) * 75;
+            const curY = startY + (targetY - startY) * animProgress - arcHeight;
+
+            return (
+              <div key={plate.name}>
+                {/* Plate on the blanket */}
+                <div
+                  style={{
+                    position: "absolute",
+                    left: plate.x,
+                    bottom: 14,
+                    width: 160,
+                    height: 52,
+                    borderRadius: 26,
+                    background: "#FFFFFF",
+                    border: `3px solid ${plate.border}`,
+                    boxShadow: "0 6px 14px rgba(0, 0, 0, 0.08)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    zIndex: 6,
+                  }}
+                >
+                  <div
+                    style={{
+                      position: "absolute",
+                      bottom: -11,
+                      padding: "1px 10px",
+                      borderRadius: 999,
+                      background: "#FFFFFF",
+                      border: `2px solid ${plate.border}`,
+                      fontSize: 12,
+                      fontWeight: 900,
+                      color: "#1E293B",
+                    }}
+                  >
+                    {plate.name}
+                  </div>
+
+                  {frame > 35 && (
+                    <div
+                      style={{
+                        position: "absolute",
+                        top: -12,
+                        padding: "2px 10px",
+                        borderRadius: 999,
+                        background: "#10B981",
+                        color: "#FFFFFF",
+                        fontSize: 12,
+                        fontWeight: 900,
+                      }}
+                    >
+                      2 Sweets · Fair!
+                    </div>
+                  )}
+                </div>
+
+                {/* Exactly 2 sweets per plate */}
+                <Candy
+                  left={curX - 18}
+                  top={curY - 10}
+                  color={plate.colors[0]}
+                  rotation={-10}
+                />
+                <Candy
+                  left={curX + 22}
+                  top={curY - 6}
+                  color={plate.colors[1]}
+                  rotation={12}
+                />
+              </div>
+            );
+          })}
+        </>
+      )}
+
+      {/* 1.4 Unfair Share: One person takes all demo tokens */}
+      {scene.visual === "unfair-share" && (
+        <>
+          <div
+            style={{
+              position: "absolute",
+              left: 60,
+              right: 60,
+              bottom: 8,
+              height: 68,
+              borderRadius: 24,
+              background: "repeating-linear-gradient(90deg, #FDE68A 0 25px, #FEF3C7 25px 50px)",
+              border: "3px dashed #F59E0B",
+              opacity: 0.9,
+              zIndex: 2,
+            }}
+          />
+
+          <Person friend={{...friends.nuh, expression: "thinking"}} left={pos4[0]} frame={frame} pose="reach" bottom={68} label={false} />
+          <Person friend={{...friends.ruhi, expression: "surprised"}} left={pos4[1]} frame={frame} pose="stand" bottom={68} label={false} />
+          <Person friend={{...friends.aima, expression: "sad"}} left={pos4[2]} frame={frame} pose="stand" bottom={68} label={false} />
+          <Person friend={{...friends.fathima, expression: "worried"}} left={pos4[3]} frame={frame} pose="stand" bottom={68} label={false} />
+
+          {/* Unfair Banner */}
+          <div
+            style={{
+              position: "absolute",
+              left: 360,
+              top: 30,
+              padding: "8px 24px",
+              borderRadius: 999,
+              background: "#FEE2E2",
+              border: "3px solid #EF4444",
+              color: "#991B1B",
+              fontWeight: 900,
+              fontSize: 18,
+              boxShadow: "0 6px 14px rgba(239, 68, 68, 0.2)",
+              zIndex: 10,
+            }}
+          >
+            ⚠️ UNFAIR: One person kept all 4 tokens!
+          </div>
+
+          {/* Nuh's tray with all 4 tokens */}
+          <div
+            style={{
+              position: "absolute",
+              left: pos4[0] + 15,
+              bottom: 14,
+              width: 200,
+              height: 52,
+              borderRadius: 26,
+              background: "#FFFFFF",
+              border: "3px solid #EF4444",
+              boxShadow: "0 8px 16px rgba(239, 68, 68, 0.15)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 8,
+              zIndex: 8,
+            }}
+          >
+            <div style={{position: "absolute", top: -12, padding: "1px 8px", background: "#EF4444", color: "#FFF", borderRadius: 999, fontSize: 12, fontWeight: 900}}>
+              Nuh: 4 Tokens (All)
+            </div>
+            {[0, 1, 2, 3].map((i) => (
+              <StarCoin key={i} left={i * 38 + 18} top={6} size={36} frame={frame} />
+            ))}
+          </div>
+
+          {/* Empty plates for friends */}
+          {[
+            {name: "Ruhi", x: pos4[1]},
+            {name: "Aima", x: pos4[2]},
+            {name: "Fathima", x: pos4[3]},
+          ].map((child) => (
+            <div
+              key={child.name}
+              style={{
+                position: "absolute",
+                left: child.x + 35,
+                bottom: 14,
+                width: 160,
+                height: 52,
+                borderRadius: 26,
+                background: "#FFFFFF",
+                border: "2px dashed #94A3B8",
+                display: "grid",
+                placeItems: "center",
+                color: "#94A3B8",
+                fontSize: 13,
+                fontWeight: 800,
+                zIndex: 6,
+              }}
+            >
+              <div style={{position: "absolute", bottom: -11, padding: "1px 8px", borderRadius: 999, background: "#FFF", border: "1px solid #CBD5E1", fontSize: 11, fontWeight: 900, color: "#64748B"}}>
+                {child.name}
+              </div>
+              0 Tokens (None left)
+            </div>
+          ))}
+        </>
+      )}
+
+      {/* 1.5 Choose Better: Nuh apologizes and shares tokens */}
+      {scene.visual === "choose-better" && (
+        <>
+          <div
+            style={{
+              position: "absolute",
+              left: 60,
+              right: 60,
+              bottom: 8,
+              height: 68,
+              borderRadius: 24,
+              background: "repeating-linear-gradient(90deg, #FDE68A 0 25px, #FEF3C7 25px 50px)",
+              border: "3px dashed #F59E0B",
+              opacity: 0.9,
+              zIndex: 2,
+            }}
+          />
+
+          <Person friend={{...friends.nuh, expression: "apologetic"}} left={pos4[0]} frame={frame} pose="offer" bottom={68} label={false} />
+          <Person friend={{...friends.ruhi, expression: "happy"}} left={pos4[1]} frame={frame} pose="receive" bottom={68} label={false} />
+          <Person friend={{...friends.aima, expression: "happy"}} left={pos4[2]} frame={frame} pose="receive" bottom={68} label={false} />
+          <Person friend={{...friends.fathima, expression: "happy"}} left={pos4[3]} frame={frame} pose="receive" bottom={68} label={false} />
+
+          {/* Speech bubble from Nuh */}
+          <SpeechBubble left={pos4[0] - 20} top={70} text="I am sorry! Let's share fairly." width={260} />
+
+          {/* 1 token each on all 4 plates */}
+          {[
+            {name: "Nuh", x: pos4[0]},
+            {name: "Ruhi", x: pos4[1]},
+            {name: "Aima", x: pos4[2]},
+            {name: "Fathima", x: pos4[3]},
+          ].map((child) => (
+            <div
+              key={child.name}
+              style={{
+                position: "absolute",
+                left: child.x + 35,
+                bottom: 14,
+                width: 160,
+                height: 52,
+                borderRadius: 26,
+                background: "#FFFFFF",
+                border: "3px solid #10B981",
+                boxShadow: "0 6px 14px rgba(16, 185, 129, 0.15)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                zIndex: 8,
+              }}
+            >
+              <div style={{position: "absolute", bottom: -11, padding: "1px 8px", borderRadius: 999, background: "#FFF", border: "2px solid #10B981", fontSize: 12, fontWeight: 900, color: "#1E293B"}}>
+                {child.name}
+              </div>
+              <div style={{position: "absolute", top: -12, padding: "1px 8px", background: "#10B981", color: "#FFF", borderRadius: 999, fontSize: 12, fontWeight: 900}}>
+                1 Token · Fair!
+              </div>
+              <StarCoin left={58} top={6} size={38} frame={frame} />
+            </div>
+          ))}
+        </>
+      )}
+
+      {/* 1.6 Slide Turns: Four distinct exclusive turns */}
+      {scene.visual === "slide-turns" && (
+        <>
+          <PlaygroundSlide frame={frame} />
+
+          {/* Turn order indicator banner */}
+          <div
+            style={{
+              position: "absolute",
+              left: 80,
+              top: 25,
+              display: "flex",
+              alignItems: "center",
+              gap: 12,
+              zIndex: 15,
+            }}
+          >
+            {[
+              {name: "1. Ruhi", turn: 0, color: "#FF6E7F"},
+              {name: "2. Aima", turn: 1, color: "#10B981"},
+              {name: "3. Nuh", turn: 2, color: "#3B82F6"},
+              {name: "4. Fathima", turn: 3, color: "#8B5CF6"},
+            ].map((step) => {
+              const active = Math.floor(frame / 55) === step.turn;
+              return (
+                <div
+                  key={step.name}
+                  style={{
+                    padding: "8px 16px",
+                    borderRadius: 999,
+                    background: active ? step.color : "rgba(255,255,255,0.9)",
+                    color: active ? "#FFFFFF" : "#475569",
+                    fontWeight: 900,
+                    fontSize: 16,
+                    border: `2px solid ${step.color}`,
+                    transform: active ? "scale(1.08)" : "scale(1)",
+                    boxShadow: active ? `0 6px 16px ${step.color}44` : "none",
+                  }}
+                >
+                  {step.name}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Animated Slider & Queue according to turn beat */}
+          {(() => {
+            const currentTurn = Math.min(3, Math.floor(frame / 55));
+            const subFrame = frame % 55;
+            // Slide coordinates from top platform (1040, 110) to bottom (1240, 360)
+            const slideProg = interpolate(subFrame, [10, 45], [0, 1], {
+              extrapolateLeft: "clamp",
+              extrapolateRight: "clamp",
+            });
+            const slideX = 1040 + slideProg * 200;
+            const slideY = 110 + slideProg * 250;
+
+            const turnCast = [friends.ruhi, friends.aima, friends.nuh, friends.fathima];
+            const activeChild = turnCast[currentTurn];
+            const waitingChildren = turnCast.filter((_, i) => i !== currentTurn);
+
+            return (
+              <>
+                {/* Active Child Riding Slide */}
+                <div
+                  style={{
+                    position: "absolute",
+                    left: slideX,
+                    top: slideY,
+                    transform: "translate(-50%, -50%)",
+                    zIndex: 12,
+                  }}
+                >
+                  <Character friend={activeChild} width={180} pose={slideProg > 0.8 ? "cheer" : "reach"} frame={frame} />
+                </div>
+
+                {/* Waiting Children standing patiently in queue */}
+                {waitingChildren.map((f, qIdx) => (
+                  <Person
+                    key={f.name}
+                    friend={f}
+                    left={140 + qIdx * 250}
+                    frame={frame}
+                    pose="stand"
+                  />
+                ))}
+              </>
+            );
+          })()}
+        </>
+      )}
+
+      {/* 1.7 Help & Include: Fathima helps Aima, Ruhi/Nuh invite */}
+      {scene.visual === "help-include" && (
+        <>
+          <Person friend={{...friends.fathima, expression: "happy"}} left={pos4[0]} frame={frame} pose="kneel" />
+          <Person friend={{...friends.aima, expression: "happy"}} left={pos4[1]} frame={frame} pose="reach" />
+          <Person friend={{...friends.ruhi, expression: "happy"}} left={pos4[2]} frame={frame} pose="wave" />
+          <Person friend={{...friends.nuh, expression: "happy"}} left={pos4[3]} frame={frame} pose="cheer" />
+
+          {/* Fallen blocks being collected */}
+          <Block x={pos4[0] + 160} y={480} color="#F59E0B" letter="A" size={38} rotation={15} />
+          <Block x={pos4[0] + 205} y={490} color="#3B82F6" letter="B" size={38} rotation={-8} />
+          <Block x={pos4[0] + 180} y={445} color="#EF4444" letter="C" size={38} />
+
+          {/* Four Action Badges */}
+          <div
+            style={{
+              position: "absolute",
+              left: 280,
+              top: 30,
+              display: "flex",
+              gap: 16,
+              zIndex: 12,
+            }}
+          >
+            {[
+              {icon: "🤝", label: "Help"},
+              {icon: "🍰", label: "Share"},
+              {icon: "🔄", label: "Take Turns"},
+              {icon: "❤️", label: "Show Respect"},
+            ].map((badge) => (
+              <div
+                key={badge.label}
+                style={{
+                  padding: "8px 16px",
+                  borderRadius: 999,
+                  background: "#FFFFFF",
+                  border: "2px solid #FF6E7F",
+                  boxShadow: "0 6px 14px rgba(0,0,0,0.06)",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                  fontWeight: 900,
+                  fontSize: 16,
+                  color: "#1E293B",
+                }}
+              >
+                <span>{badge.icon}</span>
+                <span>{badge.label}</span>
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+
+      {/* 1.8 Recap: All four characters celebrate fairness */}
+      {scene.visual === "recap-justice" && (
+        <>
+          <FourCharacterStaging
+            frame={frame}
+            poses={{ruhi: "cheer", aima: "wave", nuh: "cheer", fathima: "wave"}}
+            expressions={{ruhi: "happy", aima: "happy", nuh: "happy", fathima: "happy"}}
+          />
+          <Heart left={620} top={35} size={70} frame={frame} />
+        </>
+      )}
+
+      {/* ========================================================================= */}
+      {/* EPISODE 2: WEALTH & POVERTY                                               */}
+      {/* ========================================================================= */}
+
+      {/* 2.1 Welcome School Fair */}
+      {scene.visual === "market" && (
+        <>
+          {/* Fairground Bunting */}
+          <div
+            style={{
+              position: "absolute",
+              left: 360,
+              top: 25,
+              padding: "8px 24px",
+              borderRadius: 999,
+              background: "rgba(255, 255, 255, 0.95)",
+              border: "3px solid #F59E0B",
+              boxShadow: "0 6px 16px rgba(245, 158, 11, 0.25)",
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+              zIndex: 10,
+            }}
+          >
+            <span style={{fontSize: 22}}>🎪</span>
+            <span style={{fontSize: 20, fontWeight: 900, color: "#1E293B", letterSpacing: 1}}>
+              THE SCHOOL FAIR
+            </span>
+            <span style={{fontSize: 22}}>🎪</span>
+          </div>
+
+          <FourCharacterStaging
+            frame={frame}
+            poses={{ruhi: "wave", aima: "stand", nuh: "wave", fathima: "stand"}}
+          />
+        </>
+      )}
+
+      {/* 2.2 Different Amounts of Pretend Tokens */}
+      {scene.visual === "different-coins" && (
+        <>
+          <Person friend={{...friends.nuh, expression: "happy"}} left={pos2[0]} frame={frame} pose="offer" bottom={68} label={false} />
+          <Person friend={{...friends.aima, expression: "happy"}} left={pos2[1]} frame={frame} pose="stand" bottom={68} label={false} />
+
+          {/* Pretend Game Tokens Label */}
+          <div
+            style={{
+              position: "absolute",
+              left: 420,
+              top: 30,
+              padding: "8px 20px",
+              borderRadius: 999,
+              background: "#FEF3C7",
+              border: "3px solid #F59E0B",
+              color: "#92400E",
+              fontWeight: 900,
+              fontSize: 17,
+              zIndex: 10,
+            }}
+          >
+            ⭐ Pretend Game Tokens (Different Amounts) ⭐
+          </div>
+
+          {/* Nuh's Tokens Counter */}
+          <div
+            style={{
+              position: "absolute",
+              left: pos2[0] + 15,
+              bottom: 14,
+              width: 200,
+              height: 52,
+              borderRadius: 26,
+              background: "#FFFFFF",
+              border: "3px solid #3B82F6",
+              boxShadow: "0 6px 14px rgba(59, 130, 246, 0.15)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 6,
+              zIndex: 8,
+            }}
+          >
+            <div style={{position: "absolute", bottom: -11, padding: "1px 10px", background: "#FFF", border: "2px solid #3B82F6", borderRadius: 999, fontSize: 12, fontWeight: 900, color: "#1E293B"}}>
+              Nuh
+            </div>
+            <div style={{position: "absolute", top: -12, padding: "1px 8px", background: "#3B82F6", color: "#FFF", borderRadius: 999, fontSize: 12, fontWeight: 900}}>
+              5 Tokens
+            </div>
+            {[0, 1, 2, 3, 4].map((i) => (
+              <StarCoin key={i} left={i * 36 + 12} top={6} size={34} frame={frame} />
+            ))}
+          </div>
+
+          {/* Aima's Tokens Counter */}
+          <div
+            style={{
+              position: "absolute",
+              left: pos2[1] + 15,
+              bottom: 14,
+              width: 200,
+              height: 52,
+              borderRadius: 26,
+              background: "#FFFFFF",
+              border: "3px solid #10B981",
+              boxShadow: "0 6px 14px rgba(16, 185, 129, 0.15)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 8,
+              zIndex: 8,
+            }}
+          >
+            <div style={{position: "absolute", bottom: -11, padding: "1px 10px", background: "#FFF", border: "2px solid #10B981", borderRadius: 999, fontSize: 12, fontWeight: 900, color: "#1E293B"}}>
+              Aima
+            </div>
+            <div style={{position: "absolute", top: -12, padding: "1px 8px", background: "#10B981", color: "#FFF", borderRadius: 999, fontSize: 12, fontWeight: 900}}>
+              2 Tokens
+            </div>
+            {[0, 1].map((i) => (
+              <StarCoin key={i} left={i * 40 + 60} top={6} size={34} frame={frame} />
+            ))}
+          </div>
+        </>
+      )}
+
+      {/* 2.3 Equal Importance: Everyone Matters */}
+      {scene.visual === "equal-worth" && (
+        <>
+          <Person friend={{...friends.nuh, expression: "happy"}} left={pos2[0]} frame={frame} pose="cheer" />
+          <Person friend={{...friends.aima, expression: "happy"}} left={pos2[1]} frame={frame} pose="cheer" />
+
+          {/* Two Equally Glowing Hearts above Nuh & Aima */}
+          <Heart left={pos2[0] + 80} top={60} size={70} color="#F59E0B" frame={frame} />
+          <Heart left={pos2[1] + 80} top={60} size={70} color="#F59E0B" frame={frame} />
+
           <div
             style={{
               position: "absolute",
               left: 320,
-              bottom: 75,
-              width: 175,
-              padding: "10px 14px",
-              borderRadius: 24,
+              bottom: 45,
+              padding: "12px 30px",
+              borderRadius: 999,
               background: "#FFFFFF",
-              border: "4px solid #F59E0B",
-              boxShadow: "0 10px 24px rgba(245, 158, 11, 0.22)",
+              border: "3px solid #F59E0B",
+              boxShadow: "0 10px 24px rgba(245, 158, 11, 0.2)",
+              textAlign: "center",
+              zIndex: 10,
+            }}
+          >
+            <span style={{fontSize: 20, fontWeight: 900, color: "#1E293B"}}>
+              ✨ Everyone matters equally! More money does not make a better person. ✨
+            </span>
+          </div>
+        </>
+      )}
+
+      {/* 2.4 Kind Example: Fathima helps Ruhi pick up dropped pencils */}
+      {scene.visual === "kind-example" && (
+        <>
+          <Person friend={{...friends.fathima, expression: "happy"}} left={pos2[0]} frame={frame} pose="kneel" />
+          <Person friend={{...friends.ruhi, expression: "relieved"}} left={pos2[1]} frame={frame} pose="reach" />
+
+          {/* Dropped Colored Pencils */}
+          <div style={{position: "absolute", left: pos2[0] + 180, bottom: 40, zIndex: 6}}>
+            {["#EF4444", "#3B82F6", "#10B981", "#F59E0B", "#8B5CF6"].map((c, i) => (
+              <div
+                key={c}
+                style={{
+                  position: "absolute",
+                  left: i * 22,
+                  top: (i % 2) * 10,
+                  width: 32,
+                  height: 6,
+                  borderRadius: 3,
+                  background: c,
+                  transform: `rotate(${(i - 2) * 18}deg)`,
+                }}
+              />
+            ))}
+          </div>
+
+          <div
+            style={{
+              position: "absolute",
+              left: 360,
+              top: 35,
+              padding: "10px 24px",
+              borderRadius: 999,
+              background: "#ECFDF5",
+              border: "3px solid #10B981",
+              color: "#065F46",
+              fontWeight: 900,
+              fontSize: 18,
+              zIndex: 10,
+            }}
+          >
+            💖 Kindness in Action: Helping a friend!
+          </div>
+        </>
+      )}
+
+      {/* 2.5 Respect: Fathima invites Aima to free game */}
+      {scene.visual === "respect" && (
+        <>
+          <Person friend={{...friends.fathima, expression: "happy"}} left={pos4[0]} frame={frame} pose="offer" />
+          <Person friend={{...friends.aima, expression: "happy"}} left={pos4[1]} frame={frame} pose="receive" />
+          <Person friend={{...friends.ruhi, expression: "happy"}} left={pos4[2]} frame={frame} pose="wave" />
+          <Person friend={{...friends.nuh, expression: "happy"}} left={pos4[3]} frame={frame} pose="cheer" />
+
+          <SpeechBubble left={pos4[0] - 10} top={70} text="Come play this free game with us! You go first!" width={280} />
+
+          <div
+            style={{
+              position: "absolute",
+              left: 460,
+              top: 25,
+              padding: "10px 24px",
+              borderRadius: 999,
+              background: "#FFFFFF",
+              border: "3px solid #10B981",
+              boxShadow: "0 6px 18px rgba(16, 185, 129, 0.18)",
+              fontWeight: 900,
+              fontSize: 17,
+              color: "#1E293B",
+              zIndex: 10,
+            }}
+          >
+            🤝 Equal Care & Respect for Everyone
+          </div>
+        </>
+      )}
+
+      {/* 2.6 Kind or Unkind: Clear Contrasting Vignettes */}
+      {scene.visual === "kind-or-unkind" && (
+        <>
+          {/* Left: Unkind Vignette */}
+          <div
+            style={{
+              position: "absolute",
+              left: 140,
+              top: 60,
+              width: 480,
+              height: 380,
+              borderRadius: 24,
+              background: "#FEF2F2",
+              border: "4px solid #EF4444",
+              boxShadow: "0 10px 24px rgba(239, 68, 68, 0.15)",
+              padding: 20,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
               zIndex: 8,
             }}
           >
-            <div style={{display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 6, width: 140, height: 65, position: "relative"}}>
-              {[0, 1, 2, 3, 4, 5].map((i) => (
-                <Candy
-                  key={i}
-                  left={(i % 3) * 44 + 4}
-                  top={Math.floor(i / 3) * 32}
-                  color={["#EF4444", "#F59E0B", "#3B82F6", "#10B981"][i % 4]}
-                  rotation={(i - 2.5) * 10}
-                  scale={0.85}
-                />
-              ))}
+            <div style={{padding: "6px 16px", borderRadius: 999, background: "#EF4444", color: "#FFF", fontWeight: 900, fontSize: 16}}>
+              🚫 UNKIND BEHAVIOR
             </div>
-            <span style={{fontSize: 14, fontWeight: 900, color: "#D97706", marginTop: 4}}>
-              All 6 Treats!
-            </span>
+            <div style={{fontSize: 70, margin: "24px 0"}}>😤 🛑</div>
+            <div style={{fontSize: 22, fontWeight: 900, color: "#991B1B", textAlign: "center", lineHeight: 1.3}}>
+              Teasing or leaving someone out is unkind.
+            </div>
           </div>
 
-          {/* Ruhi's Empty Plate */}
+          {/* Right: Kind Vignette */}
           <div
             style={{
               position: "absolute",
-              left: 745,
-              bottom: 75,
-              width: 140,
-              padding: "14px",
-              borderRadius: 20,
-              background: "#FFFFFF",
-              border: "3px solid #CBD5E1",
-              boxShadow: "0 8px 18px rgba(0,0,0,0.06)",
-              textAlign: "center",
+              right: 140,
+              top: 60,
+              width: 480,
+              height: 380,
+              borderRadius: 24,
+              background: "#ECFDF5",
+              border: "4px solid #10B981",
+              boxShadow: "0 10px 24px rgba(16, 185, 129, 0.15)",
+              padding: 20,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
               zIndex: 8,
             }}
           >
-            <div style={{fontSize: 28}}>🍽️</div>
-            <div style={{fontSize: 14, fontWeight: 800, color: "#94A3B8"}}>0 Treats</div>
-          </div>
-
-          {/* Aima's Empty Plate */}
-          <div
-            style={{
-              position: "absolute",
-              left: 1170,
-              bottom: 75,
-              width: 140,
-              padding: "14px",
-              borderRadius: 20,
-              background: "#FFFFFF",
-              border: "3px solid #CBD5E1",
-              boxShadow: "0 8px 18px rgba(0,0,0,0.06)",
-              textAlign: "center",
-              zIndex: 8,
-            }}
-          >
-            <div style={{fontSize: 28}}>🍽️</div>
-            <div style={{fontSize: 14, fontWeight: 800, color: "#94A3B8"}}>0 Treats</div>
-          </div>
-
-          {/* Question Callout Banner */}
-          <div
-            style={{
-              position: "absolute",
-              left: 480,
-              top: 45,
-              padding: "12px 28px",
-              borderRadius: 20,
-              background: "#FFFFFF",
-              border: "3px solid #EF4444",
-              boxShadow: "0 10px 24px rgba(239, 68, 68, 0.15)",
-              color: "#DC2626",
-              fontSize: 26,
-              fontWeight: 900,
-              zIndex: 10,
-            }}
-          >
-            ⚠️ Is taking all six treats fair?
+            <div style={{padding: "6px 16px", borderRadius: 999, background: "#10B981", color: "#FFF", fontWeight: 900, fontSize: 16}}>
+              ✅ KIND BEHAVIOR
+            </div>
+            <div style={{fontSize: 70, margin: "24px 0"}}>🤗 🌟</div>
+            <div style={{fontSize: 22, fontWeight: 900, color: "#065F46", textAlign: "center", lineHeight: 1.3}}>
+              Welcoming friends and sharing is kind!
+            </div>
           </div>
         </>
       )}
 
-      {/* 1.3 Fair Share */}
-      {scene.visual === "fair-share" && (
+      {/* 2.7 Recap: You don't have to be rich to be good */}
+      {scene.visual === "recap-wealth" && (
         <>
-          {/* Picnic ground blanket */}
-          <div
-            style={{
-              position: "absolute",
-              left: 60,
-              right: 60,
-              bottom: 16,
-              height: 48,
-              borderRadius: 24,
-              background: "repeating-linear-gradient(90deg, #A7F3D0 0 25px, #D1FAE5 25px 50px)",
-              border: "3px dashed #10B981",
-              opacity: 0.8,
-              zIndex: 2,
-            }}
+          <FourCharacterStaging
+            frame={frame}
+            poses={{ruhi: "cheer", aima: "cheer", nuh: "cheer", fathima: "cheer"}}
           />
+          <Heart left={620} top={30} size={80} color="#F59E0B" frame={frame} />
+        </>
+      )}
 
-          <Person friend={friends.ruhi} left={pos3[0]} frame={frame} pose="cheer" />
-          <Person friend={friends.aima} left={pos3[1]} frame={frame} pose="cheer" />
-          <Person friend={friends.nuh} left={pos3[2]} frame={frame} pose="cheer" />
+      {/* ========================================================================= */}
+      {/* EPISODE 3: EQUALITY OF OPPORTUNITY                                        */}
+      {/* ========================================================================= */}
 
-          {/* Three equal plates with 2 candies each */}
-          {[
-            {label: "Ruhi's Share", x: 320},
-            {label: "Aima's Share", x: 745},
-            {label: "Nuh's Share", x: 1170},
-          ].map((plate, pIdx) => (
-            <div
-              key={pIdx}
-              style={{
-                position: "absolute",
-                left: plate.x,
-                bottom: 75,
-                width: 145,
-                padding: "8px 10px",
-                borderRadius: 20,
-                background: "#FFFFFF",
-                border: "3.5px solid #10B981",
-                boxShadow: "0 8px 18px rgba(16, 185, 129, 0.18)",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                zIndex: 8,
-              }}
-            >
-              <div style={{display: "flex", gap: 10, height: 42, alignItems: "center"}}>
-                <Candy left={0} top={0} color="#EF4444" rotation={-10} scale={0.8} />
-                <Candy left={0} top={0} color="#3B82F6" rotation={10} scale={0.8} />
-              </div>
-              <span style={{fontSize: 13, fontWeight: 900, color: "#059669", marginTop: 4}}>
-                2 Treats Each!
-              </span>
-            </div>
-          ))}
-
-          <Heart left={580} top={45} size={92} frame={frame} />
+      {/* 3.1 Welcome Garden Picnic */}
+      {scene.visual === "garden" && (
+        <>
           <div
             style={{
               position: "absolute",
-              left: 470,
-              top: 145,
-              padding: "10px 26px",
+              left: 420,
+              top: 25,
+              padding: "8px 24px",
+              borderRadius: 999,
+              background: "rgba(255, 255, 255, 0.95)",
+              border: "3px solid #10B981",
+              boxShadow: "0 6px 16px rgba(16, 185, 129, 0.2)",
+              display: "flex",
+              alignItems: "center",
+              gap: 10,
+              zIndex: 10,
+            }}
+          >
+            <span style={{fontSize: 22}}>🌻</span>
+            <span style={{fontSize: 20, fontWeight: 900, color: "#1E293B", letterSpacing: 1}}>
+              SUNNY GARDEN PICNIC
+            </span>
+            <span style={{fontSize: 22}}>🌻</span>
+          </div>
+
+          <FourCharacterStaging
+            frame={frame}
+            poses={{ruhi: "wave", aima: "wave", nuh: "stand", fathima: "wave"}}
+          />
+        </>
+      )}
+
+      {/* 3.2 Four Distinct Favorite Foods Visible Together */}
+      {scene.visual === "four-favorites" && (
+        <>
+          <Person friend={{...friends.ruhi, expression: "happy"}} left={pos4[0]} frame={frame} pose="offer" />
+          <Person friend={{...friends.aima, expression: "happy"}} left={pos4[1]} frame={frame} pose="offer" />
+          <Person friend={{...friends.nuh, expression: "happy"}} left={pos4[2]} frame={frame} pose="offer" />
+          <Person friend={{...friends.fathima, expression: "happy"}} left={pos4[3]} frame={frame} pose="offer" />
+
+          {/* 4 distinct cards for 4 friends */}
+          <FoodCard left={pos4[0] + 15} top={70} childName="Ruhi" foodName="Cucumbers" emoji="🥒" color="#10B981" badgeColor="#FF6E7F" frame={frame} delay={0} />
+          <FoodCard left={pos4[1] + 15} top={70} childName="Aima" foodName="Mangoes" emoji="🥭" color="#F59E0B" badgeColor="#10B981" frame={frame} delay={8} />
+          <FoodCard left={pos4[2] + 15} top={70} childName="Nuh" foodName="Apples" emoji="🍎" color="#EF4444" badgeColor="#3B82F6" frame={frame} delay={16} />
+          <FoodCard left={pos4[3] + 15} top={70} childName="Fathima" foodName="Bananas" emoji="🍌" color="#FBBF24" badgeColor="#8B5CF6" frame={frame} delay={24} />
+        </>
+      )}
+
+      {/* 3.3 Choices Accepted: Friends can like different things */}
+      {scene.visual === "choices-accepted" && (
+        <>
+          <Person friend={{...friends.ruhi, expression: "happy"}} left={pos2[0]} frame={frame} pose="wave" />
+          <Person friend={{...friends.aima, expression: "happy"}} left={pos2[1]} frame={frame} pose="wave" />
+
+          {/* Cucumber & Mango Cards */}
+          <FoodCard left={pos2[0] - 120} top={120} childName="Ruhi" foodName="Cucumbers" emoji="🥒" color="#10B981" badgeColor="#FF6E7F" frame={frame} delay={0} />
+          <FoodCard left={pos2[1] + 180} top={120} childName="Aima" foodName="Mangoes" emoji="🥭" color="#F59E0B" badgeColor="#10B981" frame={frame} delay={0} />
+
+          <div
+            style={{
+              position: "absolute",
+              left: 360,
+              bottom: 45,
+              padding: "12px 28px",
               borderRadius: 999,
               background: "#FFFFFF",
               border: "3px solid #10B981",
-              color: "#059669",
-              fontSize: 24,
-              fontWeight: 900,
-              boxShadow: "0 8px 20px rgba(16, 185, 129, 0.15)",
+              boxShadow: "0 10px 24px rgba(16, 185, 129, 0.15)",
+              textAlign: "center",
               zIndex: 10,
             }}
           >
-            ✨ Two treats for each friend!
+            <span style={{fontSize: 20, fontWeight: 900, color: "#1E293B"}}>
+              ✨ Different favorites are okay! We are still great friends! ✨
+            </span>
           </div>
         </>
       )}
 
-      {/* 1.4 Slide Turns */}
-      {scene.visual === "slide-turns" && (
+      {/* 3.4 Games: Multiple game options */}
+      {scene.visual === "game-options" && (
         <>
-          <PlaygroundSlide frame={frame} />
-          {/* Waiting line order */}
-          <Person friend={friends.ruhi} left={140} frame={frame} />
-          <Person friend={friends.aima} left={480} frame={frame} />
-          <Person friend={friends.nuh} left={820} frame={frame} />
+          <Person friend={{...friends.nuh, expression: "happy"}} left={pos4[0]} frame={frame} pose="cheer" />
+          <Person friend={{...friends.fathima, expression: "happy"}} left={pos4[1]} frame={frame} pose="wave" />
+          <Person friend={{...friends.aima, expression: "happy"}} left={pos4[2]} frame={frame} pose="stand" />
+          <Person friend={{...friends.ruhi, expression: "happy"}} left={pos4[3]} frame={frame} pose="wave" />
 
-          {/* Turn sequence badges */}
-          {[
-            {label: "1st Turn", x: 200, color: "#EF4444"},
-            {label: "2nd Turn", x: 540, color: "#F59E0B"},
-            {label: "3rd Turn", x: 880, color: "#10B981"},
-          ].map((turn, i) => (
-            <div
-              key={i}
-              style={{
-                position: "absolute",
-                left: turn.x,
-                top: 70,
-                padding: "8px 18px",
-                borderRadius: 999,
-                background: "#FFFFFF",
-                border: `3px solid ${turn.color}`,
-                color: turn.color,
-                fontWeight: 900,
-                fontSize: 20,
-                boxShadow: "0 6px 16px rgba(0,0,0,0.08)",
-              }}
-            >
-              {turn.label}
-            </div>
-          ))}
-
-          <div
-            style={{
-              position: "absolute",
-              left: 450,
-              top: 135,
-              padding: "10px 24px",
-              borderRadius: 20,
-              background: "#FFFFFF",
-              color: "#334155",
-              fontSize: 22,
-              fontWeight: 900,
-              boxShadow: "0 8px 18px rgba(0,0,0,0.08)",
-            }}
-          >
-            ⏳ Wait patiently &amp; play happily!
-          </div>
-        </>
-      )}
-
-      {/* 1.5 Invite a Friend */}
-      {scene.visual === "invite" && (
-        <>
-          {/* Park Bench for Aima */}
-          <div
-            style={{
-              position: "absolute",
-              left: 880,
-              bottom: 40,
-              width: 280,
-              height: 140,
-              zIndex: 3,
-            }}
-          >
-            {/* Wooden slats */}
-            <div style={{width: 280, height: 16, background: "#B45309", borderRadius: 6, marginBottom: 8}} />
-            <div style={{width: 280, height: 16, background: "#92400E", borderRadius: 6, marginBottom: 8}} />
-            <div style={{width: 280, height: 20, background: "#78350F", borderRadius: 6}} />
-            {/* Cast iron legs */}
-            <div style={{position: "absolute", left: 30, bottom: -20, width: 14, height: 60, background: "#334155"}} />
-            <div style={{position: "absolute", right: 30, bottom: -20, width: 14, height: 60, background: "#334155"}} />
-          </div>
-
-          <Person friend={friends.ruhi} left={180} frame={frame} pose="reach" />
-          <Person friend={friends.nuh} left={480} frame={frame} pose="wave" />
-          <Person friend={{...friends.aima, expression: "happy"}} left={920} frame={frame} />
-
-          <SpeechBubble
-            left={540}
-            top={60}
-            text="Would you like to play with us, Aima?"
-            speaker="Ruhi &amp; Nuh"
-            badgeColor="#FF6E7F"
-          />
-          <Heart left={780} top={180} size={76} frame={frame} />
-        </>
-      )}
-
-      {/* 1.6 Remember & Belong */}
-      {scene.visual === "remember" && (
-        <>
-          <Person friend={friends.ruhi} left={pos3[0]} frame={frame} pose="wave" />
-          <Person friend={friends.aima} left={pos3[1]} frame={frame} pose="cheer" />
-          <Person friend={friends.nuh} left={pos3[2]} frame={frame} pose="wave" />
-
-          <Heart left={585} top={40} size={95} frame={frame} />
-          {/* Key Message Ribbons */}
+          {/* Three Game Choice Badges */}
           <div
             style={{
               position: "absolute",
               left: 280,
-              right: 280,
-              top: 155,
+              top: 35,
               display: "flex",
-              justifyContent: "center",
-              gap: 16,
-              zIndex: 10,
+              gap: 20,
+              zIndex: 12,
             }}
           >
             {[
-              {icon: "🤝", text: "Share", color: "#FF6E7F"},
-              {icon: "⏳", text: "Take Turns", color: "#F59E0B"},
-              {icon: "💛", text: "Include Everyone", color: "#10B981"},
-            ].map((badge, i) => (
+              {icon: "⚽", label: "Ball Games"},
+              {icon: "⭕", label: "Hoop Games"},
+              {icon: "🎨", label: "Drawing & Art"},
+            ].map((g) => (
               <div
-                key={i}
+                key={g.label}
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 10,
-                  padding: "12px 22px",
+                  padding: "10px 20px",
                   borderRadius: 999,
                   background: "#FFFFFF",
-                  border: `3px solid ${badge.color}`,
-                  color: "#1E293B",
-                  fontSize: 22,
+                  border: "3px solid #3B82F6",
+                  boxShadow: "0 6px 14px rgba(59, 130, 246, 0.15)",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
                   fontWeight: 900,
-                  boxShadow: "0 8px 20px rgba(0,0,0,0.08)",
+                  fontSize: 17,
+                  color: "#1E293B",
                 }}
               >
-                <span>{badge.icon}</span>
-                <span>{badge.text}</span>
+                <span>{g.icon}</span>
+                <span>{g.label}</span>
               </div>
             ))}
           </div>
         </>
       )}
 
-      {/* ========================================================================= */}
-      {/* EPISODE 2: WEALTH & POVERTY (MORE THAN MONEY)                             */}
-      {/* ========================================================================= */}
-
-      {/* 2.1 Market Welcome */}
-      {scene.visual === "market" && (
+      {/* 3.5 Chance to Join: Fathima notices waiting friend and passes ball */}
+      {scene.visual === "chance-to-join" && (
         <>
-          {/* Market Booth Stall */}
+          <Person friend={{...friends.ruhi, expression: "happy"}} left={pos4[0]} frame={frame} pose="stand" />
+          <Person friend={{...friends.nuh, expression: "happy"}} left={pos4[1]} frame={frame} pose="cheer" />
+          <Person friend={{...friends.fathima, expression: "happy"}} left={pos4[2]} frame={frame} pose="offer" />
+          <Person friend={{...friends.aima, expression: frame > 30 ? "happy" : "thinking"}} left={pos4[3]} frame={frame} pose={frame > 30 ? "receive" : "stand"} />
+
+          {/* Animated ball rolling towards Aima */}
+          {(() => {
+            const ballProgress = interpolate(frame, [15, 45], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
+            const startX = pos4[2] + 160;
+            const endX = pos4[3] + 40;
+            const curX = startX + (endX - startX) * ballProgress;
+            const curY = 440 - Math.sin(ballProgress * Math.PI) * 50;
+
+            return (
+              <div
+                style={{
+                  position: "absolute",
+                  left: curX,
+                  top: curY,
+                  width: 44,
+                  height: 44,
+                  borderRadius: "50%",
+                  background: "radial-gradient(circle at 35% 35%, #FFFFFF 0%, #3B82F6 60%, #1D4ED8 100%)",
+                  boxShadow: "0 6px 12px rgba(0,0,0,0.2)",
+                  zIndex: 10,
+                }}
+              />
+            );
+          })()}
+
+          <SpeechBubble left={pos4[2] - 40} top={70} text="Aima, here is your turn! Join us!" width={250} />
+        </>
+      )}
+
+      {/* 3.6 Participation: Group cooperative play */}
+      {scene.visual === "participation" && (
+        <>
+          <FourCharacterStaging
+            frame={frame}
+            poses={{ruhi: "cheer", aima: "cheer", nuh: "cheer", fathima: "cheer"}}
+          />
           <div
             style={{
               position: "absolute",
-              left: 310,
-              top: 25,
-              width: 700,
-              height: 220,
+              left: 420,
+              bottom: 35,
+              padding: "10px 24px",
+              borderRadius: 999,
               background: "#FFFFFF",
-              border: "6px solid #E2E8F0",
-              borderRadius: "24px 24px 12px 12px",
-              boxShadow: "0 14px 28px rgba(0,0,0,0.1)",
-              zIndex: 2,
-              overflow: "hidden",
+              border: "3px solid #10B981",
+              fontWeight: 900,
+              fontSize: 18,
+              color: "#1E293B",
+              zIndex: 10,
             }}
           >
-            {/* Striped Awning */}
+            ⭐ Everyone gets a fair chance to take part! ⭐
+          </div>
+        </>
+      )}
+
+      {/* 3.7 Recap: Equal opportunity */}
+      {scene.visual === "recap-opportunity" && (
+        <>
+          <FourCharacterStaging
+            frame={frame}
+            poses={{ruhi: "wave", aima: "cheer", nuh: "wave", fathima: "cheer"}}
+          />
+          <Heart left={620} top={35} size={70} color="#10B981" frame={frame} />
+        </>
+      )}
+
+      {/* ========================================================================= */}
+      {/* EPISODE 4: CHALLENGING INJUSTICE                                          */}
+      {/* ========================================================================= */}
+
+      {/* 4.1 Welcome Art Time */}
+      {scene.visual === "art-time" && (
+        <>
+          <FourCharacterStaging
+            frame={frame}
+            poses={{ruhi: "stand", aima: "stand", nuh: "reach", fathima: "stand"}}
+          />
+          {/* Wooden Block Tower on Art Table */}
+          <div style={{position: "absolute", left: 600, bottom: 90, zIndex: 6}}>
+            <Block x={0} y={-45} color="#8B5CF6" letter="1" />
+            <Block x={0} y={-95} color="#F59E0B" letter="2" />
+            <Block x={0} y={-145} color="#10B981" letter="3" />
+            <Block x={0} y={-195} color="#3B82F6" letter="4" />
+          </div>
+        </>
+      )}
+
+      {/* 4.2 Accident: Bump triggers tumbling blocks */}
+      {scene.visual === "accident" && (
+        <>
+          <Person friend={{...friends.nuh, expression: frame > 25 ? "sad" : "happy"}} left={pos2[0]} frame={frame} pose={frame > 25 ? "stand" : "cheer"} />
+          <Person friend={{...friends.fathima, expression: frame > 25 ? "worried" : "thinking"}} left={pos2[1]} frame={frame} pose={frame > 25 ? "stand" : "reach"} />
+
+          {/* Falling blocks sequence */}
+          {(() => {
+            const fallProgress = interpolate(frame, [20, 50], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
+            const tumbleY = fallProgress * 140;
+            const bounceY = Math.sin(fallProgress * Math.PI) * 20;
+
+            return (
+              <div style={{position: "absolute", left: 580, bottom: 90, zIndex: 6}}>
+                {/* Base Block stays */}
+                <Block x={0} y={-45} color="#8B5CF6" letter="1" />
+                {/* Upper blocks tumble down */}
+                <Block x={fallProgress * -60} y={-95 + tumbleY - bounceY} color="#F59E0B" letter="2" rotation={fallProgress * -45} />
+                <Block x={fallProgress * 70} y={-145 + tumbleY - bounceY} color="#10B981" letter="3" rotation={fallProgress * 60} />
+                <Block x={fallProgress * 120} y={-195 + tumbleY} color="#3B82F6" letter="4" rotation={fallProgress * 85} />
+              </div>
+            );
+          })()}
+
+          {frame > 25 && (
             <div
               style={{
-                height: 48,
-                background: "repeating-linear-gradient(90deg, #EF4444 0 45px, #FFFFFF 45px 90px)",
-                borderBottom: "4px solid #DC2626",
-              }}
-            />
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                height: 120,
-                gap: 20,
+                position: "absolute",
+                left: 480,
+                top: 40,
+                padding: "8px 24px",
+                borderRadius: 999,
+                background: "#FEF2F2",
+                border: "3px solid #EF4444",
+                color: "#991B1B",
+                fontWeight: 900,
+                fontSize: 18,
+                zIndex: 10,
               }}
             >
-              <span style={{fontSize: 32, fontWeight: 900, color: "#1E293B"}}>🏪 SCHOOL PLAY MARKET</span>
+              ⚠️ An accidental bump!
             </div>
-            {/* Counter bar */}
-            <div style={{height: 24, background: "#D97706"}} />
-          </div>
-
-          <Person friend={friends.nuh} left={pos2[0]} frame={frame} pose="wave" />
-          <Person friend={friends.aima} left={pos2[1]} frame={frame} pose="wave" />
+          )}
         </>
       )}
 
-      {/* 2.2 Different Coin Amounts */}
-      {scene.visual === "different-coins" && (
+      {/* 4.3 Feelings: Worried and Sad */}
+      {scene.visual === "feelings" && (
         <>
-          <Person friend={friends.nuh} left={pos2[0]} frame={frame} />
-          <Person friend={friends.aima} left={pos2[1]} frame={frame} />
+          <Person friend={{...friends.fathima, expression: "worried"}} left={pos2[0]} frame={frame} pose="stand" />
+          <Person friend={{...friends.nuh, expression: "sad"}} left={pos2[1]} frame={frame} pose="stand" />
 
-          {/* Nuh's 5 Tokens */}
-          <div style={{position: "absolute", left: 470, top: 120, textAlign: "center"}}>
-            <div style={{fontSize: 20, fontWeight: 900, color: "#2563EB", background: "#FFFFFF", padding: "6px 14px", borderRadius: 999, border: "2px solid #93C5FD"}}>
-              Nuh: 5 Tokens
-            </div>
-            {[0, 1, 2, 3, 4].map((i) => (
-              <StarCoin key={`n${i}`} left={(i % 3) * 44 - 40} top={40 + Math.floor(i / 3) * 42} frame={frame} delay={i * 4} />
-            ))}
-          </div>
-
-          {/* Aima's 2 Tokens */}
-          <div style={{position: "absolute", left: 730, top: 120, textAlign: "center"}}>
-            <div style={{fontSize: 20, fontWeight: 900, color: "#059669", background: "#FFFFFF", padding: "6px 14px", borderRadius: 999, border: "2px solid #A7F3D0"}}>
-              Aima: 2 Tokens
-            </div>
-            {[0, 1].map((i) => (
-              <StarCoin key={`a${i}`} left={i * 48 - 20} top={40} frame={frame} delay={i * 8 + 12} />
-            ))}
-          </div>
-
-          {/* Balanced Educational Note */}
           <div
             style={{
               position: "absolute",
-              left: 430,
-              top: 25,
-              padding: "10px 24px",
-              borderRadius: 20,
-              background: "#FFFFFF",
-              border: "3px solid #CBD5E1",
-              fontSize: 22,
-              fontWeight: 900,
-              color: "#475569",
-              boxShadow: "0 8px 18px rgba(0,0,0,0.08)",
-            }}
-          >
-            Different families have different amounts of money
-          </div>
-        </>
-      )}
-
-      {/* 2.3 Equal Worth */}
-      {scene.visual === "equal-worth" && (
-        <>
-          <Person friend={friends.nuh} left={pos2[0]} frame={frame} pose="cheer" />
-          <Person friend={friends.aima} left={pos2[1]} frame={frame} pose="cheer" />
-
-          {/* Golden Balance Scale of Equal Importance */}
-          <div
-            style={{
-              position: "absolute",
-              left: 520,
+              left: 360,
               top: 50,
-              width: 280,
+              padding: "12px 28px",
+              borderRadius: 999,
+              background: "#FFFFFF",
+              border: "3px solid #64748B",
+              boxShadow: "0 8px 20px rgba(0,0,0,0.08)",
               textAlign: "center",
               zIndex: 10,
             }}
           >
-            <Heart left={90} top={0} size={100} color="#FB7185" frame={frame} />
-            <div
-              style={{
-                marginTop: 100,
-                padding: "12px 24px",
-                borderRadius: 20,
-                background: "#FFFFFF",
-                border: "3px solid #F59E0B",
-                color: "#1E293B",
-                fontSize: 24,
-                fontWeight: 900,
-                boxShadow: "0 10px 24px rgba(245, 158, 11, 0.2)",
-              }}
-            >
-              ⭐ Equal Worth &amp; Importance
-            </div>
+            <span style={{fontSize: 20, fontWeight: 900, color: "#1E293B"}}>
+              Mistakes can hurt people&apos;s feelings. It is okay to feel sad or worried.
+            </span>
           </div>
         </>
       )}
 
-      {/* 2.4 Share Game (Sidewalk Chalk Hopscotch) */}
-      {scene.visual === "share-game" && (
+      {/* 4.4 Admit: Telling the truth honestly */}
+      {scene.visual === "admit" && (
         <>
-          <Person friend={friends.nuh} left={pos2[0]} frame={frame} pose="reach" />
-          <Person friend={friends.aima} left={pos2[1]} frame={frame} pose="cheer" />
+          <Person friend={{...friends.fathima, expression: "apologetic"}} left={pos2[0]} frame={frame} pose="stand" />
+          <Person friend={{...friends.nuh, expression: "listening"}} left={pos2[1]} frame={frame} pose="listen" />
 
-          {/* Colorful Hopscotch drawn in chalk on the ground */}
-          <div
-            style={{
-              position: "absolute",
-              left: 500,
-              bottom: 40,
-              width: 320,
-              height: 220,
-              zIndex: 3,
-            }}
-          >
-            <svg width="320" height="220" viewBox="0 0 320 220">
-              {/* Hopscotch squares */}
-              <rect x="120" y="160" width="80" height="50" fill="none" stroke="#60A5FA" strokeWidth="6" rx="6" />
-              <text x="160" y="195" textAnchor="middle" fill="#2563EB" fontSize="28" fontWeight="900">1</text>
-              <rect x="120" y="105" width="80" height="50" fill="none" stroke="#F472B6" strokeWidth="6" rx="6" />
-              <text x="160" y="140" textAnchor="middle" fill="#DB2777" fontSize="28" fontWeight="900">2</text>
-              <rect x="70" y="50" width="80" height="50" fill="none" stroke="#FBBF24" strokeWidth="6" rx="6" />
-              <text x="110" y="85" textAnchor="middle" fill="#D97706" fontSize="28" fontWeight="900">3</text>
-              <rect x="170" y="50" width="80" height="50" fill="none" stroke="#34D399" strokeWidth="6" rx="6" />
-              <text x="210" y="85" textAnchor="middle" fill="#059669" fontSize="28" fontWeight="900">4</text>
-            </svg>
-          </div>
+          <SpeechBubble left={pos2[0] - 20} top={80} text="I bumped your blocks by mistake." width={270} />
 
           <div
             style={{
               position: "absolute",
-              left: 510,
-              top: 50,
-              padding: "10px 24px",
-              borderRadius: 20,
-              background: "#FFFFFF",
+              left: 450,
+              bottom: 35,
+              padding: "8px 24px",
+              borderRadius: 999,
+              background: "#EFF6FF",
               border: "3px solid #3B82F6",
-              color: "#1E293B",
-              fontSize: 22,
+              color: "#1E40AF",
               fontWeight: 900,
-              boxShadow: "0 8px 18px rgba(0,0,0,0.08)",
+              fontSize: 17,
+              zIndex: 10,
             }}
           >
-            🖍️ Sharing chalk &amp; drawing hopscotch!
+            🗣️ Step 1: Tell the Truth Honestly
           </div>
         </>
       )}
 
-      {/* 2.5 Friendship More Than Coins */}
-      {scene.visual === "friendship" && (
+      {/* 4.5 Say Sorry: Sincere apology */}
+      {scene.visual === "say-sorry" && (
         <>
-          <Person friend={friends.ruhi} left={pos3[0]} frame={frame} pose="cheer" />
-          <Person friend={friends.aima} left={pos3[1]} frame={frame} pose="cheer" />
-          <Person friend={friends.nuh} left={pos3[2]} frame={frame} pose="cheer" />
+          <Person friend={{...friends.fathima, expression: "apologetic"}} left={pos2[0]} frame={frame} pose="apologize" />
+          <Person friend={{...friends.nuh, expression: "relieved"}} left={pos2[1]} frame={frame} pose="stand" />
 
-          <Heart left={580} top={40} size={110} color="#FB7185" frame={frame} />
+          <SpeechBubble left={pos2[0] - 20} top={80} text="I am really sorry, Nuh." width={260} />
+
+          <div
+            style={{
+              position: "absolute",
+              left: 470,
+              bottom: 35,
+              padding: "8px 24px",
+              borderRadius: 999,
+              background: "#FEF2F2",
+              border: "3px solid #F43F5E",
+              color: "#9F1239",
+              fontWeight: 900,
+              fontSize: 17,
+              zIndex: 10,
+            }}
+          >
+            💬 Step 2: Sincere Apology
+          </div>
+        </>
+      )}
+
+      {/* 4.6 Help Repair: Rebuilding the tower together */}
+      {scene.visual === "help-repair" && (
+        <>
+          <Person friend={{...friends.fathima, expression: "happy"}} left={pos4[0]} frame={frame} pose="kneel" />
+          <Person friend={{...friends.nuh, expression: "happy"}} left={pos4[1]} frame={frame} pose="reach" />
+          <Person friend={{...friends.ruhi, expression: "happy"}} left={pos4[2]} frame={frame} pose="reach" />
+          <Person friend={{...friends.aima, expression: "happy"}} left={pos4[3]} frame={frame} pose="cheer" />
+
+          {/* Rebuilding blocks traveling back into tower */}
+          {(() => {
+            const rebuildP = interpolate(frame, [10, 50], [0, 1], {extrapolateLeft: "clamp", extrapolateRight: "clamp"});
+
+            return (
+              <div style={{position: "absolute", left: 620, bottom: 90, zIndex: 6}}>
+                <Block x={0} y={-45} color="#8B5CF6" letter="1" />
+                <Block x={0} y={-95} color="#F59E0B" letter="2" />
+                <Block x={rebuildP >= 0.5 ? 0 : 70} y={rebuildP >= 0.5 ? -145 : -40} color="#10B981" letter="3" />
+                <Block x={rebuildP >= 0.8 ? 0 : 130} y={rebuildP >= 0.8 ? -195 : -40} color="#3B82F6" letter="4" />
+              </div>
+            );
+          })()}
+
           <div
             style={{
               position: "absolute",
               left: 440,
-              top: 165,
-              padding: "12px 28px",
-              borderRadius: 999,
-              background: "#FFFFFF",
-              border: "3px solid #FB7185",
-              color: "#BE123C",
-              fontSize: 26,
-              fontWeight: 900,
-              boxShadow: "0 10px 24px rgba(225, 29, 72, 0.15)",
-            }}
-          >
-            💖 True Friendship is Priceless!
-          </div>
-        </>
-      )}
-
-      {/* 2.6 Respect & No Teasing */}
-      {scene.visual === "respect" && (
-        <>
-          <Person friend={friends.nuh} left={pos2[0]} frame={frame} pose="wave" />
-          <Person friend={friends.aima} left={pos2[1]} frame={frame} pose="wave" />
-
-          <SpeechBubble
-            left={510}
-            top={70}
-            text="Kind words always. We never tease about money!"
-            speaker="Rule of Respect"
-            badgeColor="#10B981"
-          />
-        </>
-      )}
-
-      {/* ========================================================================= */}
-      {/* EPISODE 3: EQUALITY OF OPPORTUNITY (EVERYONE GETS A CHANCE)                */}
-      {/* ========================================================================= */}
-
-      {/* 3.1 Garden Welcome */}
-      {scene.visual === "garden" && (
-        <>
-          {/* Raised Garden Planter with Fresh Veggies */}
-          <div
-            style={{
-              position: "absolute",
-              left: 450,
-              bottom: 30,
-              width: 420,
-              height: 140,
-              zIndex: 3,
-            }}
-          >
-            {/* Wooden planter box */}
-            <div style={{position: "absolute", bottom: 0, width: "100%", height: 75, background: "#92400E", borderRadius: 12, border: "4px solid #78350F"}} />
-            {/* Cucumber vine on left */}
-            <svg style={{position: "absolute", left: 50, bottom: 45}} width="80" height="90" viewBox="0 0 80 90">
-              <ellipse cx="40" cy="50" rx="18" ry="38" fill="#22C55E" transform="rotate(-15 40 50)" />
-              <circle cx="32" cy="40" r="3" fill="#15803D" />
-              <circle cx="48" cy="58" r="3" fill="#15803D" />
-              <path d="M40 12 Q32 2 46 2" stroke="#15803D" strokeWidth="4" fill="none" />
-            </svg>
-            {/* Sunflower in center */}
-            <svg style={{position: "absolute", left: 170, bottom: 40}} width="80" height="110" viewBox="0 0 80 110">
-              <line x1="40" y1="110" x2="40" y2="40" stroke="#15803D" strokeWidth="6" />
-              <circle cx="40" cy="40" r="26" fill="#FBBF24" />
-              <circle cx="40" cy="40" r="14" fill="#78350F" />
-            </svg>
-            {/* Sweet Golden Mangoes on right */}
-            <svg style={{position: "absolute", right: 50, bottom: 45}} width="80" height="90" viewBox="0 0 80 90">
-              <ellipse cx="40" cy="50" rx="26" ry="36" fill="#F59E0B" transform="rotate(20 40 50)" />
-              <ellipse cx="36" cy="45" rx="18" ry="26" fill="#FBBF24" transform="rotate(20 40 50)" />
-              <path d="M44 16 Q38 6 50 4" stroke="#15803D" strokeWidth="4" fill="none" />
-            </svg>
-          </div>
-
-          <Person friend={friends.ruhi} left={120} frame={frame} pose="wave" />
-          <Person friend={friends.aima} left={900} frame={frame} pose="wave" />
-          <Person friend={friends.nuh} left={1090} frame={frame} pose="wave" />
-        </>
-      )}
-
-      {/* 3.2 Different Choices */}
-      {scene.visual === "choices" && (
-        <>
-          <Person friend={friends.ruhi} left={pos2[0]} frame={frame} />
-          <Person friend={friends.aima} left={pos2[1]} frame={frame} />
-
-          {/* Choice Cards for Cucumbers & Mangoes */}
-          <div
-            style={{
-              position: "absolute",
-              left: 450,
-              top: 80,
-              display: "flex",
-              gap: 24,
-              zIndex: 10,
-            }}
-          >
-            <div
-              style={{
-                width: 190,
-                padding: "16px",
-                borderRadius: 20,
-                background: "#FFFFFF",
-                border: "4px solid #22C55E",
-                textAlign: "center",
-                boxShadow: "0 8px 20px rgba(34, 197, 94, 0.15)",
-              }}
-            >
-              <div style={{fontSize: 42}}>🥒</div>
-              <div style={{fontSize: 18, fontWeight: 900, color: "#15803D", marginTop: 4}}>Ruhi's Pick</div>
-              <div style={{fontSize: 14, fontWeight: 700, color: "#475569"}}>Crisp Cucumber</div>
-            </div>
-
-            <div
-              style={{
-                width: 190,
-                padding: "16px",
-                borderRadius: 20,
-                background: "#FFFFFF",
-                border: "4px solid #F59E0B",
-                textAlign: "center",
-                boxShadow: "0 8px 20px rgba(245, 158, 11, 0.15)",
-              }}
-            >
-              <div style={{fontSize: 42}}>🥭</div>
-              <div style={{fontSize: 18, fontWeight: 900, color: "#D97706", marginTop: 4}}>Aima's Pick</div>
-              <div style={{fontSize: 14, fontWeight: 700, color: "#475569"}}>Sweet Mango</div>
-            </div>
-          </div>
-
-          <div
-            style={{
-              position: "absolute",
-              left: 480,
-              top: 250,
+              top: 30,
               padding: "10px 24px",
-              borderRadius: 20,
-              background: "#FFFFFF",
-              border: "3px solid #CBD5E1",
-              fontSize: 22,
+              borderRadius: 999,
+              background: "#ECFDF5",
+              border: "3px solid #10B981",
+              color: "#065F46",
               fontWeight: 900,
-              color: "#334155",
-            }}
-          >
-            ✅ Both are wonderful choices!
-          </div>
-        </>
-      )}
-
-      {/* 3.3 Activity Options (Ball, Hoop, Cards) */}
-      {(scene.visual === "choose" || scene.visual === "game-options") && (
-        <>
-          <Person friend={friends.ruhi} left={pos3[0]} frame={frame} pose="cheer" />
-          <Person friend={friends.aima} left={pos3[1]} frame={frame} pose="cheer" />
-          <Person friend={friends.nuh} left={pos3[2]} frame={frame} pose="cheer" />
-
-          {/* Three Activity Options */}
-          <div
-            style={{
-              position: "absolute",
-              left: 380,
-              top: 50,
-              display: "flex",
-              gap: 20,
+              fontSize: 18,
               zIndex: 10,
             }}
           >
-            {[
-              {emoji: "⚽", title: "Soft Ball", color: "#3B82F6"},
-              {emoji: "⭕", title: "Fun Hoop", color: "#EC4899"},
-              {emoji: "🃏", title: "Picture Cards", color: "#F59E0B"},
-            ].map((act, i) => (
-              <div
-                key={i}
-                style={{
-                  width: 160,
-                  padding: "16px 10px",
-                  borderRadius: 22,
-                  background: "#FFFFFF",
-                  border: `4px solid ${act.color}`,
-                  textAlign: "center",
-                  boxShadow: "0 10px 24px rgba(0,0,0,0.08)",
-                  transform: `translateY(${Math.sin((frame + i * 20) / 12) * 6}px)`,
-                }}
-              >
-                <div style={{fontSize: 44}}>{act.emoji}</div>
-                <div style={{fontSize: 18, fontWeight: 900, color: "#1E293B", marginTop: 4}}>{act.title}</div>
-              </div>
-            ))}
+            🛠️ Step 3: Help Repair and Rebuild!
           </div>
         </>
       )}
 
-      {/* 3.4 Make Space for a Friend */}
-      {scene.visual === "make-space" && (
+      {/* 4.7 Tell the Truth: Asking a teacher for help */}
+      {scene.visual === "tell-the-truth" && (
         <>
-          <Person friend={friends.ruhi} left={160} frame={frame} pose="reach" />
-          <Person friend={friends.nuh} left={480} frame={frame} pose="wave" />
-          <Person friend={friends.aima} left={920} frame={frame} pose="cheer" />
+          <Person friend={{...friends.aima, expression: "listening"}} left={pos2[0]} frame={frame} pose="stand" />
+          {/* Friendly teacher representation */}
+          <div
+            style={{
+              position: "absolute",
+              left: pos2[1],
+              bottom: 12,
+              width: 240,
+              textAlign: "center",
+              zIndex: 5,
+            }}
+          >
+            <div style={{fontSize: 90}}>👩‍🏫</div>
+            <div
+              style={{
+                display: "inline-block",
+                padding: "4px 14px",
+                borderRadius: 999,
+                background: "#FFFFFF",
+                border: "2px solid #3B82F6",
+                fontWeight: 900,
+                fontSize: 16,
+                color: "#1E293B",
+              }}
+            >
+              Teacher
+            </div>
+          </div>
 
-          <Heart left={740} top={70} size={88} frame={frame} />
-          <SpeechBubble
-            left={500}
-            top={75}
-            text="Come on in, Aima! Your turn is right now!"
-            speaker="Ruhi &amp; Nuh"
-            badgeColor="#10B981"
-          />
+          <SpeechBubble left={pos2[0] - 20} top={80} text="Teacher, can you help us make things right?" width={280} />
         </>
       )}
 
-      {/* 3.5 Opportunity for Everyone */}
-      {scene.visual === "opportunity" && (
+      {/* 4.8 Respect Things: Ask politely vs grabbing */}
+      {scene.visual === "respect-things" && (
         <>
-          <Person friend={friends.ruhi} left={pos3[0]} frame={frame} pose="cheer" />
-          <Person friend={friends.aima} left={pos3[1]} frame={frame} pose="cheer" />
-          <Person friend={friends.nuh} left={pos3[2]} frame={frame} pose="cheer" />
+          <Person friend={{...friends.ruhi, expression: "happy"}} left={pos2[0]} frame={frame} pose="reach" />
+          <Person friend={{...friends.nuh, expression: "happy"}} left={pos2[1]} frame={frame} pose="offer" />
 
-          {/* Three golden pillars of Opportunity: Join, Choose, Try */}
+          {/* Storybook being handed over politely */}
+          <div
+            style={{
+              position: "absolute",
+              left: 580,
+              bottom: 110,
+              width: 75,
+              height: 55,
+              borderRadius: 8,
+              background: "#3B82F6",
+              border: "3px solid #FFFFFF",
+              boxShadow: "0 6px 14px rgba(0,0,0,0.15)",
+              display: "grid",
+              placeItems: "center",
+              color: "#FFFFFF",
+              fontSize: 26,
+              zIndex: 10,
+            }}
+          >
+            📖
+          </div>
+
           <div
             style={{
               position: "absolute",
               left: 360,
-              top: 55,
-              display: "flex",
-              gap: 18,
-              zIndex: 10,
-            }}
-          >
-            {[
-              {action: "🌟 JOIN", desc: "Everyone Included", color: "#FF6E7F"},
-              {action: "🎯 CHOOSE", desc: "Favorite Activities", color: "#F59E0B"},
-              {action: "🚀 TRY", desc: "Give Your Best", color: "#10B981"},
-            ].map((item, i) => (
-              <div
-                key={i}
-                style={{
-                  padding: "14px 22px",
-                  borderRadius: 20,
-                  background: "#FFFFFF",
-                  border: `3px solid ${item.color}`,
-                  textAlign: "center",
-                  boxShadow: "0 10px 22px rgba(0,0,0,0.08)",
-                }}
-              >
-                <div style={{fontSize: 22, fontWeight: 900, color: item.color}}>{item.action}</div>
-                <div style={{fontSize: 14, fontWeight: 700, color: "#475569"}}>{item.desc}</div>
-              </div>
-            ))}
-          </div>
-          <Heart left={580} top={175} size={70} color="#34D399" frame={frame} />
-        </>
-      )}
-
-      {/* ========================================================================= */}
-      {/* EPISODE 4: CHALLENGING INJUSTICE (MAKING THINGS RIGHT)                     */}
-      {/* ========================================================================= */}
-
-      {/* 4.1 Art Time Building */}
-      {scene.visual === "art-time" && (
-        <>
-          <Person friend={friends.nuh} left={pos2[0]} frame={frame} />
-          <Person friend={friends.ruhi} left={pos2[1]} frame={frame} />
-
-          {/* Tall magnificent block tower */}
-          <div style={{position: "absolute", left: 610, top: 80, zIndex: 6}}>
-            <Block left={0} top={150} color="#EF4444" letter="A" />
-            <Block left={84} top={150} color="#3B82F6" letter="B" />
-            <Block left={42} top={72} color="#F59E0B" letter="C" />
-            <Block left={42} top={-6} color="#10B981" letter="⭐" />
-          </div>
-        </>
-      )}
-
-      {/* 4.2 Oops! Tower Tumbles */}
-      {scene.visual === "oops" && (
-        <>
-          <Person friend={{...friends.nuh, expression: "surprised"}} left={pos2[0]} frame={frame} />
-          <Person friend={{...friends.ruhi, expression: "surprised"}} left={pos2[1]} frame={frame} />
-
-          {/* Tumbling blocks scattered on table */}
-          <div style={{position: "absolute", left: 560, top: 120, zIndex: 6}}>
-            <Block left={0} top={150} color="#EF4444" letter="A" fallen frame={frame} delay={0} />
-            <Block left={130} top={160} color="#3B82F6" letter="B" fallen frame={frame} delay={5} />
-            <Block left={60} top={180} color="#F59E0B" letter="C" fallen frame={frame} delay={10} />
-            <Block left={200} top={170} color="#10B981" letter="⭐" fallen frame={frame} delay={15} />
-          </div>
-
-          <div
-            style={{
-              position: "absolute",
-              left: 510,
-              top: 50,
-              padding: "12px 28px",
-              borderRadius: 20,
-              background: "#FFFFFF",
-              border: "3px solid #EF4444",
-              color: "#DC2626",
-              fontSize: 26,
-              fontWeight: 900,
-              boxShadow: "0 8px 24px rgba(239, 68, 68, 0.15)",
-            }}
-          >
-            💥 Oops! Accidents can happen!
-          </div>
-        </>
-      )}
-
-      {/* 4.3 Tell Truth & Apologize */}
-      {scene.visual === "truth" && (
-        <>
-          <Person friend={{...friends.nuh, expression: "thinking"}} left={pos3[0]} frame={frame} pose="thinking" />
-          <Person friend={friends.ruhi} left={pos3[1]} frame={frame} />
-          <Person friend={friends.aima} left={pos3[2]} frame={frame} />
-
-          <SpeechBubble
-            left={340}
-            top={60}
-            text="I knocked it over by mistake. I am really sorry!"
-            speaker="Brave Nuh"
-            badgeColor="#3B82F6"
-          />
-
-          <div
-            style={{
-              position: "absolute",
-              left: 520,
-              top: 180,
-              padding: "8px 20px",
+              top: 35,
+              padding: "10px 24px",
               borderRadius: 999,
               background: "#FFFFFF",
-              border: "3px solid #F59E0B",
-              color: "#D97706",
-              fontSize: 20,
+              border: "3px solid #10B981",
               fontWeight: 900,
+              fontSize: 18,
+              color: "#1E293B",
+              zIndex: 10,
             }}
           >
-            ⭐ Telling the truth takes courage!
+            ✨ We ask politely and wait our turn. We never grab! ✨
           </div>
         </>
       )}
 
-      {/* 4.4 Listen & Work Together */}
-      {scene.visual === "listen" && (
+      {/* 4.9 Recap: 4 Steps of Making Things Right */}
+      {scene.visual === "recap-injustice" && (
         <>
-          <Person friend={friends.nuh} left={pos3[0]} frame={frame} />
-          <Person friend={friends.ruhi} left={pos3[1]} frame={frame} pose="reach" />
-          <Person friend={friends.aima} left={pos3[2]} frame={frame} pose="wave" />
-
-          <SpeechBubble
-            left={510}
-            top={50}
-            text="Thank you for being honest! Let us rebuild it together!"
-            speaker="Ruhi &amp; Aima"
-            badgeColor="#FF6E7F"
+          <FourCharacterStaging
+            frame={frame}
+            poses={{ruhi: "cheer", aima: "cheer", nuh: "cheer", fathima: "cheer"}}
           />
-          <Heart left={880} top={140} size={75} color="#F59E0B" frame={frame} />
-        </>
-      )}
 
-      {/* 4.5 Repair & Rebuild */}
-      {scene.visual === "repair" && (
-        <>
-          <Person friend={friends.nuh} left={pos3[0]} frame={frame} pose="reach" />
-          <Person friend={friends.ruhi} left={pos3[1]} frame={frame} pose="reach" />
-          <Person friend={friends.aima} left={pos3[2]} frame={frame} pose="cheer" />
-
-          {/* Blocks hopping back into a tall tower */}
-          <div style={{position: "absolute", left: 605, top: 80, zIndex: 6}}>
-            <Block left={0} top={150} homeTop={150} color="#EF4444" letter="A" frame={frame} delay={0} />
-            <Block left={84} top={150} homeTop={150} color="#3B82F6" letter="B" frame={frame} delay={8} />
-            <Block left={42} top={180} homeTop={72} color="#F59E0B" letter="C" frame={frame} delay={16} />
-            <Block left={42} top={180} homeTop={-6} color="#10B981" letter="⭐" frame={frame} delay={24} />
-          </div>
-
-          <Heart left={590} top={35} size={70} frame={frame} />
-        </>
-      )}
-
-      {/* 4.6 Brave & Make it Right */}
-      {scene.visual === "brave" && (
-        <>
-          <Person friend={friends.ruhi} left={pos3[0]} frame={frame} pose="cheer" />
-          <Person friend={friends.nuh} left={pos3[1]} frame={frame} pose="cheer" />
-          <Person friend={friends.aima} left={pos3[2]} frame={frame} pose="cheer" />
-
+          {/* 4 Steps Banner */}
           <div
             style={{
               position: "absolute",
-              left: 360,
-              top: 55,
-              padding: "14px 28px",
-              borderRadius: 24,
-              background: "#FFFFFF",
-              border: "4px solid #10B981",
-              color: "#059669",
-              fontSize: 26,
-              fontWeight: 900,
-              boxShadow: "0 10px 28px rgba(16, 185, 129, 0.15)",
-              textAlign: "center",
+              left: 140,
+              top: 25,
+              display: "flex",
+              gap: 16,
+              zIndex: 12,
             }}
           >
-            🛡️ Tell the Truth · Apologize · Repair Together!
+            {[
+              {num: "1", label: "🛑 Notice", color: "#EF4444"},
+              {num: "2", label: "🗣️ Admit Truth", color: "#3B82F6"},
+              {num: "3", label: "💬 Say Sorry", color: "#F59E0B"},
+              {num: "4", label: "🛠️ Help Repair", color: "#10B981"},
+            ].map((step) => (
+              <div
+                key={step.num}
+                style={{
+                  padding: "8px 18px",
+                  borderRadius: 999,
+                  background: "#FFFFFF",
+                  border: `3px solid ${step.color}`,
+                  color: "#1E293B",
+                  fontWeight: 900,
+                  fontSize: 16,
+                  boxShadow: "0 6px 14px rgba(0,0,0,0.06)",
+                }}
+              >
+                {step.label}
+              </div>
+            ))}
           </div>
-          <Heart left={580} top={145} size={80} color="#F59E0B" frame={frame} />
         </>
       )}
 
       {/* ========================================================================= */}
-      {/* 5. INTERACTIVE THINKING / QUIZ SCENE                                       */}
+      {/* REFLECTION PROMPT (UNANSWERED QUIZ MOMENT)                                */}
       {/* ========================================================================= */}
       {scene.visual === "quiz" && (
         <>
-          <Person friend={{...friends.ruhi, expression: "thinking"}} left={pos3[0]} frame={frame} pose="thinking" />
-          <Person friend={{...friends.aima, expression: "thinking"}} left={pos3[1]} frame={frame} pose="thinking" />
-          <Person friend={{...friends.nuh, expression: "thinking"}} left={pos3[2]} frame={frame} pose="thinking" />
+          {/* Situation Vignette depending on Episode */}
+          {scene.narration.includes("waiting to play") && (
+            // Ep 1: Playground waiting scenario
+            <>
+              <PlaygroundSlide frame={frame} />
+              <Person friend={{...friends.fathima, expression: "thinking"}} left={pos3[0]} frame={frame} pose="thinking" />
+              <Person friend={{...friends.nuh, expression: "happy"}} left={pos3[1]} frame={frame} pose="stand" />
+              <Person friend={{...friends.aima, expression: "thinking"}} left={pos3[2]} frame={frame} pose="stand" />
+            </>
+          )}
 
-          {/* Sleek Golden Question Banner across the top */}
+          {scene.narration.includes("sitting alone") && (
+            // Ep 2: Market bench child alone
+            <>
+              <Person friend={{...friends.fathima, expression: "thinking"}} left={pos2[0]} frame={frame} pose="thinking" />
+              <Person friend={{...friends.aima, expression: "sad"}} left={pos2[1]} frame={frame} pose="stand" />
+            </>
+          )}
+
+          {scene.narration.includes("Fathima gets a chance to join") && (
+            // Ep 3: Garden drawing table
+            <>
+              <Person friend={{...friends.fathima, expression: "thinking"}} left={pos2[0]} frame={frame} pose="reach" />
+              <Person friend={{...friends.nuh, expression: "thinking"}} left={pos2[1]} frame={frame} pose="thinking" />
+            </>
+          )}
+
+          {scene.narration.includes("pencils") && (
+            // Ep 4: Classroom knocked pencils
+            <>
+              <Person friend={{...friends.aima, expression: "worried"}} left={pos2[0]} frame={frame} pose="stand" />
+              <Person friend={{...friends.ruhi, expression: "thinking"}} left={pos2[1]} frame={frame} pose="thinking" />
+              {/* Dropped pencils on floor */}
+              <div style={{position: "absolute", left: 560, bottom: 40, zIndex: 6}}>
+                {["#EF4444", "#3B82F6", "#10B981", "#F59E0B"].map((c, i) => (
+                  <div
+                    key={c}
+                    style={{
+                      position: "absolute",
+                      left: i * 20,
+                      top: (i % 2) * 8,
+                      width: 28,
+                      height: 5,
+                      borderRadius: 2.5,
+                      background: c,
+                      transform: `rotate(${(i - 1.5) * 22}deg)`,
+                    }}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+
+          {/* Central Question Prompt Card (Unanswered) */}
           <div
             style={{
               position: "absolute",
-              left: 360,
-              top: 15,
-              width: 600,
-              height: 90,
+              left: 200,
+              right: 200,
+              top: 50,
+              padding: "18px 32px",
               borderRadius: 24,
-              background: "linear-gradient(135deg, #FFFFFF 0%, #FEF9C3 100%)",
-              border: "4px solid #F59E0B",
-              boxShadow: "0 12px 28px rgba(245, 158, 11, 0.22)",
+              background: "rgba(255, 255, 255, 0.98)",
+              border: "3px solid #F59E0B",
+              boxShadow: "0 12px 32px rgba(245, 158, 11, 0.2)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               gap: 16,
-              transform: `scale(${questionScale})`,
-              zIndex: 10,
+              zIndex: 20,
             }}
           >
-            {/* Glowing Question Mark Badge */}
             <div
               style={{
-                width: 56,
-                height: 56,
+                width: 48,
+                height: 48,
                 borderRadius: "50%",
-                background: "linear-gradient(135deg, #F59E0B 0%, #D97706 100%)",
+                background: "#FEF3C7",
+                color: "#D97706",
                 display: "grid",
                 placeItems: "center",
-                color: "#FFFFFF",
-                fontSize: 38,
+                fontSize: 26,
                 fontWeight: 900,
-                boxShadow: "0 4px 10px rgba(217, 119, 6, 0.35)",
+                flexShrink: 0,
               }}
             >
               ?
             </div>
-            <div>
-              <div style={{fontSize: 26, fontWeight: 900, color: "#92400E", letterSpacing: 0.5}}>
-                WHAT WOULD YOU DO?
-              </div>
-              <div style={{fontSize: 14, fontWeight: 800, color: "#B45309", letterSpacing: 1}}>
-                YOUR TURN TO THINK OF A FAIR ANSWER
-              </div>
+            <div style={{fontSize: 22, fontWeight: 900, color: "#1E293B", lineHeight: 1.3, textAlign: "left"}}>
+              {scene.narration}
             </div>
           </div>
-
-          {/* Pause & Think Action Callout in the last 120 frames */}
-          {frame > durationInFrames - 120 && (
-            <div
-              style={{
-                position: "absolute",
-                left: 440,
-                top: 120,
-                padding: "10px 28px",
-                borderRadius: 999,
-                background: "#FEF08A",
-                border: "3.5px solid #EAB308",
-                boxShadow: "0 10px 24px rgba(234, 179, 8, 0.25)",
-                display: "flex",
-                alignItems: "center",
-                gap: 10,
-                zIndex: 12,
-              }}
-            >
-              <span style={{fontSize: 24}}>⏸️</span>
-              <span style={{fontSize: 22, fontWeight: 900, color: "#854D0E", letterSpacing: 1}}>
-                PAUSE THE VIDEO &amp; THINK!
-              </span>
-            </div>
-          )}
         </>
       )}
     </div>

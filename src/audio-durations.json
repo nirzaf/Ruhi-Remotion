@@ -1,122 +1,185 @@
 {
   "episode-1-justice": {
     "welcome": {
-      "seconds": 6.06,
-      "frames": 182
+      "seconds": 6.94,
+      "frames": 209,
+      "hash": "42988567c38d8cf3"
     },
-    "unfair-share": {
-      "seconds": 6.25,
-      "frames": 188
+    "sweets-start": {
+      "seconds": 4.1,
+      "frames": 124,
+      "hash": "d87e77452818052b"
     },
-    "fair-share": {
-      "seconds": 6.25,
-      "frames": 188
+    "share-equally": {
+      "seconds": 4.65,
+      "frames": 140,
+      "hash": "6806598e29796845"
     },
-    "slide-turns": {
-      "seconds": 6.61,
-      "frames": 199
+    "unfair-example": {
+      "seconds": 5.2,
+      "frames": 157,
+      "hash": "52ea5b00441eacaa"
     },
-    "invite": {
-      "seconds": 5.78,
-      "frames": 174
+    "choose-better": {
+      "seconds": 5.3,
+      "frames": 159,
+      "hash": "c85c2cbb46758341"
     },
-    "remember": {
-      "seconds": 5.9,
-      "frames": 177
+    "take-turns": {
+      "seconds": 6.5,
+      "frames": 195,
+      "hash": "efb2ec6bcb5f5a8d"
+    },
+    "help-include": {
+      "seconds": 5.29,
+      "frames": 159,
+      "hash": "9fa671b0338e06ea"
+    },
+    "recap": {
+      "seconds": 5.58,
+      "frames": 168,
+      "hash": "fd87b570e78d8b60"
     },
     "quiz": {
-      "seconds": 5.77,
-      "frames": 174
+      "seconds": 4.1,
+      "frames": 124,
+      "hash": "ab0b2bb2b0c1ed14"
     }
   },
   "episode-2-wealth-poverty": {
     "welcome": {
-      "seconds": 4.96,
-      "frames": 149
+      "seconds": 6.74,
+      "frames": 203,
+      "hash": "5123d290ae5b907d"
     },
     "different-coins": {
-      "seconds": 6.92,
-      "frames": 208
+      "seconds": 7.68,
+      "frames": 231,
+      "hash": "010c3cb6222e5e6e"
     },
     "equal-worth": {
-      "seconds": 6.03,
-      "frames": 181
+      "seconds": 4.68,
+      "frames": 141,
+      "hash": "ef6aa9ab1c675d2b"
     },
-    "share-game": {
-      "seconds": 6.67,
-      "frames": 201
-    },
-    "friendship": {
-      "seconds": 5.88,
-      "frames": 177
+    "kind-example": {
+      "seconds": 6.08,
+      "frames": 183,
+      "hash": "5db257572e383f9d"
     },
     "respect": {
-      "seconds": 6.66,
-      "frames": 200
+      "seconds": 8.25,
+      "frames": 248,
+      "hash": "cce9c049146fb91d"
+    },
+    "kind-or-unkind": {
+      "seconds": 4.08,
+      "frames": 123,
+      "hash": "2a4dd7d907a262ef"
+    },
+    "recap": {
+      "seconds": 5.18,
+      "frames": 156,
+      "hash": "2f1dc5da48d6ad8b"
     },
     "quiz": {
-      "seconds": 6.29,
-      "frames": 189
+      "seconds": 3.38,
+      "frames": 102,
+      "hash": "48027ab7c9985d66"
     }
   },
   "episode-3-opportunity": {
     "welcome": {
-      "seconds": 5.53,
-      "frames": 167
+      "seconds": 6.25,
+      "frames": 188,
+      "hash": "62bbe093e34d277f"
     },
-    "choices": {
-      "seconds": 6.47,
-      "frames": 195
+    "four-favorites": {
+      "seconds": 6.67,
+      "frames": 201,
+      "hash": "25b8611894db7ba0"
     },
-    "choose": {
-      "seconds": 4.84,
-      "frames": 146
+    "choices-accepted": {
+      "seconds": 4.58,
+      "frames": 138,
+      "hash": "0968cfeb131ae153"
     },
-    "game-options": {
+    "games": {
       "seconds": 6.18,
-      "frames": 186
+      "frames": 186,
+      "hash": "96aec3ed96f793dc"
     },
-    "make-space": {
-      "seconds": 5.64,
-      "frames": 170
+    "chance-to-join": {
+      "seconds": 5.3,
+      "frames": 160,
+      "hash": "9b047ed5bfae679b"
     },
-    "opportunity": {
-      "seconds": 5.91,
-      "frames": 178
+    "participation": {
+      "seconds": 4.53,
+      "frames": 137,
+      "hash": "31f16c1f8edf4a5c"
+    },
+    "recap": {
+      "seconds": 5.02,
+      "frames": 151,
+      "hash": "ba8631c99deb7f91"
     },
     "quiz": {
-      "seconds": 5.64,
-      "frames": 170
+      "seconds": 3.55,
+      "frames": 107,
+      "hash": "02451c2f7ea85dce"
     }
   },
   "episode-4-challenging-injustice": {
     "welcome": {
-      "seconds": 5.48,
-      "frames": 165
+      "seconds": 5.37,
+      "frames": 162,
+      "hash": "844fa304090c9ecc"
     },
-    "oops": {
-      "seconds": 5.45,
-      "frames": 164
+    "accident": {
+      "seconds": 5.37,
+      "frames": 162,
+      "hash": "a038c36e819329f6"
     },
-    "truth": {
-      "seconds": 4.85,
-      "frames": 146
+    "feelings": {
+      "seconds": 5.44,
+      "frames": 164,
+      "hash": "88ddf841f43e9183"
     },
-    "listen": {
-      "seconds": 5.57,
-      "frames": 167
+    "admit": {
+      "seconds": 4.03,
+      "frames": 121,
+      "hash": "8c811ff14a0c2148"
     },
-    "repair": {
-      "seconds": 4.8,
-      "frames": 144
+    "say-sorry": {
+      "seconds": 5.4,
+      "frames": 163,
+      "hash": "86b299009109ca16"
     },
-    "brave": {
+    "help-repair": {
       "seconds": 6.11,
-      "frames": 184
+      "frames": 184,
+      "hash": "b192c8b2299c980d"
+    },
+    "tell-the-truth": {
+      "seconds": 5.72,
+      "frames": 172,
+      "hash": "a43b0cef92d6f337"
+    },
+    "respect-things": {
+      "seconds": 4.38,
+      "frames": 132,
+      "hash": "2d488e75496035f3"
+    },
+    "recap": {
+      "seconds": 5.64,
+      "frames": 170,
+      "hash": "f45b57d2d9aaf6d9"
     },
     "quiz": {
-      "seconds": 5.27,
-      "frames": 159
+      "seconds": 4.26,
+      "frames": 128,
+      "hash": "2182e2aee491a55b"
     }
   }
 }

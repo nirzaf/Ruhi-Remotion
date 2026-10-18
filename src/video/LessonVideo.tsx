@@ -26,53 +26,37 @@ type SceneProps = {
   episodeFrame: number;
 };
 
-// Word-by-Word Reading Caption for Grade 1 Students
-const KaraokeCaption: React.FC<{
+// Clean, accessible, high-contrast phrase caption for early readers
+const EarlyReaderCaption: React.FC<{
   text: string;
   frame: number;
   audioFrames: number;
   accentColor: string;
 }> = ({text, frame, audioFrames, accentColor}) => {
-  const words = text.split(" ");
-  // Calculate which word is currently spoken (with a 6-frame lead-in)
-  const effectiveFrame = Math.max(0, frame - 6);
-  const wordProgress = Math.min(words.length - 1, Math.floor((effectiveFrame / Math.max(1, audioFrames)) * words.length));
-
+  const isSpeaking = frame <= audioFrames + 10;
   return (
     <div
       style={{
-        display: "flex",
-        flexWrap: "wrap",
-        justifyContent: "center",
-        alignItems: "center",
-        gap: "8px 12px",
         maxWidth: 1380,
+        textAlign: "center",
+        fontSize: 34,
+        lineHeight: 1.35,
+        fontWeight: 800,
+        color: "#0F172A",
+        letterSpacing: 0.2,
       }}
     >
-      {words.map((word, index) => {
-        const isCurrent = index === wordProgress && frame < audioFrames + 15;
-        const isPast = index < wordProgress || frame >= audioFrames + 15;
-
-        return (
-          <span
-            key={index}
-            style={{
-              fontSize: 35,
-              lineHeight: 1.28,
-              fontWeight: isCurrent ? 900 : isPast ? 800 : 700,
-              color: isCurrent ? "#0F172A" : isPast ? "#1E293B" : "#64748B",
-              background: isCurrent ? `${accentColor}28` : "transparent",
-              padding: isCurrent ? "2px 8px" : "2px 0px",
-              borderRadius: 8,
-              borderBottom: isCurrent ? `3.5px solid ${accentColor}` : "3.5px solid transparent",
-              transform: isCurrent ? "scale(1.06)" : "scale(1)",
-              display: "inline-block",
-            }}
-          >
-            {word}
-          </span>
-        );
-      })}
+      <span
+        style={{
+          borderBottom: `3.5px solid ${accentColor}`,
+          padding: "4px 18px",
+          borderRadius: 14,
+          background: isSpeaking ? `${accentColor}18` : "transparent",
+          display: "inline-block",
+        }}
+      >
+        {text}
+      </span>
     </div>
   );
 };
@@ -313,7 +297,7 @@ const LessonScene: React.FC<SceneProps> = ({episode, scene, sceneIndex, sceneDur
           zIndex: 25,
         }}
       >
-        <KaraokeCaption
+        <EarlyReaderCaption
           text={scene.narration}
           frame={frame}
           audioFrames={audioFrames}

@@ -1,0 +1,379 @@
+{
+  "unit": {
+    "title": "Social Justice",
+    "pages": "9–24",
+    "sessions": 4,
+    "grade": "Grade 1 / Early Primary",
+    "notes": "Workbook interior starts at page 10 (page 9 is the unit cover/overview without interior exercises)."
+  },
+  "sources": [
+    {
+      "sourceId": "WB-OVERVIEW",
+      "type": "WORKBOOK",
+      "concept": "Unit 1 Social Justice 4-session curriculum overview",
+      "targetEpisode": "episode-1-justice",
+      "sceneId": "welcome",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "WB-10",
+      "type": "WORKBOOK",
+      "concept": "Recognize fair and unfair; fair sharing of sweets vs unfair taking more",
+      "targetEpisode": "episode-1-justice",
+      "sceneId": "sweets-start",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "WB-10-SHARE",
+      "type": "WORKBOOK",
+      "concept": "Equal sweet shares distributed to all friends",
+      "targetEpisode": "episode-1-justice",
+      "sceneId": "share-equally",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "WB-11",
+      "type": "WORKBOOK",
+      "concept": "Fair vs unfair actions: keeping all toys/sweets vs taking turns",
+      "targetEpisode": "episode-1-justice",
+      "sceneId": "unfair-example",
+      "contentKind": "ORIGINAL"
+    },
+    {
+      "sourceId": "WB-11-TURNS",
+      "type": "WORKBOOK",
+      "concept": "Taking turns on playground slide is fair",
+      "targetEpisode": "episode-1-justice",
+      "sceneId": "take-turns",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "WB-12",
+      "type": "WORKBOOK",
+      "concept": "Four examples of fairness: helping, sharing, respect, caring",
+      "targetEpisode": "episode-1-justice",
+      "sceneId": "help-include",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "WB-12-REPAIR",
+      "type": "WORKBOOK",
+      "concept": "Noticing unfairness and choosing to share fairly",
+      "targetEpisode": "episode-1-justice",
+      "sceneId": "choose-better",
+      "contentKind": "ORIGINAL"
+    },
+    {
+      "sourceId": "WB-13",
+      "type": "WORKBOOK",
+      "concept": "Wealth and poverty: everyone equally important; more money does not make a better person",
+      "targetEpisode": "episode-2-wealth-poverty",
+      "sceneId": "welcome",
+      "contentKind": "ORIGINAL"
+    },
+    {
+      "sourceId": "WB-13-TOKENS",
+      "type": "WORKBOOK",
+      "concept": "Pretend game tokens representing different amounts of money without stereotype",
+      "targetEpisode": "episode-2-wealth-poverty",
+      "sceneId": "different-coins",
+      "contentKind": "ORIGINAL"
+    },
+    {
+      "sourceId": "WB-13-WORTH",
+      "type": "WORKBOOK",
+      "concept": "Having more money does not make someone better; everyone matters",
+      "targetEpisode": "episode-2-wealth-poverty",
+      "sceneId": "equal-worth",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "WB-14",
+      "type": "WORKBOOK",
+      "concept": "Distinction between wealth and kindness; you do not have to be rich to be a good person",
+      "targetEpisode": "episode-2-wealth-poverty",
+      "sceneId": "kind-example",
+      "contentKind": "ORIGINAL"
+    },
+    {
+      "sourceId": "WB-15",
+      "type": "WORKBOOK",
+      "concept": "Showing kindness, respect, and welcoming everyone to free games",
+      "targetEpisode": "episode-2-wealth-poverty",
+      "sceneId": "respect",
+      "contentKind": "ORIGINAL"
+    },
+    {
+      "sourceId": "WB-16",
+      "type": "WORKBOOK",
+      "concept": "Kind vs unkind behavior: teasing is unkind, sharing and welcoming is kind",
+      "targetEpisode": "episode-2-wealth-poverty",
+      "sceneId": "kind-or-unkind",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "WB-17",
+      "type": "WORKBOOK",
+      "concept": "Equality of opportunity: people may like different things and differences are okay",
+      "targetEpisode": "episode-3-opportunity",
+      "sceneId": "welcome",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "WB-18",
+      "type": "WORKBOOK",
+      "concept": "Different food preferences among four friends",
+      "targetEpisode": "episode-3-opportunity",
+      "sceneId": "four-favorites",
+      "contentKind": "ORIGINAL"
+    },
+    {
+      "sourceId": "WB-19",
+      "type": "WORKBOOK",
+      "concept": "Comparing favorite games and activities without forced identical choices",
+      "targetEpisode": "episode-3-opportunity",
+      "sceneId": "games",
+      "contentKind": "ORIGINAL"
+    },
+    {
+      "sourceId": "WB-20",
+      "type": "WORKBOOK",
+      "concept": "Accepting differing preferences while remaining good friends",
+      "targetEpisode": "episode-3-opportunity",
+      "sceneId": "choices-accepted",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "WB-21",
+      "type": "WORKBOOK",
+      "concept": "Challenging injustice: right vs wrong, admitting a mistake and saying sorry",
+      "targetEpisode": "episode-4-challenging-injustice",
+      "sceneId": "welcome",
+      "contentKind": "ORIGINAL"
+    },
+    {
+      "sourceId": "WB-21-ACCIDENT",
+      "type": "WORKBOOK",
+      "concept": "Accidental mistake during play (block tower collision)",
+      "targetEpisode": "episode-4-challenging-injustice",
+      "sceneId": "accident",
+      "contentKind": "ORIGINAL"
+    },
+    {
+      "sourceId": "WB-22",
+      "type": "WORKBOOK",
+      "concept": "Feelings when a mistake happens: worried and sad",
+      "targetEpisode": "episode-4-challenging-injustice",
+      "sceneId": "feelings",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "WB-23",
+      "type": "WORKBOOK",
+      "concept": "Admitting mistake and saying sorry: 'I am sorry'",
+      "targetEpisode": "episode-4-challenging-injustice",
+      "sceneId": "say-sorry",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "WB-24-TEACHER",
+      "type": "WORKBOOK",
+      "concept": "Telling the teacher when something is wrong and seeking help",
+      "targetEpisode": "episode-4-challenging-injustice",
+      "sceneId": "tell-the-truth",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "WB-24-GRAB",
+      "type": "WORKBOOK",
+      "concept": "Asking politely instead of grabbing items from friends",
+      "targetEpisode": "episode-4-challenging-injustice",
+      "sceneId": "respect-things",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "TF-01",
+      "type": "TEST_PROMPT",
+      "concept": "No need to be rich to be good",
+      "targetEpisode": "episode-2-wealth-poverty",
+      "sceneId": "recap",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "TF-02",
+      "type": "TEST_PROMPT",
+      "concept": "Be kind to everyone",
+      "targetEpisode": "episode-2-wealth-poverty",
+      "sceneId": "respect",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "TF-03",
+      "type": "TEST_PROMPT",
+      "concept": "More money does not make a better person",
+      "targetEpisode": "episode-2-wealth-poverty",
+      "sceneId": "equal-worth",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "TF-04",
+      "type": "TEST_PROMPT",
+      "concept": "Treating people equally is right; not treating equal is false",
+      "targetEpisode": "episode-2-wealth-poverty",
+      "sceneId": "respect",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "TF-05",
+      "type": "TEST_PROMPT",
+      "concept": "A kind person is not necessarily rich",
+      "targetEpisode": "episode-2-wealth-poverty",
+      "sceneId": "kind-example",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "TF-06",
+      "type": "TEST_PROMPT",
+      "concept": "Say sorry after upsetting someone",
+      "targetEpisode": "episode-4-challenging-injustice",
+      "sceneId": "say-sorry",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "TF-07",
+      "type": "TEST_PROMPT",
+      "concept": "Everyone deserves equal treatment and respect",
+      "targetEpisode": "episode-2-wealth-poverty",
+      "sceneId": "equal-worth",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "TF-08",
+      "type": "TEST_PROMPT",
+      "concept": "Everyone does not need to like the same favorite food",
+      "targetEpisode": "episode-3-opportunity",
+      "sceneId": "choices-accepted",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "TF-09",
+      "type": "TEST_PROMPT",
+      "concept": "Different people can still be good friends",
+      "targetEpisode": "episode-3-opportunity",
+      "sceneId": "choices-accepted",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "TF-11",
+      "type": "TEST_PROMPT",
+      "concept": "Taking turns is fair",
+      "targetEpisode": "episode-1-justice",
+      "sceneId": "take-turns",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "TF-12",
+      "type": "TEST_PROMPT",
+      "concept": "Keeping all toys is not fair",
+      "targetEpisode": "episode-1-justice",
+      "sceneId": "unfair-example",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "MC-01",
+      "type": "TEST_PROMPT",
+      "concept": "People like different things",
+      "targetEpisode": "episode-3-opportunity",
+      "sceneId": "welcome",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "MC-02",
+      "type": "TEST_PROMPT",
+      "concept": "Favorite foods can be different",
+      "targetEpisode": "episode-3-opportunity",
+      "sceneId": "four-favorites",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "MC-03",
+      "type": "TEST_PROMPT",
+      "concept": "Friends can have different preferences",
+      "targetEpisode": "episode-3-opportunity",
+      "sceneId": "choices-accepted",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "MC-04",
+      "type": "TEST_PROMPT",
+      "concept": "Breaking a friend's toy or tower is wrong",
+      "targetEpisode": "episode-4-challenging-injustice",
+      "sceneId": "accident",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "MC-05",
+      "type": "TEST_PROMPT",
+      "concept": "Say sorry when a mistake upsets someone",
+      "targetEpisode": "episode-4-challenging-injustice",
+      "sceneId": "say-sorry",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "MC-06",
+      "type": "TEST_PROMPT",
+      "concept": "Admit our mistake honestly",
+      "targetEpisode": "episode-4-challenging-injustice",
+      "sceneId": "admit",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "MC-07",
+      "type": "TEST_PROMPT",
+      "concept": "Injustice means not fair",
+      "targetEpisode": "episode-1-justice",
+      "sceneId": "recap",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "MC-08",
+      "type": "TEST_PROMPT",
+      "concept": "Having lots of wealth does not make a better person",
+      "targetEpisode": "episode-2-wealth-poverty",
+      "sceneId": "equal-worth",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "MC-09",
+      "type": "TEST_PROMPT",
+      "concept": "Everyone deserves to be treated in the same fair way",
+      "targetEpisode": "episode-2-wealth-poverty",
+      "sceneId": "respect",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "PIC-PARTICIPATE",
+      "type": "ACTIVITY",
+      "concept": "Ensure waiting friend gets a fair chance to join and participate",
+      "targetEpisode": "episode-3-opportunity",
+      "sceneId": "chance-to-join",
+      "contentKind": "ORIGINAL"
+    },
+    {
+      "sourceId": "SA-03",
+      "type": "TEST_PROMPT",
+      "concept": "What to say when making a mistake: 'I am sorry.'",
+      "targetEpisode": "episode-4-challenging-injustice",
+      "sceneId": "say-sorry",
+      "contentKind": "SOURCE_ADAPTATION"
+    },
+    {
+      "sourceId": "SA-05",
+      "type": "TEST_PROMPT",
+      "concept": "Can someone be a good person without being rich? Yes, through kindness.",
+      "targetEpisode": "episode-2-wealth-poverty",
+      "sceneId": "recap",
+      "contentKind": "SOURCE_ADAPTATION"
+    }
+  ]
+}

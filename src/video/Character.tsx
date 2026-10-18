@@ -1,6 +1,29 @@
 import React from "react";
 import {useCurrentFrame} from "remotion";
 
+export type ExpressionKind =
+  | "happy"
+  | "sad"
+  | "surprised"
+  | "thinking"
+  | "worried"
+  | "apologetic"
+  | "listening"
+  | "relieved";
+
+export type PoseKind =
+  | "stand"
+  | "wave"
+  | "reach"
+  | "thinking"
+  | "cheer"
+  | "offer"
+  | "receive"
+  | "apologize"
+  | "listen"
+  | "kneel"
+  | "point";
+
 export type Friend = {
   id: string;
   name: string;
@@ -10,9 +33,9 @@ export type Friend = {
   accent?: string;
   pants?: string;
   shoes?: string;
-  expression?: "happy" | "sad" | "surprised" | "thinking";
+  expression?: ExpressionKind;
   wheelchair?: boolean;
-  hairStyle?: "ruhi" | "buns" | "fade";
+  hairStyle?: "ruhi" | "buns" | "fade" | "braid";
   badgeColor?: string;
 };
 
@@ -53,9 +76,21 @@ export const friends: Record<string, Friend> = {
     hairStyle: "fade",
     badgeColor: "#3B82F6",
   },
+  fathima: {
+    id: "fathima",
+    name: "Fathima",
+    skin: "#D29068",
+    hair: "#211815",
+    shirt: "#8B5CF6",
+    accent: "#14B8A6",
+    pants: "#1E293B",
+    shoes: "#F59E0B",
+    hairStyle: "braid",
+    badgeColor: "#8B5CF6",
+  },
 };
 
-// Aliases for compatibility
+// Aliases for compatibility with legacy test references
 friends.layla = {...friends.aima, name: "Aima"};
 friends.sami = {...friends.nuh, name: "Nuh"};
 friends.noor = {...friends.aima, name: "Aima"};
@@ -67,7 +102,7 @@ type CharacterProps = {
   friend: Friend;
   width?: number;
   label?: boolean;
-  pose?: "stand" | "wave" | "reach" | "thinking" | "cheer";
+  pose?: PoseKind;
   frame?: number;
 };
 
@@ -119,6 +154,34 @@ export const Character: React.FC<CharacterProps> = ({
           <>
             <path d="M122 135 Q136 128 150 133" fill="none" stroke="#2A1B14" strokeWidth="4.5" strokeLinecap="round" />
             <path d="M170 133 Q184 128 198 135" fill="none" stroke="#2A1B14" strokeWidth="4.5" strokeLinecap="round" />
+          </>
+        );
+      case "worried":
+        return (
+          <>
+            <path d="M120 134 Q135 124 150 130" fill="none" stroke="#2A1B14" strokeWidth="4.5" strokeLinecap="round" />
+            <path d="M170 130 Q185 124 200 134" fill="none" stroke="#2A1B14" strokeWidth="4.5" strokeLinecap="round" />
+          </>
+        );
+      case "apologetic":
+        return (
+          <>
+            <path d="M122 133 Q136 126 150 131" fill="none" stroke="#2A1B14" strokeWidth="4.5" strokeLinecap="round" />
+            <path d="M170 131 Q184 126 198 133" fill="none" stroke="#2A1B14" strokeWidth="4.5" strokeLinecap="round" />
+          </>
+        );
+      case "listening":
+        return (
+          <>
+            <path d="M121 128 Q135 122 149 128" fill="none" stroke="#2A1B14" strokeWidth="4.5" strokeLinecap="round" />
+            <path d="M171 128 Q185 122 199 128" fill="none" stroke="#2A1B14" strokeWidth="4.5" strokeLinecap="round" />
+          </>
+        );
+      case "relieved":
+        return (
+          <>
+            <path d="M120 126 Q135 120 149 127" fill="none" stroke="#2A1B14" strokeWidth="4.5" strokeLinecap="round" />
+            <path d="M171 127 Q185 120 200 126" fill="none" stroke="#2A1B14" strokeWidth="4.5" strokeLinecap="round" />
           </>
         );
       case "happy":
@@ -189,6 +252,46 @@ export const Character: React.FC<CharacterProps> = ({
             strokeLinecap="round"
           />
         );
+      case "worried":
+        return (
+          <path
+            d="M148 184 Q160 176 172 184"
+            fill="none"
+            stroke="#591C28"
+            strokeWidth="4"
+            strokeLinecap="round"
+          />
+        );
+      case "apologetic":
+        return (
+          <path
+            d="M149 181 Q160 178 171 181"
+            fill="none"
+            stroke="#591C28"
+            strokeWidth="3.5"
+            strokeLinecap="round"
+          />
+        );
+      case "listening":
+        return (
+          <path
+            d="M148 178 Q160 186 172 178"
+            fill="none"
+            stroke="#591C28"
+            strokeWidth="3.5"
+            strokeLinecap="round"
+          />
+        );
+      case "relieved":
+        return (
+          <path
+            d="M144 176 Q160 190 176 176"
+            fill="none"
+            stroke="#591C28"
+            strokeWidth="3.5"
+            strokeLinecap="round"
+          />
+        );
       case "thinking":
         return (
           <path
@@ -236,6 +339,34 @@ export const Character: React.FC<CharacterProps> = ({
   // Hair rendering by character
   const renderHair = () => {
     const style = friend.hairStyle ?? "ruhi";
+
+    if (style === "braid") {
+      // FATHIMA: Elegant side braid with teal ribbon and golden clip
+      return (
+        <g fill={friend.hair}>
+          {/* Main crown with neat side-part */}
+          <path d="M96 116 Q100 52 160 50 Q220 52 224 116 Q194 92 160 92 Q126 92 96 116 Z" />
+          {/* Soft side-swept front bangs */}
+          <path d="M96 114 Q128 98 158 110 Q192 98 222 114 Q196 90 160 90 Q124 90 96 114 Z" />
+          {/* Left ear tuck */}
+          <circle cx="102" cy="118" r="8" />
+          {/* Braid base and curving segments along the right side */}
+          <ellipse cx="224" cy="130" rx="14" ry="12" />
+          <ellipse cx="230" cy="154" rx="14" ry="13" />
+          <ellipse cx="232" cy="178" rx="13" ry="13" />
+          <ellipse cx="228" cy="202" rx="12" ry="12" />
+          <ellipse cx="222" cy="226" rx="11" ry="11" />
+          {/* Teal ribbon / tie */}
+          <rect x="214" y="234" width="16" height="7" rx="3.5" fill={friend.accent ?? "#14B8A6"} />
+          {/* Braid tip tassel */}
+          <path d="M216 241 Q222 258 219 264 Q226 256 228 241 Z" />
+          {/* Decorative teal hair clip on left side */}
+          <circle cx="106" cy="100" r="7" fill={friend.accent ?? "#14B8A6"} stroke="#0F766E" strokeWidth="1.5" />
+          <circle cx="106" cy="100" r="3" fill="#FDE047" />
+        </g>
+      );
+    }
+
     if (style === "buns") {
       // AIMA: Adorable twin high puff buns with cute ribbons
       return (
@@ -315,6 +446,21 @@ export const Character: React.FC<CharacterProps> = ({
 
   // Shirt graphic/detail
   const renderShirtDetail = () => {
+    if (friend.hairStyle === "braid") {
+      // Fathima: Teal tunic piping with geometric flower emblem
+      return (
+        <g transform="translate(160, 260) scale(0.85)">
+          <circle cx="0" cy="0" r="8" fill={friend.accent ?? "#14B8A6"} />
+          <circle cx="0" cy="0" r="4.5" fill="#FEF08A" />
+          <path
+            d="M0 -14 L4 -4 L14 -4 L6 2 L9 12 L0 6 L-9 12 L-6 2 L-14 -4 L-4 -4 Z"
+            fill="none"
+            stroke={friend.accent ?? "#14B8A6"}
+            strokeWidth="1.5"
+          />
+        </g>
+      );
+    }
     if (friend.hairStyle === "fade") {
       // Nuh: Sporty athletic chest stripes
       return (
@@ -349,6 +495,175 @@ export const Character: React.FC<CharacterProps> = ({
         <circle cx="0" cy="-6" r="3.5" fill="#F59E0B" />
       </g>
     );
+  };
+
+  // Dynamic right arm based on pose
+  const renderRightArm = () => {
+    switch (pose) {
+      case "wave":
+        return (
+          <g transform={`rotate(${waveAngle} 210 226)`}>
+            <path
+              d="M206 230 Q235 200 248 162"
+              fill="none"
+              stroke={friend.skin}
+              strokeWidth="20"
+              strokeLinecap="round"
+            />
+            <path d="M206 220 Q222 214 232 230" fill="none" stroke={friend.shirt} strokeWidth="18" strokeLinecap="round" />
+            <circle cx="249" cy="158" r="14" fill={friend.skin} />
+            <circle cx="239" cy="154" r="6" fill={friend.skin} />
+            <circle cx="258" cy="150" r="5" fill={friend.skin} />
+            <circle cx="254" cy="144" r="5" fill={friend.skin} />
+          </g>
+        );
+      case "reach":
+        return (
+          <g>
+            <path
+              d="M206 232 Q256 244 290 220"
+              fill="none"
+              stroke={friend.skin}
+              strokeWidth="20"
+              strokeLinecap="round"
+            />
+            <path d="M206 222 Q224 236 230 252" fill="none" stroke={friend.shirt} strokeWidth="18" strokeLinecap="round" />
+            <circle cx="292" cy="218" r="14" fill={friend.skin} />
+            <circle cx="284" cy="210" r="6" fill={friend.skin} />
+          </g>
+        );
+      case "offer":
+        return (
+          <g>
+            <path
+              d="M206 232 Q248 252 286 240"
+              fill="none"
+              stroke={friend.skin}
+              strokeWidth="20"
+              strokeLinecap="round"
+            />
+            <path d="M206 222 Q224 236 230 252" fill="none" stroke={friend.shirt} strokeWidth="18" strokeLinecap="round" />
+            <ellipse cx="290" cy="238" rx="13" ry="10" fill={friend.skin} />
+            <circle cx="280" cy="230" r="5" fill={friend.skin} />
+          </g>
+        );
+      case "receive":
+        return (
+          <g>
+            <path
+              d="M206 232 Q238 250 268 238"
+              fill="none"
+              stroke={friend.skin}
+              strokeWidth="19"
+              strokeLinecap="round"
+            />
+            <path d="M206 222 Q224 236 230 252" fill="none" stroke={friend.shirt} strokeWidth="18" strokeLinecap="round" />
+            <ellipse cx="270" cy="236" rx="12" ry="9" fill={friend.skin} />
+          </g>
+        );
+      case "apologize":
+        return (
+          <g>
+            {/* Hand placed gently over heart */}
+            <path
+              d="M206 232 Q214 250 174 246"
+              fill="none"
+              stroke={friend.skin}
+              strokeWidth="18"
+              strokeLinecap="round"
+            />
+            <path d="M206 222 Q220 234 224 248" fill="none" stroke={friend.shirt} strokeWidth="17" strokeLinecap="round" />
+            <ellipse cx="166" cy="246" rx="12" ry="9" fill={friend.skin} />
+          </g>
+        );
+      case "listen":
+        return (
+          <g>
+            <path
+              d="M206 232 Q220 270 194 286"
+              fill="none"
+              stroke={friend.skin}
+              strokeWidth="18"
+              strokeLinecap="round"
+            />
+            <path d="M206 222 Q220 234 224 248" fill="none" stroke={friend.shirt} strokeWidth="17" strokeLinecap="round" />
+            <circle cx="188" cy="286" r="11" fill={friend.skin} />
+          </g>
+        );
+      case "kneel":
+        return (
+          <g>
+            <path
+              d="M206 232 Q230 290 220 358"
+              fill="none"
+              stroke={friend.skin}
+              strokeWidth="18"
+              strokeLinecap="round"
+            />
+            <path d="M206 222 Q220 234 224 248" fill="none" stroke={friend.shirt} strokeWidth="17" strokeLinecap="round" />
+            <circle cx="220" cy="362" r="12" fill={friend.skin} />
+          </g>
+        );
+      case "point":
+        return (
+          <g>
+            <path
+              d="M206 232 Q250 224 290 208"
+              fill="none"
+              stroke={friend.skin}
+              strokeWidth="19"
+              strokeLinecap="round"
+            />
+            <path d="M206 222 Q224 236 230 252" fill="none" stroke={friend.shirt} strokeWidth="18" strokeLinecap="round" />
+            <circle cx="294" cy="206" r="10" fill={friend.skin} />
+            <path d="M294 206 L308 200" stroke={friend.skin} strokeWidth="6" strokeLinecap="round" />
+          </g>
+        );
+      case "thinking":
+        return (
+          <g>
+            <path
+              d="M206 232 Q234 220 200 186"
+              fill="none"
+              stroke={friend.skin}
+              strokeWidth="20"
+              strokeLinecap="round"
+            />
+            <path d="M206 222 Q224 236 230 252" fill="none" stroke={friend.shirt} strokeWidth="18" strokeLinecap="round" />
+            <circle cx="196" cy="184" r="13" fill={friend.skin} />
+            <circle cx="188" cy="178" r="5" fill={friend.skin} />
+          </g>
+        );
+      case "cheer":
+        return (
+          <g>
+            <path
+              d="M206 230 Q240 190 256 150"
+              fill="none"
+              stroke={friend.skin}
+              strokeWidth="20"
+              strokeLinecap="round"
+            />
+            <circle cx="258" cy="148" r="14" fill={friend.skin} />
+          </g>
+        );
+      case "stand":
+      default:
+        return (
+          <g>
+            <path
+              d="M206 232 Q234 260 244 304"
+              fill="none"
+              stroke={friend.skin}
+              strokeWidth="20"
+              strokeLinecap="round"
+            />
+            <path d="M206 222 Q224 236 230 252" fill="none" stroke={friend.shirt} strokeWidth="18" strokeLinecap="round" />
+            <circle cx="245" cy="306" r="13" fill={friend.skin} />
+            <circle cx="237" cy="302" r="6" fill={friend.skin} />
+          </g>
+        );
+    }
   };
 
   return (
@@ -461,79 +776,7 @@ export const Character: React.FC<CharacterProps> = ({
         </g>
 
         {/* Right Arm: dynamic based on pose */}
-        {pose === "wave" ? (
-          <g transform={`rotate(${waveAngle} 210 226)`}>
-            {/* Upper arm going up */}
-            <path
-              d="M206 230 Q235 200 248 162"
-              fill="none"
-              stroke={friend.skin}
-              strokeWidth="20"
-              strokeLinecap="round"
-            />
-            {/* Sleeve cap */}
-            <path d="M206 220 Q222 214 232 230" fill="none" stroke={friend.shirt} strokeWidth="18" strokeLinecap="round" />
-            {/* Waving Hand with spread fingers */}
-            <circle cx="249" cy="158" r="14" fill={friend.skin} />
-            <circle cx="239" cy="154" r="6" fill={friend.skin} />
-            <circle cx="258" cy="150" r="5" fill={friend.skin} />
-            <circle cx="254" cy="144" r="5" fill={friend.skin} />
-          </g>
-        ) : pose === "reach" ? (
-          <g>
-            {/* Reaching arm extending forward */}
-            <path
-              d="M206 232 Q256 244 290 220"
-              fill="none"
-              stroke={friend.skin}
-              strokeWidth="20"
-              strokeLinecap="round"
-            />
-            <path d="M206 222 Q224 236 230 252" fill="none" stroke={friend.shirt} strokeWidth="18" strokeLinecap="round" />
-            <circle cx="292" cy="218" r="14" fill={friend.skin} />
-            <circle cx="284" cy="210" r="6" fill={friend.skin} />
-          </g>
-        ) : pose === "thinking" ? (
-          <g>
-            {/* Hand touching chin thoughtfully */}
-            <path
-              d="M206 232 Q234 220 200 186"
-              fill="none"
-              stroke={friend.skin}
-              strokeWidth="20"
-              strokeLinecap="round"
-            />
-            <path d="M206 222 Q224 236 230 252" fill="none" stroke={friend.shirt} strokeWidth="18" strokeLinecap="round" />
-            <circle cx="196" cy="184" r="13" fill={friend.skin} />
-            <circle cx="188" cy="178" r="5" fill={friend.skin} />
-          </g>
-        ) : pose === "cheer" ? (
-          <g>
-            {/* Both arms reaching up */}
-            <path
-              d="M206 230 Q240 190 256 150"
-              fill="none"
-              stroke={friend.skin}
-              strokeWidth="20"
-              strokeLinecap="round"
-            />
-            <circle cx="258" cy="148" r="14" fill={friend.skin} />
-          </g>
-        ) : (
-          <g>
-            {/* Right Arm (Relaxed) */}
-            <path
-              d="M206 232 Q234 260 244 304"
-              fill="none"
-              stroke={friend.skin}
-              strokeWidth="20"
-              strokeLinecap="round"
-            />
-            <path d="M206 222 Q224 236 230 252" fill="none" stroke={friend.shirt} strokeWidth="18" strokeLinecap="round" />
-            <circle cx="245" cy="306" r="13" fill={friend.skin} />
-            <circle cx="237" cy="302" r="6" fill={friend.skin} />
-          </g>
-        )}
+        {renderRightArm()}
 
         {/* Neck */}
         <rect x="147" y="174" width="26" height="28" rx="6" fill={friend.skin} />
@@ -615,6 +858,53 @@ export const Character: React.FC<CharacterProps> = ({
           </span>
         </div>
       )}
+    </div>
+  );
+};
+
+export const FourCharacterStaging: React.FC<{
+  frame: number;
+  poses?: Record<string, PoseKind>;
+  expressions?: Record<string, ExpressionKind>;
+  labels?: boolean;
+  spacing?: number;
+  scale?: number;
+}> = ({
+  frame,
+  poses = {},
+  expressions = {},
+  labels = true,
+  spacing = 20,
+  scale = 0.88,
+}) => {
+  const cast = ["ruhi", "aima", "nuh", "fathima"];
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "flex-end",
+        justifyContent: "center",
+        gap: spacing,
+        width: "100%",
+        maxWidth: 1260,
+      }}
+    >
+      {cast.map((id) => {
+        const friendBase = friends[id] ?? friends.ruhi;
+        const expr = expressions[id] ?? friendBase.expression ?? "happy";
+        const friend = {...friendBase, expression: expr};
+        const pose = poses[id] ?? "stand";
+        return (
+          <Character
+            key={id}
+            friend={friend}
+            width={220 * scale}
+            label={labels}
+            pose={pose}
+            frame={frame}
+          />
+        );
+      })}
     </div>
   );
 };

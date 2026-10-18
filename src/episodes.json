@@ -3,34 +3,158 @@
     "id": "episode-1-justice",
     "number": "01",
     "title": "Justice & Injustice",
-    "subtitle": "Fairness at the Playground",
+    "subtitle": "The Playground Promise",
     "pages": "Workbook pages 10–12",
-    "keyMessage": "Share, take turns, and make room for everyone.",
+    "keyMessage": "Share, take turns, and include others.",
     "scenes": [
-      { "id": "welcome", "heading": "A fair day at the playground", "visual": "playground", "narration": "Welcome to the playground! Today Ruhi, Aima, and Nuh are learning what fairness feels like." },
-      { "id": "unfair-share", "heading": "Is this fair?", "visual": "unfair-share", "narration": "A tray has six sweet treats. Nuh takes all six for himself, leaving none for Ruhi and Aima." },
-      { "id": "fair-share", "heading": "Everyone gets a share", "visual": "fair-share", "narration": "Ruhi pauses the game and shares them fairly. Now Ruhi, Aima, and Nuh each get two treats!" },
-      { "id": "slide-turns", "heading": "Wait, then take a turn", "visual": "slide-turns", "narration": "Next, the children want the slide. Ruhi, Aima, and Nuh line up patiently and take turns." },
-      { "id": "invite", "heading": "Make room in the game", "visual": "invite", "narration": "Aima sits alone on the bench. Ruhi and Nuh smile and ask, Would you like to play with us?" },
-      { "id": "remember", "heading": "Fairness helps us belong", "visual": "remember", "narration": "Fairness means sharing, taking turns, and making sure nobody is left out of the fun." },
-      { "id": "quiz", "heading": "Your turn to think!", "visual": "quiz", "narration": "Your turn to think! If you see a friend left out of a game, what is one fair thing you can do?" }
+      {
+        "id": "welcome",
+        "heading": "A fair day at the playground",
+        "visual": "playground",
+        "narration": "Hello! We are Ruhi, Aima, Nuh, and Fathima. Today we will explore what is fair and unfair.",
+        "sourceIds": ["WB-OVERVIEW", "WB-10"],
+        "contentKind": "SOURCE_ADAPTATION"
+      },
+      {
+        "id": "sweets-start",
+        "heading": "Eight sweets to share",
+        "visual": "sweets-start",
+        "narration": "Here are eight sweets for four friends. How can we share them fairly?",
+        "sourceIds": ["WB-10"],
+        "contentKind": "ORIGINAL"
+      },
+      {
+        "id": "share-equally",
+        "heading": "Everyone gets two sweets",
+        "visual": "share-equally",
+        "narration": "They share the sweets. Each friend gets two. Everyone has a fair share.",
+        "sourceIds": ["WB-10", "WB-10-SHARE"],
+        "contentKind": "SOURCE_ADAPTATION"
+      },
+      {
+        "id": "unfair-example",
+        "heading": "What if one person keeps all?",
+        "visual": "unfair-share",
+        "narration": "But what if one person keeps everything and nobody else gets a turn? That is unfair.",
+        "sourceIds": ["WB-11", "TF-12"],
+        "contentKind": "ORIGINAL"
+      },
+      {
+        "id": "choose-better",
+        "heading": "Making it fair again",
+        "visual": "choose-better",
+        "narration": "Nuh notices, says sorry, and shares. We can make unfair things fairer.",
+        "sourceIds": ["WB-12", "WB-12-REPAIR"],
+        "contentKind": "ORIGINAL"
+      },
+      {
+        "id": "take-turns",
+        "heading": "Taking turns on the slide",
+        "visual": "slide-turns",
+        "narration": "Ruhi goes first. Then Aima, Nuh, and Fathima each get a turn. Taking turns is fair!",
+        "sourceIds": ["WB-11", "TF-11"],
+        "contentKind": "SOURCE_ADAPTATION"
+      },
+      {
+        "id": "help-include",
+        "heading": "Help, care, and include friends",
+        "visual": "help-include",
+        "narration": "We can also help, care, show respect, and invite our friends to play.",
+        "sourceIds": ["WB-12"],
+        "contentKind": "SOURCE_ADAPTATION"
+      },
+      {
+        "id": "recap",
+        "heading": "Fair means everyone has a chance",
+        "visual": "recap-justice",
+        "narration": "Fair means giving everyone a chance. Unfair means someone is left out or treated badly.",
+        "sourceIds": ["WB-10", "WB-11", "WB-12", "MC-07"],
+        "contentKind": "SOURCE_ADAPTATION"
+      },
+      {
+        "id": "quiz",
+        "heading": "Your turn to think!",
+        "visual": "quiz",
+        "narration": "A friend has been waiting to play. What could you do to make it fair?",
+        "sourceIds": ["WB-11", "WB-12"],
+        "contentKind": "ORIGINAL",
+        "withholdAnswer": true
+      }
     ]
   },
   {
     "id": "episode-2-wealth-poverty",
     "number": "02",
     "title": "Wealth & Poverty",
-    "subtitle": "More Than Money",
+    "subtitle": "What Makes a Good Friend?",
     "pages": "Workbook pages 13–16",
-    "keyMessage": "Money does not decide how much a person matters.",
+    "keyMessage": "Having more money does not make someone better. Kindness matters most.",
     "scenes": [
-      { "id": "welcome", "heading": "A game at the market", "visual": "market", "narration": "At the school market, Nuh and Aima bring their play tokens to choose a game together." },
-      { "id": "different-coins", "heading": "Different amounts", "visual": "different-coins", "narration": "Nuh has many tokens, and Aima has just two. In real life, families have different amounts of money." },
-      { "id": "equal-worth", "heading": "People are more than money", "visual": "equal-worth", "narration": "Having more tokens does not make Nuh better. Having fewer does not make Aima less important." },
-      { "id": "share-game", "heading": "Choose a game together", "visual": "share-game", "narration": "They find a game they can both play. Nuh shares his chalk, and Aima draws the first hopscotch square." },
-      { "id": "friendship", "heading": "Friendship is not measured in coins", "visual": "friendship", "narration": "Ruhi joins in, and they laugh and play together. True friendship is never measured in coins." },
-      { "id": "respect", "heading": "Be kind and respectful", "visual": "respect", "narration": "We treat everyone with kindness and respect, no matter how much money someone has. We never tease." },
-      { "id": "quiz", "heading": "Your turn to think!", "visual": "quiz", "narration": "Your turn to think! A friend has fewer coins or toys. What kind game could you invite them to play?" }
+      {
+        "id": "welcome",
+        "heading": "At the school fair",
+        "visual": "market",
+        "narration": "At the school fair, Ruhi, Aima, Nuh, and Fathima are learning that kindness matters more than money.",
+        "sourceIds": ["WB-13"],
+        "contentKind": "ORIGINAL"
+      },
+      {
+        "id": "different-coins",
+        "heading": "Different amounts of tokens",
+        "visual": "different-coins",
+        "narration": "In this pretend game, Nuh has more tokens and Aima has fewer. Families in the world can also have different amounts of money.",
+        "sourceIds": ["WB-13", "WB-13-TOKENS"],
+        "contentKind": "ORIGINAL"
+      },
+      {
+        "id": "equal-worth",
+        "heading": "Everyone matters equally",
+        "visual": "equal-worth",
+        "narration": "Having more money does not make someone a better person. Everyone matters.",
+        "sourceIds": ["WB-13", "WB-13-WORTH", "TF-03", "MC-08"],
+        "contentKind": "SOURCE_ADAPTATION"
+      },
+      {
+        "id": "kind-example",
+        "heading": "Kindness in action",
+        "visual": "kind-example",
+        "narration": "Fathima helps Ruhi with kindness. Being helpful matters, not how many coins we own.",
+        "sourceIds": ["WB-14", "TF-05"],
+        "contentKind": "ORIGINAL"
+      },
+      {
+        "id": "respect",
+        "heading": "Respect and equal care",
+        "visual": "respect",
+        "narration": "Fathima invites Aima to play a free game with everyone. We show the same care and respect, whether someone has more money or less.",
+        "sourceIds": ["WB-13", "WB-14", "WB-15", "TF-02", "TF-04", "MC-09"],
+        "contentKind": "ORIGINAL"
+      },
+      {
+        "id": "kind-or-unkind",
+        "heading": "Choose kind behavior",
+        "visual": "kind-or-unkind",
+        "narration": "Teasing is unkind. Welcoming someone and sharing is kind.",
+        "sourceIds": ["WB-16"],
+        "contentKind": "SOURCE_ADAPTATION"
+      },
+      {
+        "id": "recap",
+        "heading": "Kindness is for everyone",
+        "visual": "recap-wealth",
+        "narration": "You do not have to be rich to be a good person. Kindness is something we can all show.",
+        "sourceIds": ["WB-14", "TF-01", "SA-05"],
+        "contentKind": "SOURCE_ADAPTATION"
+      },
+      {
+        "id": "quiz",
+        "heading": "Your turn to think!",
+        "visual": "quiz",
+        "narration": "What is one kind thing you could do for a friend sitting alone?",
+        "sourceIds": ["WB-14", "WB-15", "WB-16"],
+        "contentKind": "ORIGINAL",
+        "withholdAnswer": true
+      }
     ]
   },
   {
@@ -39,32 +163,164 @@
     "title": "Equality of Opportunity",
     "subtitle": "Everyone Gets a Chance",
     "pages": "Workbook pages 17–20",
-    "keyMessage": "Everyone deserves a chance to join, choose, and try.",
+    "keyMessage": "Friends can like different things, and everyone deserves a fair chance to join.",
     "scenes": [
-      { "id": "welcome", "heading": "Different favourites", "visual": "garden", "narration": "In the sunny garden, Ruhi, Aima, and Nuh enjoy different healthy foods and games." },
-      { "id": "choices", "heading": "Our choices can be different", "visual": "choices", "narration": "Ruhi loves fresh cucumbers, and Aima chooses sweet mango. Both choices are wonderful for them." },
-      { "id": "choose", "heading": "Everyone gets to choose", "visual": "choose", "narration": "At playtime, everyone gets a fair chance to choose an activity and try it." },
-      { "id": "game-options", "heading": "More ways to join", "visual": "game-options", "narration": "They set out a soft ball, a colorful hoop, and picture cards so there are choices for everyone." },
-      { "id": "make-space", "heading": "Make space for a friend", "visual": "make-space", "narration": "Aima needs a little more time to join. Ruhi and Nuh make space and warmly offer a turn." },
-      { "id": "opportunity", "heading": "A chance for everyone", "visual": "opportunity", "narration": "Fair opportunity means everyone has a chance to take part, even when we like different things." },
-      { "id": "quiz", "heading": "Your turn to think!", "visual": "quiz", "narration": "Your turn to think! What is one way you can help every friend get a fair chance to join a game?" }
+      {
+        "id": "welcome",
+        "heading": "A picnic in the garden",
+        "visual": "garden",
+        "narration": "Ruhi, Aima, Nuh, and Fathima have different favorite foods and games. That is okay!",
+        "sourceIds": ["WB-17", "MC-01"],
+        "contentKind": "SOURCE_ADAPTATION"
+      },
+      {
+        "id": "four-favorites",
+        "heading": "Four different favorites",
+        "visual": "four-favorites",
+        "narration": "Ruhi likes cucumbers. Aima likes mangoes. Nuh likes apples. Fathima likes bananas.",
+        "sourceIds": ["WB-18", "WB-20", "MC-02"],
+        "contentKind": "ORIGINAL"
+      },
+      {
+        "id": "choices-accepted",
+        "heading": "Different and still good friends",
+        "visual": "choices-accepted",
+        "narration": "Friends do not have to like the same things. We can still be good friends.",
+        "sourceIds": ["WB-17", "TF-08", "TF-09", "MC-03"],
+        "contentKind": "SOURCE_ADAPTATION"
+      },
+      {
+        "id": "games",
+        "heading": "Different games to enjoy",
+        "visual": "game-options",
+        "narration": "One friend loves ball games. Another loves drawing. Everyone can enjoy different activities.",
+        "sourceIds": ["WB-19"],
+        "contentKind": "ORIGINAL"
+      },
+      {
+        "id": "chance-to-join",
+        "heading": "Include a waiting friend",
+        "visual": "chance-to-join",
+        "narration": "Aima has not had a turn yet. Fathima notices and asks the others to include her.",
+        "sourceIds": ["WB-17", "PIC-PARTICIPATE"],
+        "contentKind": "ORIGINAL"
+      },
+      {
+        "id": "participation",
+        "heading": "Playing together fairly",
+        "visual": "participation",
+        "narration": "Everyone should have a fair chance to take part, even when we are different.",
+        "sourceIds": ["WB-17", "WB-18", "WB-19"],
+        "contentKind": "SOURCE_ADAPTATION"
+      },
+      {
+        "id": "recap",
+        "heading": "Fair chance for everyone",
+        "visual": "recap-opportunity",
+        "narration": "Different choices are welcome. Fair opportunity means everyone gets a chance.",
+        "sourceIds": ["WB-17", "WB-20"],
+        "contentKind": "SOURCE_ADAPTATION"
+      },
+      {
+        "id": "quiz",
+        "heading": "Your turn to think!",
+        "visual": "quiz",
+        "narration": "What could the friends do so Fathima gets a chance to join?",
+        "sourceIds": ["WB-17", "PIC-PARTICIPATE"],
+        "contentKind": "ORIGINAL",
+        "withholdAnswer": true
+      }
     ]
   },
   {
     "id": "episode-4-challenging-injustice",
     "number": "04",
     "title": "Challenging Injustice",
-    "subtitle": "Make Things Right",
+    "subtitle": "Let's Make It Right",
     "pages": "Workbook pages 21–24",
-    "keyMessage": "Tell the truth, say sorry, and help repair the harm.",
+    "keyMessage": "Admit mistakes, apologize, tell the truth, and help repair the harm.",
     "scenes": [
-      { "id": "welcome", "heading": "A moment at art time", "visual": "art-time", "narration": "During art time, Nuh accidentally bumps a tall block tower, and it tumbles down." },
-      { "id": "oops", "heading": "Mistakes can happen", "visual": "oops", "narration": "Nuh feels worried. He could walk away, but he chooses to be brave and tell the truth." },
-      { "id": "truth", "heading": "Tell the truth and say sorry", "visual": "truth", "narration": "I bumped it by mistake. I am really sorry, Nuh tells Ruhi and Aima." },
-      { "id": "listen", "heading": "Listen and work together", "visual": "listen", "narration": "Ruhi and Aima listen kindly. Together, they gather the blocks and start building again." },
-      { "id": "repair", "heading": "Help make it right", "visual": "repair", "narration": "Nuh helps rebuild the tower, then checks that everyone is ready to play together." },
-      { "id": "brave", "heading": "Speak kindly when something is unfair", "visual": "brave", "narration": "When a mistake happens, we can speak kindly, tell the truth, and help make things right." },
-      { "id": "quiz", "heading": "Your turn to think!", "visual": "quiz", "narration": "Your turn to think! What is one brave thing you can say or do after making a mistake?" }
+      {
+        "id": "welcome",
+        "heading": "Art time with friends",
+        "visual": "art-time",
+        "narration": "It is art time! Ruhi, Aima, Nuh, and Fathima are building together.",
+        "sourceIds": ["WB-21"],
+        "contentKind": "ORIGINAL"
+      },
+      {
+        "id": "accident",
+        "heading": "An accidental bump",
+        "visual": "accident",
+        "narration": "Oh no! Fathima accidentally bumps Nuh's block tower. The blocks fall down.",
+        "sourceIds": ["WB-21", "WB-21-ACCIDENT", "MC-04"],
+        "contentKind": "ORIGINAL"
+      },
+      {
+        "id": "feelings",
+        "heading": "Noticing our feelings",
+        "visual": "feelings",
+        "narration": "Fathima feels worried. Nuh feels sad. Mistakes can hurt people's feelings.",
+        "sourceIds": ["WB-22"],
+        "contentKind": "SOURCE_ADAPTATION"
+      },
+      {
+        "id": "admit",
+        "heading": "Telling the truth",
+        "visual": "admit",
+        "narration": "Fathima tells the truth: I bumped your blocks by mistake.",
+        "sourceIds": ["WB-21", "MC-06"],
+        "contentKind": "SOURCE_ADAPTATION"
+      },
+      {
+        "id": "say-sorry",
+        "heading": "Saying sorry sincerely",
+        "visual": "say-sorry",
+        "narration": "I am sorry, says Fathima. It is important to say sorry when we hurt someone.",
+        "sourceIds": ["WB-23", "TF-06", "MC-05", "SA-03"],
+        "contentKind": "SOURCE_ADAPTATION"
+      },
+      {
+        "id": "help-repair",
+        "heading": "Helping to rebuild",
+        "visual": "help-repair",
+        "narration": "Fathima helps pick up the blocks. Her friends join in. Together, they make things better.",
+        "sourceIds": ["WB-21"],
+        "contentKind": "ORIGINAL"
+      },
+      {
+        "id": "tell-the-truth",
+        "heading": "Asking a teacher for help",
+        "visual": "tell-the-truth",
+        "narration": "If we do something wrong, telling the truth and asking a teacher for help can be the right choice.",
+        "sourceIds": ["WB-24-TEACHER"],
+        "contentKind": "SOURCE_ADAPTATION"
+      },
+      {
+        "id": "respect-things",
+        "heading": "Ask politely, do not grab",
+        "visual": "respect-things",
+        "narration": "We should not grab things from someone. We can ask and wait politely.",
+        "sourceIds": ["WB-24-GRAB"],
+        "contentKind": "ORIGINAL"
+      },
+      {
+        "id": "recap",
+        "heading": "Admit, apologize, and repair",
+        "visual": "recap-injustice",
+        "narration": "When we make a mistake, we can admit it, say sorry, and try to make things right.",
+        "sourceIds": ["WB-21", "WB-23"],
+        "contentKind": "SOURCE_ADAPTATION"
+      },
+      {
+        "id": "quiz",
+        "heading": "Your turn to think!",
+        "visual": "quiz",
+        "narration": "You accidentally knock over your friend's pencils. What would you say?",
+        "sourceIds": ["WB-21", "WB-22", "WB-23"],
+        "contentKind": "ORIGINAL",
+        "withholdAnswer": true
+      }
     ]
   }
 ]
