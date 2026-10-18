@@ -1,0 +1,861 @@
+{
+  "schemaVersion": "1.0.0",
+  "description": "Source-faithful, child-safe school question manifest for tutor delivery (one question per turn). Contains zero answer keys, zero solution hints, and excludes all blocked_for_child identity prompts.",
+  "sourceCountsSummary": {
+    "L1_QA": { "totalSourceItems": 4, "studentExported": 3, "blockedForChildPrivacy": 1 },
+    "L1_Worksheet": { "sectionA_ordering": 1, "sectionB_trueFalse": 6, "sectionC_fillIn": 5 },
+    "L2_QA": { "totalSourceItems": 3, "studentExported": 3 },
+    "L2_Worksheet": { "sectionA_mcq4": 6, "sectionB_yesNo": 6, "sectionC_smallFamilySelect": 1, "sectionE_pictureLabeling": 1 },
+    "L3_QA": { "totalSourceItems": 3, "studentExported": 3 },
+    "L3_Worksheet": { "sectionA_tickCross": 6, "sectionB_fillInSentences": 3, "sectionB_totalBlankPositions": 8, "sectionC_mcq": 4 },
+    "Midterm_L1": { "sectionA_mcq": 6, "sectionB_trueFalse": 6, "sectionC_fillIn": 6, "sectionD_personal": 4, "sectionD_blockedForChildPrivacy": 3, "sectionE_ordering": 1, "sectionF_behaviorPictures": 1 },
+    "Midterm_L2": { "sectionA_mcq": 8, "sectionB_trueFalse": 8, "sectionC_open": 2, "sectionD_pictureLabels": 1 },
+    "Interhouse_Quiz_Enrichment": { "sectionA_trueFalse": 10, "sectionB_mcq": 20, "shortAnswer": 9, "firstMidterm": false }
+  },
+  "questions": [
+    {
+      "id": "L1-QA-02",
+      "episodeId": "QH-L1-01",
+      "sourceFile": "Lesson 1 - I'm a Special Kid Questions and Answers.pdf",
+      "sourcePage": 1,
+      "section": "Lesson 1 Q&A",
+      "itemNumber": "Q2",
+      "kind": "open_response",
+      "questionText": "What do you do every morning before going to school?",
+      "scoringPolicy": "meaning_accepted_answers_may_vary",
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "L1-QA-03",
+      "episodeId": "QH-L1-03",
+      "sourceFile": "Lesson 1 - I'm a Special Kid Questions and Answers.pdf",
+      "sourcePage": 1,
+      "section": "Lesson 1 Q&A",
+      "itemNumber": "Q3",
+      "kind": "open_response",
+      "questionText": "How can you be a good student at school?",
+      "scoringPolicy": "meaning_accepted_answers_may_vary",
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "L1-QA-04",
+      "episodeId": "QH-L1-03",
+      "sourceFile": "Lesson 1 - I'm a Special Kid Questions and Answers.pdf",
+      "sourcePage": 1,
+      "section": "Lesson 1 Q&A",
+      "itemNumber": "Q4",
+      "kind": "open_response",
+      "questionText": "Where do you go when you feel sick at school?",
+      "scoringPolicy": "single_concept_1pt",
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "L1-WS-A-01",
+      "episodeId": "QH-L1-01",
+      "sourceFile": "Lesson 1 - I'm a Special Kid Worksheet.pdf",
+      "sourcePage": 1,
+      "section": "Section A",
+      "itemNumber": "1..6",
+      "kind": "picture_ordering",
+      "questionText": "Order the pictures of the daily routine from 1 to 6.",
+      "pictureRefs": [
+        { "slotId": "ws-a-1", "originalPosition": 1, "assetId": "pic-l1-ws-a-slot-1" },
+        { "slotId": "ws-a-2", "originalPosition": 2, "assetId": "pic-l1-ws-a-slot-2" },
+        { "slotId": "ws-a-3", "originalPosition": 3, "assetId": "pic-l1-ws-a-slot-3" },
+        { "slotId": "ws-a-4", "originalPosition": 4, "assetId": "pic-l1-ws-a-slot-4" },
+        { "slotId": "ws-a-5", "originalPosition": 5, "assetId": "pic-l1-ws-a-slot-5" },
+        { "slotId": "ws-a-6", "originalPosition": 6, "assetId": "pic-l1-ws-a-slot-6" }
+      ],
+      "scoringPolicy": "one_activity_six_slots",
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "L1-WS-B-01",
+      "episodeId": "QH-L1-03",
+      "sourceFile": "Lesson 1 - I'm a Special Kid Worksheet.pdf",
+      "sourcePage": 1,
+      "section": "Section B",
+      "itemNumber": "1",
+      "kind": "true_false",
+      "questionText": "I listen to my teacher carefully.",
+      "options": [
+        { "id": "true", "display": "True" },
+        { "id": "false", "display": "False" }
+      ],
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "L1-WS-B-02",
+      "episodeId": "QH-L1-03",
+      "sourceFile": "Lesson 1 - I'm a Special Kid Worksheet.pdf",
+      "sourcePage": 1,
+      "section": "Section B",
+      "itemNumber": "2",
+      "kind": "true_false",
+      "questionText": "I keep my classroom clean and tidy.",
+      "options": [
+        { "id": "true", "display": "True" },
+        { "id": "false", "display": "False" }
+      ],
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "L1-WS-B-03",
+      "episodeId": "QH-L1-02",
+      "sourceFile": "Lesson 1 - I'm a Special Kid Worksheet.pdf",
+      "sourcePage": 1,
+      "section": "Section B",
+      "itemNumber": "3",
+      "kind": "true_false",
+      "questionText": "I brush my teeth every morning and night.",
+      "options": [
+        { "id": "true", "display": "True" },
+        { "id": "false", "display": "False" }
+      ],
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "L1-WS-B-04",
+      "episodeId": "QH-L1-03",
+      "sourceFile": "Lesson 1 - I'm a Special Kid Worksheet.pdf",
+      "sourcePage": 1,
+      "section": "Section B",
+      "itemNumber": "4",
+      "kind": "true_false",
+      "questionText": "I share and help my friends at school.",
+      "options": [
+        { "id": "true", "display": "True" },
+        { "id": "false", "display": "False" }
+      ],
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "L1-WS-B-05",
+      "episodeId": "QH-L1-03",
+      "sourceFile": "Lesson 1 - I'm a Special Kid Worksheet.pdf",
+      "sourcePage": 1,
+      "section": "Section B",
+      "itemNumber": "5",
+      "kind": "true_false",
+      "questionText": "I shout in the classroom.",
+      "options": [
+        { "id": "true", "display": "True" },
+        { "id": "false", "display": "False" }
+      ],
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "L1-WS-B-06",
+      "episodeId": "QH-L1-02",
+      "sourceFile": "Lesson 1 - I'm a Special Kid Worksheet.pdf",
+      "sourcePage": 1,
+      "section": "Section B",
+      "itemNumber": "6",
+      "kind": "true_false",
+      "questionText": "I sleep on time every night.",
+      "options": [
+        { "id": "true", "display": "True" },
+        { "id": "false", "display": "False" }
+      ],
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "L1-WS-C-01",
+      "episodeId": "QH-L1-01",
+      "sourceFile": "Lesson 1 - I'm a Special Kid Worksheet.pdf",
+      "sourcePage": 2,
+      "section": "Section C",
+      "itemNumber": "1",
+      "kind": "fill_in_blank",
+      "questionText": "I brush my ______ every morning.",
+      "scoringPolicy": "single_blank_1pt",
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "L1-WS-C-02",
+      "episodeId": "QH-L1-02",
+      "sourceFile": "Lesson 1 - I'm a Special Kid Worksheet.pdf",
+      "sourcePage": 2,
+      "section": "Section C",
+      "itemNumber": "2",
+      "kind": "fill_in_blank",
+      "questionText": "I perform ______ before prayer.",
+      "scoringPolicy": "single_blank_1pt",
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "L1-WS-C-03",
+      "episodeId": "QH-L1-01",
+      "sourceFile": "Lesson 1 - I'm a Special Kid Worksheet.pdf",
+      "sourcePage": 2,
+      "section": "Section C",
+      "itemNumber": "3",
+      "kind": "fill_in_blank",
+      "questionText": "I wake up ______ and get ready.",
+      "anomalyRef": "ANOM-03",
+      "scoringPolicy": "single_blank_1pt",
+      "studentVisible": false,
+      "reviewStatus": "needs_content_review"
+    },
+    {
+      "id": "L1-WS-C-04",
+      "episodeId": "QH-L1-01",
+      "sourceFile": "Lesson 1 - I'm a Special Kid Worksheet.pdf",
+      "sourcePage": 2,
+      "section": "Section C",
+      "itemNumber": "4",
+      "kind": "fill_in_blank",
+      "questionText": "I eat my ______ before going to school.",
+      "scoringPolicy": "single_blank_1pt",
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "L1-WS-C-05",
+      "episodeId": "QH-L1-04",
+      "sourceFile": "Lesson 1 - I'm a Special Kid Worksheet.pdf",
+      "sourcePage": 2,
+      "section": "Section C",
+      "itemNumber": "5",
+      "kind": "fill_in_blank",
+      "questionText": "Everyone has favorite hobbies and is a ______ kid.",
+      "scoringPolicy": "single_blank_1pt",
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "MIDTERM-L1-A-01",
+      "episodeId": "QH-L1-01",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 1,
+      "section": "Lesson 1 / A",
+      "itemNumber": "1",
+      "kind": "multiple_choice",
+      "questionText": "What do you do after waking up?",
+      "options": [
+        { "id": "option-1", "display": "a) play" },
+        { "id": "option-2", "display": "b) sleep again" },
+        { "id": "option-3", "display": "c) brush teeth" }
+      ],
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "MIDTERM-L1-A-02",
+      "episodeId": "QH-L1-01",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 1,
+      "section": "Lesson 1 / A",
+      "itemNumber": "2",
+      "kind": "multiple_choice",
+      "questionText": "When do you eat breakfast?",
+      "options": [
+        { "id": "option-1", "display": "a) in the morning" },
+        { "id": "option-2", "display": "b) at night" },
+        { "id": "option-3", "display": "c) in the afternoon" }
+      ],
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "MIDTERM-L1-A-03",
+      "episodeId": "QH-L1-01",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 1,
+      "section": "Lesson 1 / A",
+      "itemNumber": "3",
+      "kind": "multiple_choice",
+      "questionText": "Where do you go to learn every day?",
+      "options": [
+        { "id": "option-1", "display": "a) park" },
+        { "id": "option-2", "display": "b) school" },
+        { "id": "option-3", "display": "c) mall" }
+      ],
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "MIDTERM-L1-A-04",
+      "episodeId": "QH-L1-02",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 1,
+      "section": "Lesson 1 / A",
+      "itemNumber": "4",
+      "kind": "multiple_choice",
+      "questionText": "Which prayer do we pray in the morning?",
+      "options": [
+        { "id": "option-1", "display": "a) Al Fajr" },
+        { "id": "option-2", "display": "b) Al Maghrib" },
+        { "id": "option-3", "display": "c) Al Isha" }
+      ],
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "MIDTERM-L1-A-05",
+      "episodeId": "QH-L1-01",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 1,
+      "section": "Lesson 1 / A",
+      "itemNumber": "5",
+      "kind": "multiple_choice",
+      "questionText": "What do you wear before going to school?",
+      "options": [
+        { "id": "option-1", "display": "a) pajamas" },
+        { "id": "option-2", "display": "a) school uniform" },
+        { "id": "option-3", "display": "b) party clothes" }
+      ],
+      "anomalyRef": "ANOM-01",
+      "studentVisible": false,
+      "reviewStatus": "needs_content_review"
+    },
+    {
+      "id": "MIDTERM-L1-A-06",
+      "episodeId": "QH-L1-02",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 1,
+      "section": "Lesson 1 / A",
+      "itemNumber": "6",
+      "kind": "multiple_choice",
+      "questionText": "What do we do before prayer?",
+      "options": [
+        { "id": "option-1", "display": "a) ablution" },
+        { "id": "option-2", "display": "b) play" },
+        { "id": "option-3", "display": "c) eat" }
+      ],
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "MIDTERM-L1-B-01",
+      "episodeId": "QH-L1-03",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 1,
+      "section": "Lesson 1 / B",
+      "itemNumber": "1",
+      "kind": "true_false",
+      "questionText": "I respect my teacher and listen carefully.",
+      "options": [
+        { "id": "true", "display": "True" },
+        { "id": "false", "display": "False" }
+      ],
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "MIDTERM-L1-B-02",
+      "episodeId": "QH-L1-03",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 1,
+      "section": "Lesson 1 / B",
+      "itemNumber": "2",
+      "kind": "true_false",
+      "questionText": "I throw trash on the classroom floor.",
+      "options": [
+        { "id": "true", "display": "True" },
+        { "id": "false", "display": "False" }
+      ],
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "MIDTERM-L1-B-03",
+      "episodeId": "QH-L1-02",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 1,
+      "section": "Lesson 1 / B",
+      "itemNumber": "3",
+      "kind": "true_false",
+      "questionText": "I brush my teeth every day.",
+      "options": [
+        { "id": "true", "display": "True" },
+        { "id": "false", "display": "False" }
+      ],
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "MIDTERM-L1-B-04",
+      "episodeId": "QH-L1-03",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 1,
+      "section": "Lesson 1 / B",
+      "itemNumber": "4",
+      "kind": "true_false",
+      "questionText": "I help my classmates at school.",
+      "options": [
+        { "id": "true", "display": "True" },
+        { "id": "false", "display": "False" }
+      ],
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "MIDTERM-L1-B-05",
+      "episodeId": "QH-L1-03",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 1,
+      "section": "Lesson 1 / B",
+      "itemNumber": "5",
+      "kind": "true_false",
+      "questionText": "When I feel sick at school, I go to the school clinic.",
+      "options": [
+        { "id": "true", "display": "True" },
+        { "id": "false", "display": "False" }
+      ],
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "MIDTERM-L1-B-06",
+      "episodeId": "QH-L1-02",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 1,
+      "section": "Lesson 1 / B",
+      "itemNumber": "6",
+      "kind": "true_false",
+      "questionText": "Sleeping late every night is a healthy habit.",
+      "options": [
+        { "id": "true", "display": "True" },
+        { "id": "false", "display": "False" }
+      ],
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "MIDTERM-L1-C-01",
+      "episodeId": "QH-L1-01",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 1,
+      "section": "Lesson 1 / C",
+      "itemNumber": "1",
+      "kind": "fill_in_blank",
+      "questionText": "I brush my ______ every morning. (teeth – hair)",
+      "options": [
+        { "id": "option-1", "display": "teeth" },
+        { "id": "option-2", "display": "hair" }
+      ],
+      "scoringPolicy": "single_blank_1pt",
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "MIDTERM-L1-C-02",
+      "episodeId": "QH-L1-02",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 1,
+      "section": "Lesson 1 / C",
+      "itemNumber": "2",
+      "kind": "fill_in_blank",
+      "questionText": "I perform ______ before prayer. (ablution – homework)",
+      "options": [
+        { "id": "option-1", "display": "ablution" },
+        { "id": "option-2", "display": "homework" }
+      ],
+      "scoringPolicy": "single_blank_1pt",
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "MIDTERM-L1-C-03",
+      "episodeId": "QH-L1-01",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 1,
+      "section": "Lesson 1 / C",
+      "itemNumber": "3",
+      "kind": "fill_in_blank",
+      "questionText": "I wake up ______ and get ready. (late – early)",
+      "options": [
+        { "id": "option-1", "display": "late" },
+        { "id": "option-2", "display": "early" }
+      ],
+      "scoringPolicy": "single_blank_1pt",
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "MIDTERM-L1-C-04",
+      "episodeId": "QH-L1-04",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 1,
+      "section": "Lesson 1 / C",
+      "itemNumber": "4",
+      "kind": "fill_in_blank",
+      "questionText": "My favorite hobby is ______. (reading – sleeping in class)",
+      "options": [
+        { "id": "option-1", "display": "reading" },
+        { "id": "option-2", "display": "sleeping in class" }
+      ],
+      "scoringPolicy": "single_blank_1pt",
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "MIDTERM-L1-C-05",
+      "episodeId": "QH-L1-04",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 1,
+      "section": "Lesson 1 / C",
+      "itemNumber": "5",
+      "kind": "fill_in_blank",
+      "questionText": "I am a ______ kid. (special – careless)",
+      "options": [
+        { "id": "option-1", "display": "special" },
+        { "id": "option-2", "display": "careless" }
+      ],
+      "scoringPolicy": "single_blank_1pt",
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "MIDTERM-L1-C-06",
+      "episodeId": "QH-L1-01",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 1,
+      "section": "Lesson 1 / C",
+      "itemNumber": "6",
+      "kind": "fill_in_blank",
+      "questionText": "I wake up ______ and happy. (lazily – energetic)",
+      "options": [
+        { "id": "option-1", "display": "lazily" },
+        { "id": "option-2", "display": "energetic" }
+      ],
+      "anomalyRef": "ANOM-04",
+      "scoringPolicy": "single_blank_1pt",
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "MIDTERM-L1-E-01",
+      "episodeId": "QH-L1-01",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 2,
+      "section": "Lesson 1 / E",
+      "itemNumber": "1..6",
+      "kind": "picture_ordering",
+      "questionText": "Number the daily routine pictures in the correct order from 1 to 6.",
+      "pictureRefs": [
+        { "slotId": "slot-1", "originalPosition": 1, "assetId": "pic-l1-e-slot-1" },
+        { "slotId": "slot-2", "originalPosition": 2, "assetId": "pic-l1-e-slot-2" },
+        { "slotId": "slot-3", "originalPosition": 3, "assetId": "pic-l1-e-slot-3" },
+        { "slotId": "slot-4", "originalPosition": 4, "assetId": "pic-l1-e-slot-4" },
+        { "slotId": "slot-5", "originalPosition": 5, "assetId": "pic-l1-e-slot-5" },
+        { "slotId": "slot-6", "originalPosition": 6, "assetId": "pic-l1-e-slot-6" }
+      ],
+      "scoringPolicy": "one_activity_six_slots",
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "MIDTERM-L1-F-01",
+      "episodeId": "QH-L1-03",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 2,
+      "section": "Lesson 1 / F",
+      "itemNumber": "1..6",
+      "kind": "picture_tick_cross",
+      "questionText": "Put (✓) under the good behavior and (X) under the wrong behavior.",
+      "pictureRefs": [
+        { "slotId": "beh-1", "originalPosition": 1, "assetId": "pic-l1-f-item-1" },
+        { "slotId": "beh-2", "originalPosition": 2, "assetId": "pic-l1-f-item-2" },
+        { "slotId": "beh-3", "originalPosition": 3, "assetId": "pic-l1-f-item-3" },
+        { "slotId": "beh-4", "originalPosition": 4, "assetId": "pic-l1-f-item-4" },
+        { "slotId": "beh-5", "originalPosition": 5, "assetId": "pic-l1-f-item-5" },
+        { "slotId": "beh-6", "originalPosition": 6, "assetId": "pic-l1-f-item-6" }
+      ],
+      "scoringPolicy": "per_picture_item",
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "L2-QA-01",
+      "episodeId": "QH-L2-03",
+      "sourceFile": "Lesson 2 - My Family and I Questions and Answers.pdf",
+      "sourcePage": 1,
+      "section": "Lesson 2 Q&A",
+      "itemNumber": "Q1",
+      "kind": "open_response",
+      "questionText": "How do you help your family at home?",
+      "scoringPolicy": "meaning_accepted_answers_may_vary",
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "L2-QA-02",
+      "episodeId": "QH-L2-03",
+      "sourceFile": "Lesson 2 - My Family and I Questions and Answers.pdf",
+      "sourcePage": 1,
+      "section": "Lesson 2 Q&A",
+      "itemNumber": "Q2",
+      "kind": "open_response",
+      "questionText": "How should family members treat one another?",
+      "scoringPolicy": "meaning_accepted_answers_may_vary",
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "L2-QA-03",
+      "episodeId": "QH-L2-01",
+      "sourceFile": "Lesson 2 - My Family and I Questions and Answers.pdf",
+      "sourcePage": 1,
+      "section": "Lesson 2 Q&A",
+      "itemNumber": "Q3",
+      "kind": "open_response",
+      "questionText": "Who are the members of a small family?",
+      "scoringPolicy": "single_concept_1pt",
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "L2-WS-A-01",
+      "episodeId": "QH-L2-01",
+      "sourceFile": "Lesson 2 - My Family and I Worksheet.pdf",
+      "sourcePage": 1,
+      "section": "Section A (4-option variant)",
+      "itemNumber": "1",
+      "kind": "multiple_choice",
+      "questionText": "My small family consists of father, mother, brother and ______.",
+      "options": [
+        { "id": "option-1", "display": "a) friend" },
+        { "id": "option-2", "display": "b) sister" },
+        { "id": "option-3", "display": "c) neighbor" },
+        { "id": "option-4", "display": "d) teacher" }
+      ],
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "L2-WS-E-01",
+      "episodeId": "QH-L2-01",
+      "sourceFile": "Lesson 2 - My Family and I Worksheet.pdf",
+      "sourcePage": 2,
+      "section": "Section E",
+      "itemNumber": "1..6",
+      "kind": "picture_labeling",
+      "questionText": "Write the correct family member word under each picture.",
+      "pictureRefs": [
+        { "slotId": "ws-e-1", "originalPosition": 1, "assetId": "pic-l2-ws-e-slot-1" },
+        { "slotId": "ws-e-2", "originalPosition": 2, "assetId": "pic-l2-ws-e-slot-2" },
+        { "slotId": "ws-e-3", "originalPosition": 3, "assetId": "pic-l2-ws-e-slot-3" },
+        { "slotId": "ws-e-4", "originalPosition": 4, "assetId": "pic-l2-ws-e-slot-4" },
+        { "slotId": "ws-e-5", "originalPosition": 5, "assetId": "pic-l2-ws-e-slot-5" },
+        { "slotId": "ws-e-6", "originalPosition": 6, "assetId": "pic-l2-ws-e-slot-6" }
+      ],
+      "scoringPolicy": "per_picture_slot",
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "MIDTERM-L2-A-01",
+      "episodeId": "QH-L2-01",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 3,
+      "section": "Lesson 2 / A (3-option variant)",
+      "itemNumber": "1",
+      "kind": "multiple_choice",
+      "questionText": "My small family consists of father, mother, brother and ______.",
+      "options": [
+        { "id": "option-1", "display": "a) friend" },
+        { "id": "option-2", "display": "b) sister" },
+        { "id": "option-3", "display": "c) neighbor" }
+      ],
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "MIDTERM-L2-A-03",
+      "episodeId": "QH-L2-02",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 3,
+      "section": "Lesson 2 / A",
+      "itemNumber": "3",
+      "kind": "multiple_choice",
+      "questionText": "My father's father is my ______.",
+      "options": [
+        { "id": "option-1", "display": "a) uncle" },
+        { "id": "option-2", "display": "b) grandfather" },
+        { "id": "option-3", "display": "c) cousin" }
+      ],
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "MIDTERM-L2-A-04",
+      "episodeId": "QH-L2-02",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 3,
+      "section": "Lesson 2 / A",
+      "itemNumber": "4",
+      "kind": "multiple_choice",
+      "questionText": "My mother's sister is my ______.",
+      "options": [
+        { "id": "option-1", "display": "a) maternal aunt" },
+        { "id": "option-2", "display": "b) grandmother" },
+        { "id": "option-3", "display": "c) sister" }
+      ],
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "MIDTERM-L2-D-01",
+      "episodeId": "QH-L2-01",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 4,
+      "section": "Lesson 2 / D",
+      "itemNumber": "1..6",
+      "kind": "picture_labeling",
+      "questionText": "Label the family pictures using the word bank.",
+      "pictureRefs": [
+        { "slotId": "fam-1", "originalPosition": 1, "assetId": "pic-l2-d-slot-1" },
+        { "slotId": "fam-2", "originalPosition": 2, "assetId": "pic-l2-d-slot-2" },
+        { "slotId": "fam-3", "originalPosition": 3, "assetId": "pic-l2-d-slot-3" },
+        { "slotId": "fam-4", "originalPosition": 4, "assetId": "pic-l2-d-slot-4" },
+        { "slotId": "fam-5", "originalPosition": 5, "assetId": "pic-l2-d-slot-5" },
+        { "slotId": "fam-6", "originalPosition": 6, "assetId": "pic-l2-d-slot-6" }
+      ],
+      "scoringPolicy": "per_picture_slot",
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "L3-QA-01",
+      "episodeId": "QH-L3-01",
+      "sourceFile": "Lesson 3 - Greetings Questions and Answers.pdf",
+      "sourcePage": 1,
+      "section": "Lesson 3 Q&A",
+      "itemNumber": "Q1",
+      "kind": "open_response",
+      "questionText": "What is the meaning of the Islamic greeting 'Assalamu Alaikum'?",
+      "scoringPolicy": "single_concept_1pt",
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "L3-WS-B-01",
+      "episodeId": "QH-L3-01",
+      "sourceFile": "Lesson 3 - Greetings Worksheet.pdf",
+      "sourcePage": 1,
+      "section": "Section B (3 sentences, 8 blanks)",
+      "itemNumber": "1..3",
+      "kind": "multi_blank_fill_in",
+      "questionText": "Complete the 3 greeting sentences using the words from the box (8 blank positions total).",
+      "scoringPolicy": "per_blank_position_8_total",
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "L3-WS-C-01",
+      "episodeId": "QH-L3-01",
+      "sourceFile": "Lesson 3 - Greetings Worksheet.pdf",
+      "sourcePage": 2,
+      "section": "Section C",
+      "itemNumber": "1",
+      "kind": "multiple_choice",
+      "questionText": "What is the Islamic greeting?",
+      "options": [
+        { "id": "option-1", "display": "a) Assalamu Alaikum" },
+        { "id": "option-2", "display": "b) Goodbye" },
+        { "id": "option-3", "display": "c) See you later" }
+      ],
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "QUIZ-TF-01",
+      "episodeId": "QH-QUIZ-01",
+      "sourceFile": "Interhouse Qatar History Quiz.pdf",
+      "sourcePage": 1,
+      "section": "Section A (True/False)",
+      "itemNumber": "1",
+      "kind": "true_false",
+      "questionText": "The flag of Qatar is maroon and white with nine white serrated points.",
+      "options": [
+        { "id": "true", "display": "True" },
+        { "id": "false", "display": "False" }
+      ],
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "QUIZ-TF-05",
+      "episodeId": "QH-QUIZ-05",
+      "sourceFile": "Interhouse Qatar History Quiz.pdf",
+      "sourcePage": 1,
+      "section": "Section A (True/False)",
+      "itemNumber": "5",
+      "kind": "true_false",
+      "questionText": "Qatar hosted the FIFA World Cup in 2022.",
+      "options": [
+        { "id": "true", "display": "True" },
+        { "id": "false", "display": "False" }
+      ],
+      "anomalyRef": "ANOM-05",
+      "studentVisible": true,
+      "reviewStatus": "approved"
+    },
+    {
+      "id": "QUIZ-TF-08",
+      "episodeId": "QH-QUIZ-05",
+      "sourceFile": "Interhouse Qatar History Quiz.pdf",
+      "sourcePage": 1,
+      "section": "Section A (True/False)",
+      "itemNumber": "8",
+      "kind": "true_false",
+      "questionText": "Qatar hosted the FIFA World Cup in 2022.",
+      "options": [
+        { "id": "true", "display": "True" },
+        { "id": "false", "display": "False" }
+      ],
+      "anomalyRef": "ANOM-05",
+      "studentVisible": false,
+      "reviewStatus": "needs_content_review"
+    },
+    {
+      "id": "QUIZ-TF-09",
+      "episodeId": "QH-QUIZ-03",
+      "sourceFile": "Interhouse Qatar History Quiz.pdf",
+      "sourcePage": 1,
+      "section": "Section A (True/False)",
+      "itemNumber": "9",
+      "kind": "true_false",
+      "questionText": "Doha is the capital city of Qatar.",
+      "options": [
+        { "id": "true", "display": "True" },
+        { "id": "false", "display": "False" }
+      ],
+      "anomalyRef": "ANOM-06",
+      "studentVisible": false,
+      "reviewStatus": "needs_content_review"
+    },
+    {
+      "id": "QUIZ-MCQ-14",
+      "episodeId": "QH-QUIZ-03",
+      "sourceFile": "Interhouse Qatar History Quiz.pdf",
+      "sourcePage": 2,
+      "section": "Section B (MCQ)",
+      "itemNumber": "14",
+      "kind": "multiple_choice",
+      "questionText": "Which historical site in Qatar is a UNESCO World Heritage Site?",
+      "options": [
+        { "id": "option-1", "display": "a) Al Zubarah Fort" },
+        { "id": "option-2", "display": "b) Aspire Tower" },
+        { "id": "option-3", "display": "c) Lusail Marina" }
+      ],
+      "anomalyRef": "ANOM-06",
+      "studentVisible": false,
+      "reviewStatus": "needs_content_review"
+    }
+  ]
+}

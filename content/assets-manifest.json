@@ -1,0 +1,145 @@
+{
+  "schemaVersion": "1.0.0",
+  "project": "Qatar History and Citizenship — Remotion Video Learning System",
+  "licensePolicy": "All illustrations, vector scenes, and narration audio are original local creations authored specifically for this repository. Zero school logos, copyrighted worksheet clippings, or pupil photographs are used.",
+  "designTokens": {
+    "maroon": "#8A1538",
+    "cream": "#FFF8ED",
+    "sand": "#F1DFC7",
+    "teal": "#267D80",
+    "navy": "#233348",
+    "white": "#FFFFFF"
+  },
+  "visualAssets": [
+    {
+      "id": "sunrise-desert-horizon",
+      "kind": "inline_svg_vector",
+      "component": "src/components/IllustratedAction.tsx",
+      "episodes": ["QH-L1-01"],
+      "description": "Warm morning sunrise over a gentle sand horizon with soft clouds and title card",
+      "license": "Original work (Repository Authors, 2026)"
+    },
+    {
+      "id": "calendar-routine-cards",
+      "kind": "inline_svg_vector",
+      "component": "src/components/IllustratedAction.tsx",
+      "episodes": ["QH-L1-01"],
+      "description": "Three repeatable daily routine cards: Morning, School, and Evening with order indicators",
+      "license": "Original work (Repository Authors, 2026)"
+    },
+    {
+      "id": "wake-and-brush-teeth",
+      "kind": "inline_svg_vector",
+      "component": "src/components/IllustratedAction.tsx",
+      "episodes": ["QH-L1-01"],
+      "description": "Child waking up refreshed, bathroom sink, water tap, and toothbrush illustration",
+      "license": "Original work (Repository Authors, 2026)"
+    },
+    {
+      "id": "breakfast-and-uniform",
+      "kind": "inline_svg_vector",
+      "component": "src/components/IllustratedAction.tsx",
+      "episodes": ["QH-L1-01"],
+      "description": "Healthy morning breakfast place setting, neat school uniform/clothes, and school backpack",
+      "license": "Original work (Repository Authors, 2026)"
+    },
+    {
+      "id": "school-and-classroom",
+      "kind": "inline_svg_vector",
+      "component": "src/components/IllustratedAction.tsx",
+      "episodes": ["QH-L1-01"],
+      "description": "Friendly school building, classroom board, book, and attentive student listening",
+      "license": "Original work (Repository Authors, 2026)"
+    },
+    {
+      "id": "evening-and-bedtime",
+      "kind": "inline_svg_vector",
+      "component": "src/components/IllustratedAction.tsx",
+      "episodes": ["QH-L1-01"],
+      "description": "Crescent moon and stars in evening sky, neatly prepared school things, and cozy bedtime scene",
+      "license": "Original work (Repository Authors, 2026)"
+    },
+    {
+      "id": "six-step-routine-sequence",
+      "kind": "inline_svg_vector",
+      "component": "src/components/IllustratedAction.tsx",
+      "episodes": ["QH-L1-01"],
+      "description": "Six-card daily routine strip with sequential directional arrows (First -> Next -> Later)",
+      "license": "Original work (Repository Authors, 2026)"
+    },
+    {
+      "id": "assessment-handoff-card",
+      "kind": "inline_svg_vector",
+      "component": "src/components/EndCard.tsx",
+      "episodes": ["QH-L1-01"],
+      "description": "Calm closing frame inviting the learner to try one school study question with the tutor (no MCQ or answer shown)",
+      "license": "Original work (Repository Authors, 2026)"
+    }
+  ],
+  "audioAssets": [
+    {
+      "id": "QH-L1-01-scene-01",
+      "path": "public/audio/qatar-history/QH-L1-01-scene-01.mp3",
+      "episodeId": "QH-L1-01",
+      "sampleRateHz": 48000,
+      "channels": 1,
+      "transcript": "Today we will learn about our daily routine."
+    },
+    {
+      "id": "QH-L1-01-scene-02",
+      "path": "public/audio/qatar-history/QH-L1-01-scene-02.mp3",
+      "episodeId": "QH-L1-01",
+      "sampleRateHz": 48000,
+      "channels": 1,
+      "transcript": "A daily routine is what we do every day. It helps us know what comes next."
+    },
+    {
+      "id": "QH-L1-01-scene-03",
+      "path": "public/audio/qatar-history/QH-L1-01-scene-03.mp3",
+      "episodeId": "QH-L1-01",
+      "sampleRateHz": 48000,
+      "channels": 1,
+      "transcript": "In the morning, we wake up. We clean ourselves and brush our teeth."
+    },
+    {
+      "id": "QH-L1-01-scene-04",
+      "path": "public/audio/qatar-history/QH-L1-01-scene-04.mp3",
+      "episodeId": "QH-L1-01",
+      "sampleRateHz": 48000,
+      "channels": 1,
+      "transcript": "We eat breakfast and get dressed before going to school."
+    },
+    {
+      "id": "QH-L1-01-scene-05",
+      "path": "public/audio/qatar-history/QH-L1-01-scene-05.mp3",
+      "episodeId": "QH-L1-01",
+      "sampleRateHz": 48000,
+      "channels": 1,
+      "transcript": "At school, we learn new things and follow our teacher's instructions."
+    },
+    {
+      "id": "QH-L1-01-scene-06",
+      "path": "public/audio/qatar-history/QH-L1-01-scene-06.mp3",
+      "episodeId": "QH-L1-01",
+      "sampleRateHz": 48000,
+      "channels": 1,
+      "transcript": "At the end of the day, we get ready for bed. Going to bed on time is a healthy habit."
+    },
+    {
+      "id": "QH-L1-01-scene-07",
+      "path": "public/audio/qatar-history/QH-L1-01-scene-07.mp3",
+      "episodeId": "QH-L1-01",
+      "sampleRateHz": 48000,
+      "channels": 1,
+      "transcript": "A routine keeps our day organized. First we wake up, and later we go to school. At night we sleep."
+    },
+    {
+      "id": "QH-L1-01-scene-08",
+      "path": "public/audio/qatar-history/QH-L1-01-scene-08.mp3",
+      "episodeId": "QH-L1-01",
+      "sampleRateHz": 48000,
+      "channels": 1,
+      "transcript": "You have learned about your daily routine. Now try a question from your school study material."
+    }
+  ]
+}

@@ -1,123 +1,89 @@
-# Ruhi's Global Citizenship Lessons: Unit 1 Social Justice Video Series
+# Qatar History and Citizenship — Remotion Video Learning System
 
-An animated educational video series built in [Remotion](https://remotion.dev) for Class 1 / early-primary learners (ages 6–7). Covers Unit 1 (Social Justice) of the Global Citizenship curriculum across workbook pages 10–24 and associated midterm test-preparation sheets.
+An animated educational video series and source-faithful assessment manifest system built in [Remotion](https://remotion.dev) for Class 1 learners (School Session 2026–2027).
 
-Each episode is a standalone 1920×1080 @ 30 FPS composition featuring original 2.5D vector-illustrated character animations, local audio narration, accessible early-reader captions, and curriculum-aligned reflective questions.
-
----
-
-## Deliverables & Compositions
-
-| Composition ID | Workbook Pages | Title & Theme | Scene Count | Primary Learning Outcomes | Output Artifact |
-| --- | --- | --- | --- | --- | --- |
-| `episode-1-justice` | 10–12 | **Justice & Injustice: The Playground Promise** | 9 scenes | Recognize fair vs. unfair; countable equal sharing; taking turns on the slide; helping, caring, and respecting others. | `output/videos/episode-1-justice.mp4` |
-| `episode-2-wealth-poverty` | 13–16 | **Wealth & Poverty: What Makes a Good Friend?** | 8 scenes | Differences in money do not determine human worth; everyone is equally important; kindness, helping, and equal respect. | `output/videos/episode-2-wealth-poverty.mp4` |
-| `episode-3-opportunity` | 17–20 | **Equality of Opportunity: Everyone Gets a Chance** | 8 scenes | Different preferences are welcome; friends do not need identical tastes; welcoming a waiting friend; equal chance to participate. | `output/videos/episode-3-opportunity.mp4` |
-| `episode-4-challenging-injustice` | 21–24 | **Challenging Injustice: Let's Make It Right** | 10 scenes | Distinguish right and wrong; admit mistakes honestly; say sorry with sincere body language; actively help repair harm; polite asking vs. grabbing. | `output/videos/episode-4-challenging-injustice.mp4` |
+Also preserves the original **Ruhi's Global Citizenship Lessons (Unit 1 Social Justice)** compositions under the `Global-Citizenship-Unit-1` folder in Remotion Studio.
 
 ---
 
-## Primary Cast (The Fairness Explorers)
+## 1. Course Scope & Delivery Waves
 
-All four recurring children are first-class peers with unique silhouettes, palettes, expressive face rigs, and distinct speaking and action roles:
-
-- **RUHI (`ruhi`)**: Inquiring explorer with dark wavy hair, coral top, and turquoise hair clips. (Acts as narrator/guide; models polite asking).
-- **AIMA (`aima`)**: Creative and empathetic friend with dual puff buns, golden ribbons, and mint green star tee. (Models sharing, turn-taking, and cooperative play).
-- **NUH (`nuh`)**: Energetic athletic teammate with textured curly fade, blue sport tee with orange stripe, and bright smile. (Models acknowledging errors, apologizing, and building towers).
-- **FATHIMA (`fathima`)**: Observant, caring friend with dark side braid and teal hair tie, plum tunic with teal floral accent, and golden shoes. (Introduced as the fourth first-class recurring cast member; performs major actions across all four episodes including sharing, helping pick up dropped items, inviting waiting friends, and leading the repair of bumped blocks).
-
----
-
-## Pedagogical & Source Alignment
-
-Educational concepts are grounded directly in parent-provided workbook scans and test-preparation material:
-
-1. **Source Coverage Manifest (`src/content/source-coverage.json`)**:
-   - Maps 46 curriculum requirements across workbook pages 10–24 (`WB-10` through `WB-24`), True/False questions (`TF-01` through `TF-12`), MCQs (`MC-01` through `MC-09`), and Short Answer prompts (`SA-01` through `SA-05`).
-   - Every scene is tagged with its source IDs and categorized as either `SOURCE_ADAPTATION` or `ORIGINAL` pedagogical example.
-2. **Animation Invariants**:
-   - **Fair Sharing (`episode-1-justice`)**: Exactly 8 candies are distributed from a central platter to 4 distinct plates with 2 candies each (conservation of objects; no teleportation or disappearing items).
-   - **Slide Turn-Taking (`episode-1-justice`)**: Distinct sequential slide turns (Ruhi → Aima → Nuh → Fathima); queue advances visibly with only one active rider on the slide at a time.
-   - **Wealth & Poverty Ethics (`episode-2-wealth-poverty`)**: Play tokens are explicitly labeled as a pretend game; differences in token counts are decoupled from human value.
-   - **Unique Preferences (`episode-3-opportunity`)**: Ruhi likes cucumbers, Aima likes mangoes, Nuh likes apples, and Fathima likes bananas. Preferences remain distinct while opportunity to play is shared equally.
-   - **Apology & Repair Sequence (`episode-4-challenging-injustice`)**: Clear multi-step causal sequence: Accidental collision → upset feelings → admitting the truth → sincere apology → hands-on block-by-block tower rebuild.
-3. **Assessment Integrity**:
-   - Each episode ends with exactly one unanswered open reflection question (`withholdAnswer: true`).
-   - Answers and correct indicators are never revealed on screen during the pause to give young learners authentic thinking time.
+| Wave | Scope | Episodes | First Midterm Exam? | Status |
+| --- | --- | --- | --- | --- |
+| **P0 (Pilot)** | Lesson 1 — *I'm a Special Kid* | `QH-L1-01` (**My Daily Routine**) | **Yes** | **Approved & Rendered** (`170s` / `5100 frames` @ `30fps`) |
+| **P0 (Core)** | Lesson 1 & Lesson 2 — *My Family and I* | `QH-L1-02`..`04`, `QH-L2-01`..`03` | **Yes** | Draft storyboard — held pending pilot sign-off |
+| **P1** | Lesson 3 — *Greetings* | `QH-L3-01`..`02` | **No** | Draft storyboard — separate from First Midterm |
+| **P2** | *Inter-House Qatar History Quiz (Grades 1–3)* | `QH-QUIZ-01`..`05` | **No** (Optional Enrichment) | Draft storyboard — separate enrichment |
 
 ---
 
-## Audio & Caption Pipeline
+## 2. Repository Structure
 
-- **Local Narration (`scripts/generate-audio.mjs`)**:
-  - Uses native macOS `say` and `ffmpeg` to generate local audio MP3s for all 35 scenes.
-  - Automatically caches audio based on SHA-256 script hashing, avoiding unnecessary audio regeneration when text is unchanged.
-  - Generates `src/audio-durations.json` with frame-accurate durations verified via `ffprobe`.
-- **Early-Reader Captions (`src/video/LessonVideo.tsx`)**:
-  - Features clear, high-contrast, large-type captions with generous padding and background pill styling.
-  - Uses reliable sentence/phrase-level display rather than misleading pseudo-karaoke word chasing.
+```text
+├── reference/
+│   ├── source-pdfs/                  # Parent-owned original 20 school PDFs (not bundled to web)
+│   └── source-checksums.json         # 20-file source registry & out-of-scope exclusion manifest
+├── content/
+│   ├── episodes.ts                   # Typed 14-episode catalog & approved QH-L1-01 pilot timing
+│   ├── episode-source-map.json       # PDF/page/section/item traceability crosswalk
+│   ├── student-questions.json        # Verbatim child-safe question bank (zero answer keys/hints)
+│   ├── teacher-answers.private.json  # Private teacher/parent answer key & positional mappings
+│   ├── content-review.json           # 7 documented source anomalies & privacy-blocked items
+│   └── assets-manifest.json          # Visual, audio, and design token provenance
+├── public/
+│   ├── audio/qatar-history/          # 48 kHz mono narration MP3s for pilot QH-L1-01
+│   └── captions/QH-L1-01.srt         # Synchronized English SRT captions
+├── src/
+│   ├── Root.tsx                      # Registers QH-L1-01..QH-QUIZ-05 + existing lessons
+│   ├── types.ts                      # Typed Episode, Scene, and SourceRef contracts
+│   ├── design/tokens.ts              # Qatar-inspired palette (#8A1538, #FFF8ED, #F1DFC7, #267D80, #233348)
+│   ├── videos/EpisodeVideo.tsx       # Deterministic sequence player
+│   └── components/                   # SceneLayout, TitleScene, IllustratedAction, CaptionLine, EndCard
+├── scripts/
+│   ├── generate-qatar-audio.mjs      # Generates 48 kHz narration & SRT captions for QH-L1-01
+│   ├── validate-content.mjs          # Automated quality gates (AC-01 through AC-11)
+│   └── render-approved.mjs           # Renders approved pilot MP4, SRT, and 1280x720 thumbnail
+└── out/
+    ├── videos/QH-L1-01.mp4           # 1920x1080 H.264/AAC pilot video
+    ├── subtitles/QH-L1-01.srt        # Companion subtitle file
+    └── thumbnails/QH-L1-01.png       # 1280x720 PNG episode thumbnail
+```
 
 ---
 
-## Verification & Execution
+## 3. Commands: Validation, Preview & Rendering
 
-### Prerequisites
-- Node.js 18+ (tested on Node 26)
-- ffmpeg & ffprobe installed locally
-- macOS (for `say` voice synthesis; pre-generated MP3s in `public/audio/` are checked in for other platforms)
-
-### Running Locally
 ```bash
 # Install dependencies
 npm install
 
-# Run static quality and curriculum verification
+# Run automated specification & source-integrity checks (AC-01..AC-11)
+npm run validate:content
+
+# Run ESLint & TypeScript verification
 npm run lint
-node scripts/validate-lessons.mjs
+npm run typecheck
 
-# Preview in Remotion Player
+# Preview in Remotion Studio (port 3000)
 npm run dev
-```
 
-### Narration Generation
-```bash
-npm run narration
-```
+# Render a single approved episode (QH-L1-01) + 1280x720 thumbnail + SRT
+npm run render:approved
 
-### Video Rendering
-```bash
-# Render all four episodes in sequence to output/videos/
-npm run render:all
-
-# Render an individual episode
-npx remotion render src/index.ts episode-1-justice output/videos/episode-1-justice.mp4 --overwrite
+# Or render QH-L1-01 directly via official Remotion CLI
+npx remotion render src/index.ts QH-L1-01 out/videos/QH-L1-01.mp4 --codec h264
 ```
 
 ---
 
-## Repository Structure
+## 4. Parent Review & Release Gate Protocol
 
-```
-Ruhi-Remotion/
-├── src/
-│   ├── Root.tsx                      # Remotion Root with 4 compositions (1920x1080 @ 30fps)
-│   ├── episodes.json                 # Canonical 35-scene storyboard, narration, and source links
-│   ├── audio-durations.json          # Cached per-scene durations and SHA-256 hashes
-│   ├── content/
-│   │   └── source-coverage.json      # Comprehensive curriculum alignment manifest
-│   └── video/
-│       ├── types.ts                  # TypeScript types for Cast, Scenes, and Episodes
-│       ├── timing.ts                 # Scene duration calculations with thinking pauses
-│       ├── Character.tsx             # 4-character vector rig (RUHI, AIMA, NUH, FATHIMA)
-│       ├── Illustration.tsx          # 2.5D storybook scenes, prop animation & staging
-│       └── LessonVideo.tsx           # Player frame, headers, progress, and captions
-├── scripts/
-│   ├── generate-audio.mjs            # Audio generation script with hash validation
-│   ├── render-all.mjs                # Sequential multi-composition rendering
-│   └── validate-lessons.mjs          # Content, audio, and visual invariant validator
-├── public/
-│   └── audio/                        # 35 generated scene voice MP3s + quiz chime
-└── output/
-    ├── videos/                       # 4 deliverable MP4 files
-    └── stills/                       # Validated keyframe PNG stills for review
-```
+1. **Pilot Sign-Off (`QH-L1-01`)**: Inspect `out/videos/QH-L1-01.mp4`, `out/subtitles/QH-L1-01.srt`, and `out/thumbnails/QH-L1-01.png` before approving batch production of `QH-L1-02` through `QH-L2-03`.
+2. **Held Source Anomalies (`content/content-review.json`)**:
+   - `ANOM-01` (`MIDTERM-L1-A-05`): Printed option labels `a)`, `a)`, `b)` preserved verbatim and held (`studentVisible: false`) pending parent approval.
+   - `ANOM-02` (`MIDTERM-L1-D-01` & `L1-QA-01`, `D3`, `D4`): Personal identity/school/location prompts marked `blocked_for_child` and excluded from child-visible prompts.
+   - `ANOM-03` (`L1-WS-C-03` vs `MIDTERM-L1-C-03`): Distinct worksheet word-bank variant preserved and flagged for parent review.
+   - `ANOM-04` (`MIDTERM-L1-C-06`): Raw wording `"I wake up ______ and happy. (lazily – energetic)"` preserved verbatim.
+   - `ANOM-05` (`QUIZ-TF-05` & `QUIZ-TF-08`): Duplicate World Cup 2022 T/F entry logged so repetition is not counted as independent mastery.
+   - `ANOM-06` (`QUIZ-TF-09` & `QUIZ-MCQ-14`): School-specific historical wording (`Al Zubarah Fort`) held for parent/teacher factual review.
+   - `ANOM-07` (`MIDTERM-L2-A-01/02`): Curriculum role examples taught while depicting shared family caring.

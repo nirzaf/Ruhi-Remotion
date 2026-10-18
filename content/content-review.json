@@ -1,0 +1,144 @@
+{
+  "schemaVersion": "1.0.0",
+  "lastUpdated": "2026-10-18",
+  "pilotApproval": {
+    "episodeId": "QH-L1-01",
+    "title": "My Daily Routine",
+    "scriptStatus": "approved",
+    "illustrationStyle": "Clean 2D / subtle 2.5D original vector animation with Qatar-inspired palette (#8A1538, #FFF8ED, #F1DFC7, #267D80, #233348)",
+    "narrationStatus": "approved_local_tts_48khz",
+    "batchRenderGate": "HOLD — Stop after QH-L1-01 pilot render and await parent review before rendering QH-L1-02..QH-QUIZ-05"
+  },
+  "anomaliesAndSafeguards": [
+    {
+      "anomalyId": "ANOM-01",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 1,
+      "section": "Lesson 1 / A",
+      "itemNumber": "5",
+      "questionId": "MIDTERM-L1-A-05",
+      "observedIssue": "Original option labels are printed 'a)', 'a)', 'b)' rather than 'a)', 'b)', 'c)'.",
+      "requiredHandling": "Preserve exact raw labels ('a)', 'a)', 'b)'); hold for parent approval before displaying a relabeled version. Never auto-grade by letter until resolved; grade only by canonical option ID.",
+      "reviewStatus": "needs_content_review",
+      "parentApproved": false
+    },
+    {
+      "anomalyId": "ANOM-02",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 2,
+      "answerKeyPage": 6,
+      "section": "Lesson 1 / D",
+      "itemNumber": "1",
+      "questionId": "MIDTERM-L1-D-01",
+      "rawStudentPrompt": "What is your complete name?",
+      "rawAnswerKeyPrompt": "What is your name?",
+      "observedIssue": "Student question on page 2 asks 'What is your complete name?'; answer-key reprint on page 6 says 'What is your name?'. Requests child's personally identifiable full name.",
+      "requiredHandling": "Keep page 2 wording in parent provenance record only; mark 'blocked_for_child' for privacy. Excluded from child-facing prompts and test denominators.",
+      "reviewStatus": "blocked_for_child",
+      "parentApproved": false
+    },
+    {
+      "anomalyId": "ANOM-03",
+      "sourceFile": "Lesson 1 - I'm a Special Kid Worksheet.pdf",
+      "sourcePage": 2,
+      "section": "Section C",
+      "itemNumber": "3",
+      "questionId": "L1-WS-C-03",
+      "relatedQuestionId": "MIDTERM-L1-C-03",
+      "observedIssue": "Lesson 1 Worksheet C3 says 'I wake up ______ and get ready' with a word bank lacking the midterm's 'early' answer option, whereas Midterm L1 C3 provides '(late – early)'.",
+      "requiredHandling": "Preserve both distinct variants (`L1-WS-C-03` and `MIDTERM-L1-C-03`) and their own answer contexts; flag worksheet word-bank inconsistency for parent review instead of assuming identical answers.",
+      "reviewStatus": "needs_content_review",
+      "parentApproved": false
+    },
+    {
+      "anomalyId": "ANOM-04",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 1,
+      "section": "Lesson 1 / C",
+      "itemNumber": "6",
+      "questionId": "MIDTERM-L1-C-06",
+      "observedIssue": "Source has 'I wake up ______ and happy. (lazily – energetic)' with awkward adverb/adjective grammar.",
+      "requiredHandling": "Preserve raw wording verbatim for original-source assessment; do not quietly edit to a different sentence.",
+      "reviewStatus": "approved",
+      "parentApproved": true
+    },
+    {
+      "anomalyId": "ANOM-05",
+      "sourceFile": "Interhouse Qatar History Quiz.pdf",
+      "sourcePage": 1,
+      "section": "Section A (True/False)",
+      "itemNumber": "5 and 8",
+      "questionId": "QUIZ-TF-05 / QUIZ-TF-08",
+      "observedIssue": "Identical statement 'Qatar hosted the FIFA World Cup in 2022.' appears twice (#5 and #8).",
+      "requiredHandling": "Preserve both source occurrences with distinct IDs (`QUIZ-TF-05` and `QUIZ-TF-08`). Do not count repetition as independent evidence of mastery.",
+      "reviewStatus": "needs_content_review",
+      "parentApproved": false
+    },
+    {
+      "anomalyId": "ANOM-06",
+      "sourceFile": "Interhouse Qatar History Quiz.pdf",
+      "sourcePage": 1,
+      "section": "Section A #9 / Section B #14",
+      "itemNumber": "A9, B14",
+      "questionId": "QUIZ-TF-09 / QUIZ-MCQ-14",
+      "observedIssue": "Quiz provides school-specific claims about Doha / Al Zubarah and names the UNESCO site as 'Al Zubarah Fort' (whereas UNESCO designation covers Al Zubarah Archaeological Site).",
+      "requiredHandling": "Preserve original printed questions and school keys; hold for parent/teacher historical review gate before narrating simplified assertions as independently established fact.",
+      "reviewStatus": "needs_content_review",
+      "parentApproved": false
+    },
+    {
+      "anomalyId": "ANOM-07",
+      "sourceFile": "Lesson 2 - My Family and I Worksheet.pdf",
+      "sourcePage": 1,
+      "section": "Section A / Midterm L2 A",
+      "itemNumber": "A1, A2",
+      "questionId": "MIDTERM-L2-A-01 / MIDTERM-L2-A-02",
+      "observedIssue": "School MCQs use a specific mother/father role framing in worksheet options.",
+      "requiredHandling": "Teach the expected curriculum response for exam preparation while depicting shared caring in videos and never asserting that only mothers care or only fathers earn.",
+      "reviewStatus": "approved",
+      "parentApproved": true
+    }
+  ],
+  "privacyBlockedItems": [
+    {
+      "questionId": "L1-QA-01",
+      "sourceFile": "Lesson 1 - I'm a Special Kid Questions and Answers.pdf",
+      "sourcePage": 1,
+      "section": "Q&A",
+      "itemNumber": "Q1",
+      "rawPrompt": "Introduce yourself (name, age, school, nationality).",
+      "reviewStatus": "blocked_for_child",
+      "reason": "Requests personally identifiable child name, school, and nationality."
+    },
+    {
+      "questionId": "MIDTERM-L1-D-01",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 2,
+      "section": "Lesson 1 / D",
+      "itemNumber": "1",
+      "rawPrompt": "What is your complete name?",
+      "reviewStatus": "blocked_for_child",
+      "reason": "Requests child's full name; also has page 2 vs page 6 reprint wording discrepancy."
+    },
+    {
+      "questionId": "MIDTERM-L1-D-03",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 2,
+      "section": "Lesson 1 / D",
+      "itemNumber": "3",
+      "rawPrompt": "Where are you from?",
+      "reviewStatus": "blocked_for_child",
+      "reason": "Requests personal origin/location data."
+    },
+    {
+      "questionId": "MIDTERM-L1-D-04",
+      "sourceFile": "Study Materials for First Midterm Exam.pdf",
+      "sourcePage": 2,
+      "section": "Lesson 1 / D",
+      "itemNumber": "4",
+      "rawPrompt": "What is the name of your school?",
+      "reviewStatus": "blocked_for_child",
+      "reason": "Requests school identifier."
+    }
+  ]
+}

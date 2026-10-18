@@ -23,11 +23,15 @@
     "typescript": "5.9.3"
   },
   "scripts": {
-    "dev": "remotion studio",
+    "dev": "remotion studio --port 3000",
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
-    "lint": "eslint src && tsc",
+    "lint": "eslint src content && tsc",
+    "typecheck": "tsc --noEmit",
+    "validate:content": "node scripts/validate-content.mjs",
     "narration": "node scripts/generate-audio.mjs",
+    "narration:qatar": "node scripts/generate-qatar-audio.mjs",
+    "render:approved": "node scripts/render-approved.mjs",
     "render:all": "node scripts/render-all.mjs"
   },
   "allowScripts": {

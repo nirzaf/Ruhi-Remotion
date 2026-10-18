@@ -1,0 +1,306 @@
+{
+  "schemaVersion": "1.0.0",
+  "visibility": "TEACHER_AND_PARENT_ONLY — NEVER BUNDLE INTO STUDENT-FACING WEB BUILDS OR VIDEOS",
+  "tutorGradingRules": {
+    "oneQuestionPerTurn": true,
+    "maxNonRevealingHintsOnFirstError": 1,
+    "secondErrorAction": "teach_answer_and_mark_needs_review",
+    "guidedCorrectionCountsAsFirstAttemptCorrect": false
+  },
+  "answers": [
+    {
+      "questionId": "L1-QA-02",
+      "acceptedAliases": ["wake up, brush teeth, wash face, eat breakfast, wear school uniform"],
+      "sourcePage": 1,
+      "keyOrigin": "Lesson 1 - I'm a Special Kid Questions and Answers.pdf (Q2)"
+    },
+    {
+      "questionId": "L1-QA-03",
+      "acceptedAliases": ["listen to the teacher, follow school rules, help classmates, keep the classroom clean"],
+      "sourcePage": 1,
+      "keyOrigin": "Lesson 1 - I'm a Special Kid Questions and Answers.pdf (Q3)"
+    },
+    {
+      "questionId": "L1-QA-04",
+      "acceptedAliases": ["school clinic", "the clinic", "nurse"],
+      "sourcePage": 1,
+      "keyOrigin": "Lesson 1 - I'm a Special Kid Questions and Answers.pdf (Q4)"
+    },
+    {
+      "questionId": "L1-WS-A-01",
+      "positionalNumbersLeftToRight": [3, 1, 2, 5, 6, 4],
+      "sourcePage": 1,
+      "keyOrigin": "Lesson 1 - I'm a Special Kid Worksheet.pdf (Section A)"
+    },
+    {
+      "questionId": "L1-WS-B-01",
+      "correctOptionId": "true",
+      "sourcePage": 1,
+      "keyOrigin": "Lesson 1 - I'm a Special Kid Worksheet.pdf (Section B1)"
+    },
+    {
+      "questionId": "L1-WS-B-02",
+      "correctOptionId": "true",
+      "sourcePage": 1,
+      "keyOrigin": "Lesson 1 - I'm a Special Kid Worksheet.pdf (Section B2)"
+    },
+    {
+      "questionId": "L1-WS-B-03",
+      "correctOptionId": "true",
+      "sourcePage": 1,
+      "keyOrigin": "Lesson 1 - I'm a Special Kid Worksheet.pdf (Section B3)"
+    },
+    {
+      "questionId": "L1-WS-B-04",
+      "correctOptionId": "true",
+      "sourcePage": 1,
+      "keyOrigin": "Lesson 1 - I'm a Special Kid Worksheet.pdf (Section B4)"
+    },
+    {
+      "questionId": "L1-WS-B-05",
+      "correctOptionId": "false",
+      "sourcePage": 1,
+      "keyOrigin": "Lesson 1 - I'm a Special Kid Worksheet.pdf (Section B5)"
+    },
+    {
+      "questionId": "L1-WS-B-06",
+      "correctOptionId": "true",
+      "sourcePage": 1,
+      "keyOrigin": "Lesson 1 - I'm a Special Kid Worksheet.pdf (Section B6)"
+    },
+    {
+      "questionId": "L1-WS-C-01",
+      "acceptedAliases": ["teeth"],
+      "sourcePage": 2,
+      "keyOrigin": "Lesson 1 - I'm a Special Kid Worksheet.pdf (Section C1)"
+    },
+    {
+      "questionId": "L1-WS-C-02",
+      "acceptedAliases": ["ablution"],
+      "sourcePage": 2,
+      "keyOrigin": "Lesson 1 - I'm a Special Kid Worksheet.pdf (Section C2)"
+    },
+    {
+      "questionId": "L1-WS-C-04",
+      "acceptedAliases": ["breakfast"],
+      "sourcePage": 2,
+      "keyOrigin": "Lesson 1 - I'm a Special Kid Worksheet.pdf (Section C4)"
+    },
+    {
+      "questionId": "L1-WS-C-05",
+      "acceptedAliases": ["special"],
+      "sourcePage": 2,
+      "keyOrigin": "Lesson 1 - I'm a Special Kid Worksheet.pdf (Section C5)"
+    },
+    {
+      "questionId": "MIDTERM-L1-A-01",
+      "correctOptionId": "option-3",
+      "sourcePage": 5,
+      "keyOrigin": "Study Materials for First Midterm Exam.pdf (Page 5, Lesson 1 / A1)"
+    },
+    {
+      "questionId": "MIDTERM-L1-A-02",
+      "correctOptionId": "option-1",
+      "sourcePage": 5,
+      "keyOrigin": "Study Materials for First Midterm Exam.pdf (Page 5, Lesson 1 / A2)"
+    },
+    {
+      "questionId": "MIDTERM-L1-A-03",
+      "correctOptionId": "option-2",
+      "sourcePage": 5,
+      "keyOrigin": "Study Materials for First Midterm Exam.pdf (Page 5, Lesson 1 / A3)"
+    },
+    {
+      "questionId": "MIDTERM-L1-A-04",
+      "correctOptionId": "option-1",
+      "sourcePage": 5,
+      "keyOrigin": "Study Materials for First Midterm Exam.pdf (Page 5, Lesson 1 / A4)"
+    },
+    {
+      "questionId": "MIDTERM-L1-A-05",
+      "correctOptionId": "option-2",
+      "sourcePage": 5,
+      "keyOrigin": "Study Materials for First Midterm Exam.pdf (Page 5, Lesson 1 / A5 — held for ANOM-01 duplicate 'a)' label)"
+    },
+    {
+      "questionId": "MIDTERM-L1-A-06",
+      "correctOptionId": "option-1",
+      "sourcePage": 5,
+      "keyOrigin": "Study Materials for First Midterm Exam.pdf (Page 5, Lesson 1 / A6)"
+    },
+    {
+      "questionId": "MIDTERM-L1-B-01",
+      "correctOptionId": "true",
+      "sourcePage": 5,
+      "keyOrigin": "Study Materials for First Midterm Exam.pdf (Page 5, Lesson 1 / B1)"
+    },
+    {
+      "questionId": "MIDTERM-L1-B-02",
+      "correctOptionId": "false",
+      "sourcePage": 5,
+      "keyOrigin": "Study Materials for First Midterm Exam.pdf (Page 5, Lesson 1 / B2)"
+    },
+    {
+      "questionId": "MIDTERM-L1-B-03",
+      "correctOptionId": "true",
+      "sourcePage": 5,
+      "keyOrigin": "Study Materials for First Midterm Exam.pdf (Page 5, Lesson 1 / B3)"
+    },
+    {
+      "questionId": "MIDTERM-L1-B-04",
+      "correctOptionId": "true",
+      "sourcePage": 5,
+      "keyOrigin": "Study Materials for First Midterm Exam.pdf (Page 5, Lesson 1 / B4)"
+    },
+    {
+      "questionId": "MIDTERM-L1-B-05",
+      "correctOptionId": "true",
+      "sourcePage": 5,
+      "keyOrigin": "Study Materials for First Midterm Exam.pdf (Page 5, Lesson 1 / B5)"
+    },
+    {
+      "questionId": "MIDTERM-L1-B-06",
+      "correctOptionId": "false",
+      "sourcePage": 5,
+      "keyOrigin": "Study Materials for First Midterm Exam.pdf (Page 5, Lesson 1 / B6)"
+    },
+    {
+      "questionId": "MIDTERM-L1-C-01",
+      "correctOptionId": "option-1",
+      "acceptedAliases": ["teeth"],
+      "sourcePage": 5,
+      "keyOrigin": "Study Materials for First Midterm Exam.pdf (Page 5, Lesson 1 / C1)"
+    },
+    {
+      "questionId": "MIDTERM-L1-C-02",
+      "correctOptionId": "option-1",
+      "acceptedAliases": ["ablution"],
+      "sourcePage": 5,
+      "keyOrigin": "Study Materials for First Midterm Exam.pdf (Page 5, Lesson 1 / C2)"
+    },
+    {
+      "questionId": "MIDTERM-L1-C-03",
+      "correctOptionId": "option-2",
+      "acceptedAliases": ["early"],
+      "sourcePage": 5,
+      "keyOrigin": "Study Materials for First Midterm Exam.pdf (Page 5, Lesson 1 / C3)"
+    },
+    {
+      "questionId": "MIDTERM-L1-C-04",
+      "correctOptionId": "option-1",
+      "acceptedAliases": ["reading"],
+      "sourcePage": 5,
+      "keyOrigin": "Study Materials for First Midterm Exam.pdf (Page 5, Lesson 1 / C4)"
+    },
+    {
+      "questionId": "MIDTERM-L1-C-05",
+      "correctOptionId": "option-1",
+      "acceptedAliases": ["special"],
+      "sourcePage": 5,
+      "keyOrigin": "Study Materials for First Midterm Exam.pdf (Page 5, Lesson 1 / C5)"
+    },
+    {
+      "questionId": "MIDTERM-L1-C-06",
+      "correctOptionId": "option-2",
+      "acceptedAliases": ["energetic"],
+      "sourcePage": 5,
+      "keyOrigin": "Study Materials for First Midterm Exam.pdf (Page 5, Lesson 1 / C6)"
+    },
+    {
+      "questionId": "MIDTERM-L1-E-01",
+      "positionalNumbersLeftToRight": [3, 1, 2, 5, 6, 4],
+      "sourcePage": 6,
+      "keyOrigin": "Study Materials for First Midterm Exam.pdf (Page 6, Lesson 1 / E: printed left-to-right order 3, 1, 2, 5, 6, 4)"
+    },
+    {
+      "questionId": "MIDTERM-L1-F-01",
+      "behaviorMarksLeftToRightTopToBottom": ["✓", "✓", "✓", "X", "✓", "X"],
+      "sourcePage": 6,
+      "keyOrigin": "Study Materials for First Midterm Exam.pdf (Page 6, Lesson 1 / F: ✓, ✓, ✓, X, ✓, X)"
+    },
+    {
+      "questionId": "L2-QA-01",
+      "acceptedAliases": ["tidy toys, help parents, keep my room clean"],
+      "sourcePage": 1,
+      "keyOrigin": "Lesson 2 - My Family and I Questions and Answers.pdf (Q1)"
+    },
+    {
+      "questionId": "L2-QA-02",
+      "acceptedAliases": ["with kindness, respect, love, and cooperation"],
+      "sourcePage": 1,
+      "keyOrigin": "Lesson 2 - My Family and I Questions and Answers.pdf (Q2)"
+    },
+    {
+      "questionId": "L2-QA-03",
+      "acceptedAliases": ["father, mother, brother, and sister"],
+      "sourcePage": 1,
+      "keyOrigin": "Lesson 2 - My Family and I Questions and Answers.pdf (Q3)"
+    },
+    {
+      "questionId": "L2-WS-A-01",
+      "correctOptionId": "option-2",
+      "sourcePage": 1,
+      "keyOrigin": "Lesson 2 - My Family and I Worksheet.pdf (Section A1)"
+    },
+    {
+      "questionId": "L2-WS-E-01",
+      "pictureLabelsInPrintedOrder": ["family", "brother", "sister", "grandparents", "mother", "father"],
+      "sourcePage": 2,
+      "keyOrigin": "Lesson 2 - My Family and I Worksheet.pdf (Page 2, Section E)"
+    },
+    {
+      "questionId": "MIDTERM-L2-A-01",
+      "correctOptionId": "option-2",
+      "sourcePage": 7,
+      "keyOrigin": "Study Materials for First Midterm Exam.pdf (Page 7, Lesson 2 / A1)"
+    },
+    {
+      "questionId": "MIDTERM-L2-A-03",
+      "correctOptionId": "option-2",
+      "sourcePage": 7,
+      "keyOrigin": "Study Materials for First Midterm Exam.pdf (Page 7, Lesson 2 / A3)"
+    },
+    {
+      "questionId": "MIDTERM-L2-A-04",
+      "correctOptionId": "option-1",
+      "sourcePage": 7,
+      "keyOrigin": "Study Materials for First Midterm Exam.pdf (Page 7, Lesson 2 / A4)"
+    },
+    {
+      "questionId": "MIDTERM-L2-D-01",
+      "pictureLabelsInPrintedOrder": ["family", "brother", "sister", "grandparents", "mother", "father"],
+      "sourcePage": 8,
+      "keyOrigin": "Study Materials for First Midterm Exam.pdf (Page 8, Lesson 2 / D)"
+    },
+    {
+      "questionId": "L3-QA-01",
+      "acceptedAliases": ["Peace be upon you"],
+      "sourcePage": 1,
+      "keyOrigin": "Lesson 3 - Greetings Questions and Answers.pdf (Q1)"
+    },
+    {
+      "questionId": "L3-WS-B-01",
+      "acceptedAliases": ["peace, mercy, blessings, elders, neighbors, smile, kind, respect"],
+      "sourcePage": 1,
+      "keyOrigin": "Lesson 3 - Greetings Worksheet.pdf (Section B, 8 blank positions)"
+    },
+    {
+      "questionId": "L3-WS-C-01",
+      "correctOptionId": "option-1",
+      "sourcePage": 2,
+      "keyOrigin": "Lesson 3 - Greetings Worksheet.pdf (Section C1)"
+    },
+    {
+      "questionId": "QUIZ-TF-01",
+      "correctOptionId": "true",
+      "sourcePage": 1,
+      "keyOrigin": "Interhouse Qatar History Quiz.pdf (Section A #1)"
+    },
+    {
+      "questionId": "QUIZ-TF-05",
+      "correctOptionId": "true",
+      "sourcePage": 1,
+      "keyOrigin": "Interhouse Qatar History Quiz.pdf (Section A #5)"
+    }
+  ]
+}

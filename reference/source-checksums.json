@@ -1,0 +1,242 @@
+{
+  "schemaVersion": "1.0.0",
+  "preparedDate": "2026-10-18",
+  "subject": "Qatar History and Citizenship — Class 1 (2026–2027)",
+  "inScopeCount": 20,
+  "excludedOutOfScopeFiles": [
+    {
+      "file": "Week 1 - Revision Worksheets.pdf",
+      "reason": "Out of scope (unrelated revision material; not part of Class 1 Qatar History and Citizenship)"
+    },
+    {
+      "file": "Iprimary english revision worksheet week 1.pdf",
+      "reason": "Out of scope (KG/Primary English material; strictly excluded by AC-01)"
+    },
+    {
+      "file": "External Educational Resource Report.pdf",
+      "reason": "Out of scope (external report, not an authoritative school worksheet or exam source)"
+    }
+  ],
+  "sources": [
+    {
+      "id": "SRC-L1-QA",
+      "group": "Lesson 1 core",
+      "file": "Lesson 1 - I'm a Special Kid Questions and Answers.pdf",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855_l1_qa_v1",
+      "status": "registered_parent_pdf",
+      "pages": 2,
+      "scope": "P0",
+      "midtermIncluded": true,
+      "teachingAndAssessmentUse": "Daily routine, self-awareness, hygiene, school rules, hobbies, prayer; Q1–Q4 (Q1 self-introduction requires privacy-safe adaptation)"
+    },
+    {
+      "id": "SRC-L1-WS",
+      "group": "Lesson 1 core",
+      "file": "Lesson 1 - I'm a Special Kid Worksheet.pdf",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855_l1_ws_v1",
+      "status": "registered_parent_pdf",
+      "pages": 2,
+      "scope": "P0",
+      "midtermIncluded": true,
+      "teachingAndAssessmentUse": "Section A: six-picture ordering activity; Section B: 6 True/False; Section C: 5 fill-ins"
+    },
+    {
+      "id": "SRC-L1-W1-SUP",
+      "group": "Lesson 1 support",
+      "file": "Lesson 1 - I'm a Special Kid Week 1 Support.pdf",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855_l1_w1_sup_v1",
+      "status": "registered_parent_pdf",
+      "pages": 1,
+      "scope": "P0",
+      "midtermIncluded": false,
+      "teachingAndAssessmentUse": "Simplified self-description and strengths without personal-data disclosure"
+    },
+    {
+      "id": "SRC-L1-W2-SUP",
+      "group": "Lesson 1 support",
+      "file": "Lesson 1 - I'm A Special Kid Week 2 Support.pdf",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855_l1_w2_sup_v1",
+      "status": "registered_parent_pdf",
+      "pages": 1,
+      "scope": "P0",
+      "midtermIncluded": false,
+      "teachingAndAssessmentUse": "Daily routine sequencing support activities"
+    },
+    {
+      "id": "SRC-L1-W3-SUP",
+      "group": "Lesson 1 support",
+      "file": "Lesson 1 - I'm a Special Kid Week 3 Support.pdf",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855_l1_w3_sup_v1",
+      "status": "registered_parent_pdf",
+      "pages": 1,
+      "scope": "P0",
+      "midtermIncluded": false,
+      "teachingAndAssessmentUse": "Responsible-student and friendship support activities"
+    },
+    {
+      "id": "SRC-L1-W1-ENR",
+      "group": "Lesson 1 enrichment",
+      "file": "Lesson 1 - I'm a Special Kid Week 1 Enrichment.pdf",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855_l1_w1_enr_v1",
+      "status": "registered_parent_pdf",
+      "pages": 1,
+      "scope": "P0",
+      "midtermIncluded": false,
+      "teachingAndAssessmentUse": "Hobbies and personal interests reinforcement"
+    },
+    {
+      "id": "SRC-L1-W2-ENR",
+      "group": "Lesson 1 enrichment",
+      "file": "Lesson 1 - I'm a Special Kid Week 2 Enrichment.pdf",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855_l1_w2_enr_v1",
+      "status": "registered_parent_pdf",
+      "pages": 1,
+      "scope": "P0",
+      "midtermIncluded": false,
+      "teachingAndAssessmentUse": "Daily sequence and healthy routine reinforcement"
+    },
+    {
+      "id": "SRC-L1-W3-ENR",
+      "group": "Lesson 1 enrichment",
+      "file": "Lesson 1 - I'm a Special Kid Week 3 Enrichment.pdf",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855_l1_w3_enr_v1",
+      "status": "registered_parent_pdf",
+      "pages": 1,
+      "scope": "P0",
+      "midtermIncluded": false,
+      "teachingAndAssessmentUse": "School responsibilities and caring for surroundings"
+    },
+    {
+      "id": "SRC-L2-QA",
+      "group": "Lesson 2 core",
+      "file": "Lesson 2 - My Family and I Questions and Answers.pdf",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855_l2_qa_v1",
+      "status": "registered_parent_pdf",
+      "pages": 2,
+      "scope": "P0",
+      "midtermIncluded": true,
+      "teachingAndAssessmentUse": "Family roles, simple/extended family, caring and cooperation; Q1–Q3"
+    },
+    {
+      "id": "SRC-L2-WS",
+      "group": "Lesson 2 core",
+      "file": "Lesson 2 - My Family and I Worksheet.pdf",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855_l2_ws_v1",
+      "status": "registered_parent_pdf",
+      "pages": 2,
+      "scope": "P0",
+      "midtermIncluded": true,
+      "teachingAndAssessmentUse": "Section A: 6 MCQs (4 options each); Section B: 6 Yes/No; Section C: small family selection; Section E: label 6 pictures"
+    },
+    {
+      "id": "SRC-L2-W4-SUP",
+      "group": "Lesson 2 support",
+      "file": "Lesson 2 - My Family and I Week 4 Support.pdf",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855_l2_w4_sup_v1",
+      "status": "registered_parent_pdf",
+      "pages": 1,
+      "scope": "P0",
+      "midtermIncluded": false,
+      "teachingAndAssessmentUse": "Small family member matching and recognition"
+    },
+    {
+      "id": "SRC-L2-W5-SUP",
+      "group": "Lesson 2 support",
+      "file": "Lesson 2 - My Family and I Week 5 Support.pdf",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855_l2_w5_sup_v1",
+      "status": "registered_parent_pdf",
+      "pages": 1,
+      "scope": "P0",
+      "midtermIncluded": false,
+      "teachingAndAssessmentUse": "Kindness and helping family members at home"
+    },
+    {
+      "id": "SRC-L2-W6-SUP",
+      "group": "Lesson 2 support",
+      "file": "Lesson 2 - My Family and I Week 6 Support.pdf",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855_l2_w6_sup_v1",
+      "status": "registered_parent_pdf",
+      "pages": 1,
+      "scope": "P0",
+      "midtermIncluded": false,
+      "teachingAndAssessmentUse": "Extended family tree matching (grandparents, aunts, uncles, cousins)"
+    },
+    {
+      "id": "SRC-L2-W4-ENR",
+      "group": "Lesson 2 enrichment",
+      "file": "Lesson 2 - My Family and I Week 4 Enrichment.pdf",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855_l2_w4_enr_v1",
+      "status": "registered_parent_pdf",
+      "pages": 1,
+      "scope": "P0",
+      "midtermIncluded": false,
+      "teachingAndAssessmentUse": "Paternal and maternal family tree connections"
+    },
+    {
+      "id": "SRC-L2-W5-ENR",
+      "group": "Lesson 2 enrichment",
+      "file": "Lesson 2 - My Family and I Week 5 Enrichment.pdf",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855_l2_w5_enr_v1",
+      "status": "registered_parent_pdf",
+      "pages": 1,
+      "scope": "P0",
+      "midtermIncluded": false,
+      "teachingAndAssessmentUse": "Family caring and home responsibilities"
+    },
+    {
+      "id": "SRC-L2-W6-ENR",
+      "group": "Lesson 2 enrichment",
+      "file": "Lesson 2 - My Family and I Week 6 Enrichment.pdf",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855_l2_w6_enr_v1",
+      "status": "registered_parent_pdf",
+      "pages": 1,
+      "scope": "P0",
+      "midtermIncluded": false,
+      "teachingAndAssessmentUse": "Cross-unit Lesson 1 & Lesson 2 review"
+    },
+    {
+      "id": "SRC-L3-QA",
+      "group": "Lesson 3 core",
+      "file": "Lesson 3 - Greetings Questions and Answers.pdf",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855_l3_qa_v1",
+      "status": "registered_parent_pdf",
+      "pages": 2,
+      "scope": "P1",
+      "midtermIncluded": false,
+      "teachingAndAssessmentUse": "Islamic greeting, peace, mercy, blessings, respect for elders and neighbors; Q1–Q3"
+    },
+    {
+      "id": "SRC-L3-WS",
+      "group": "Lesson 3 core",
+      "file": "Lesson 3 - Greetings Worksheet.pdf",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855_l3_ws_v1",
+      "status": "registered_parent_pdf",
+      "pages": 2,
+      "scope": "P1",
+      "midtermIncluded": false,
+      "teachingAndAssessmentUse": "Section A: 6 tick/X; Section B: 3 numbered fill-in sentences (8 blank positions); Section C: 4 MCQs"
+    },
+    {
+      "id": "SRC-MIDTERM",
+      "group": "Midterm source",
+      "file": "Study Materials for First Midterm Exam.pdf",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855_midterm_v1",
+      "status": "registered_parent_pdf",
+      "pages": 8,
+      "scope": "P0",
+      "midtermIncluded": true,
+      "teachingAndAssessmentUse": "Pages 1–4: student questions covering Lesson 1 and Lesson 2 only; Pages 5–8: teacher/source answer key"
+    },
+    {
+      "id": "SRC-INTERHOUSE-QUIZ",
+      "group": "Separate quiz source",
+      "file": "Interhouse Qatar History Quiz.pdf",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855_quiz_v1",
+      "status": "registered_parent_pdf",
+      "pages": 4,
+      "scope": "P2",
+      "midtermIncluded": false,
+      "teachingAndAssessmentUse": "Optional Grades 1–3 enrichment (A: 10 True/False with #5/#8 repeated; B: 20 MCQs; Short Answer: 9 entries). Not part of Class 1 First Midterm."
+    }
+  ]
+}

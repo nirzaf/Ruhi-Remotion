@@ -1,0 +1,236 @@
+{
+  "schemaVersion": "1.0.0",
+  "courseTitle": "Qatar History and Citizenship — Class 1 (2026–2027)",
+  "midtermScopeNote": "First Midterm Exam covers Lesson 1 (QH-L1-01 to QH-L1-04) and Lesson 2 (QH-L2-01 to QH-L2-03) ONLY. Lesson 3 (P1) and Inter-House Quiz (P2, Grades 1–3 enrichment) are distinct and excluded from First Midterm scope.",
+  "waves": {
+    "P0": {
+      "label": "First Midterm Core (Lessons 1 & 2)",
+      "firstMidterm": true,
+      "episodeIds": [
+        "QH-L1-01",
+        "QH-L1-02",
+        "QH-L1-03",
+        "QH-L1-04",
+        "QH-L2-01",
+        "QH-L2-02",
+        "QH-L2-03"
+      ]
+    },
+    "P1": {
+      "label": "Lesson 3 — Greetings",
+      "firstMidterm": false,
+      "episodeIds": [
+        "QH-L3-01",
+        "QH-L3-02"
+      ]
+    },
+    "P2": {
+      "label": "Optional Enrichment — Inter-House Qatar History Quiz (Grades 1–3)",
+      "firstMidterm": false,
+      "episodeIds": [
+        "QH-QUIZ-01",
+        "QH-QUIZ-02",
+        "QH-QUIZ-03",
+        "QH-QUIZ-04",
+        "QH-QUIZ-05"
+      ]
+    }
+  },
+  "episodes": [
+    {
+      "episodeId": "QH-L1-01",
+      "wave": "P0",
+      "title": "My Daily Routine",
+      "singleCentralFocus": "Wake, brush teeth, breakfast, dress, school, bedtime; organize actions in order",
+      "firstMidterm": true,
+      "sourceMappings": [
+        { "file": "Lesson 1 - I'm a Special Kid Questions and Answers.pdf", "page": 1, "section": "Q&A", "items": ["Q2"] },
+        { "file": "Lesson 1 - I'm a Special Kid Worksheet.pdf", "page": 1, "section": "Section A", "items": ["A-ordering-1..6"] },
+        { "file": "Lesson 1 - I'm a Special Kid Worksheet.pdf", "page": 2, "section": "Section C", "items": ["C1", "C3", "C4"] },
+        { "file": "Lesson 1 - I'm A Special Kid Week 2 Support.pdf", "page": 1, "section": "Support", "items": ["W2-S1"] },
+        { "file": "Lesson 1 - I'm a Special Kid Week 2 Enrichment.pdf", "page": 1, "section": "Enrichment", "items": ["W2-E1"] },
+        { "file": "Study Materials for First Midterm Exam.pdf", "page": 1, "section": "Lesson 1 / A", "items": ["1", "2", "3", "5"] },
+        { "file": "Study Materials for First Midterm Exam.pdf", "page": 1, "section": "Lesson 1 / C", "items": ["1", "3", "6"] },
+        { "file": "Study Materials for First Midterm Exam.pdf", "page": 2, "section": "Lesson 1 / E", "items": ["E-ordering-1..6"] }
+      ]
+    },
+    {
+      "episodeId": "QH-L1-02",
+      "wave": "P0",
+      "title": "Healthy Habits and Prayer",
+      "singleCentralFocus": "Hygiene, sleeping on time, ablution before prayer, morning prayer (Al Fajr)",
+      "firstMidterm": true,
+      "sourceMappings": [
+        { "file": "Lesson 1 - I'm a Special Kid Questions and Answers.pdf", "page": 1, "section": "Q&A", "items": ["Q2"] },
+        { "file": "Lesson 1 - I'm a Special Kid Worksheet.pdf", "page": 1, "section": "Section B", "items": ["B3", "B6"] },
+        { "file": "Lesson 1 - I'm a Special Kid Worksheet.pdf", "page": 2, "section": "Section C", "items": ["C2"] },
+        { "file": "Study Materials for First Midterm Exam.pdf", "page": 1, "section": "Lesson 1 / A", "items": ["4", "6"] },
+        { "file": "Study Materials for First Midterm Exam.pdf", "page": 1, "section": "Lesson 1 / B", "items": ["3", "6"] },
+        { "file": "Study Materials for First Midterm Exam.pdf", "page": 1, "section": "Lesson 1 / C", "items": ["2"] }
+      ]
+    },
+    {
+      "episodeId": "QH-L1-03",
+      "wave": "P0",
+      "title": "A Good Student and Friend",
+      "singleCentralFocus": "Respect teachers; follow school rules; help classmates; care for surroundings; school clinic",
+      "firstMidterm": true,
+      "sourceMappings": [
+        { "file": "Lesson 1 - I'm a Special Kid Questions and Answers.pdf", "page": 1, "section": "Q&A", "items": ["Q3", "Q4"] },
+        { "file": "Lesson 1 - I'm a Special Kid Worksheet.pdf", "page": 1, "section": "Section B", "items": ["B1", "B2", "B4", "B5"] },
+        { "file": "Lesson 1 - I'm a Special Kid Week 3 Support.pdf", "page": 1, "section": "Support", "items": ["W3-S1"] },
+        { "file": "Lesson 1 - I'm a Special Kid Week 3 Enrichment.pdf", "page": 1, "section": "Enrichment", "items": ["W3-E1"] },
+        { "file": "Study Materials for First Midterm Exam.pdf", "page": 1, "section": "Lesson 1 / B", "items": ["1", "2", "4", "5"] },
+        { "file": "Study Materials for First Midterm Exam.pdf", "page": 2, "section": "Lesson 1 / F", "items": ["F1", "F2", "F3", "F4", "F5", "F6"] }
+      ]
+    },
+    {
+      "episodeId": "QH-L1-04",
+      "wave": "P0",
+      "title": "Everyone Has Interests and Strengths",
+      "singleCentralFocus": "Hobbies, being special, speaking confidently about likes without personal-data disclosure",
+      "firstMidterm": true,
+      "sourceMappings": [
+        { "file": "Lesson 1 - I'm a Special Kid Questions and Answers.pdf", "page": 1, "section": "Q&A", "items": ["Q1-safe-concept"] },
+        { "file": "Lesson 1 - I'm a Special Kid Worksheet.pdf", "page": 2, "section": "Section C", "items": ["C5"] },
+        { "file": "Lesson 1 - I'm a Special Kid Week 1 Support.pdf", "page": 1, "section": "Support", "items": ["W1-S1"] },
+        { "file": "Lesson 1 - I'm a Special Kid Week 1 Enrichment.pdf", "page": 1, "section": "Enrichment", "items": ["W1-E1"] },
+        { "file": "Study Materials for First Midterm Exam.pdf", "page": 1, "section": "Lesson 1 / C", "items": ["4", "5"] }
+      ]
+    },
+    {
+      "episodeId": "QH-L2-01",
+      "wave": "P0",
+      "title": "My Small Family",
+      "singleCentralFocus": "Mother, father, children, sister, brother, parents, son/daughter; small/simple family",
+      "firstMidterm": true,
+      "sourceMappings": [
+        { "file": "Lesson 2 - My Family and I Questions and Answers.pdf", "page": 1, "section": "Q&A", "items": ["Q3"] },
+        { "file": "Lesson 2 - My Family and I Worksheet.pdf", "page": 1, "section": "Section A", "items": ["A1", "A2", "A5"] },
+        { "file": "Lesson 2 - My Family and I Worksheet.pdf", "page": 2, "section": "Section C", "items": ["C-small-family"] },
+        { "file": "Lesson 2 - My Family and I Worksheet.pdf", "page": 2, "section": "Section E", "items": ["E1", "E2", "E3", "E5", "E6"] },
+        { "file": "Lesson 2 - My Family and I Week 4 Support.pdf", "page": 1, "section": "Support", "items": ["W4-S1"] },
+        { "file": "Study Materials for First Midterm Exam.pdf", "page": 3, "section": "Lesson 2 / A", "items": ["1", "2", "5", "7", "8"] },
+        { "file": "Study Materials for First Midterm Exam.pdf", "page": 3, "section": "Lesson 2 / B", "items": ["7", "8"] },
+        { "file": "Study Materials for First Midterm Exam.pdf", "page": 4, "section": "Lesson 2 / D", "items": ["D1", "D2", "D3", "D5", "D6"] }
+      ]
+    },
+    {
+      "episodeId": "QH-L2-02",
+      "wave": "P0",
+      "title": "My Extended Family",
+      "singleCentralFocus": "Grandparents; paternal/maternal aunt and uncle; cousins; bigger family tree",
+      "firstMidterm": true,
+      "sourceMappings": [
+        { "file": "Lesson 2 - My Family and I Worksheet.pdf", "page": 1, "section": "Section A", "items": ["A3", "A4", "A6"] },
+        { "file": "Lesson 2 - My Family and I Worksheet.pdf", "page": 1, "section": "Section B", "items": ["B1", "B3", "B5", "B6"] },
+        { "file": "Lesson 2 - My Family and I Worksheet.pdf", "page": 2, "section": "Section E", "items": ["E4"] },
+        { "file": "Lesson 2 - My Family and I Week 6 Support.pdf", "page": 1, "section": "Support", "items": ["W6-S1"] },
+        { "file": "Lesson 2 - My Family and I Week 4 Enrichment.pdf", "page": 1, "section": "Enrichment", "items": ["W4-E1"] },
+        { "file": "Lesson 2 - My Family and I Week 6 Enrichment.pdf", "page": 1, "section": "Enrichment", "items": ["W6-E1"] },
+        { "file": "Study Materials for First Midterm Exam.pdf", "page": 3, "section": "Lesson 2 / A", "items": ["3", "4", "6"] },
+        { "file": "Study Materials for First Midterm Exam.pdf", "page": 4, "section": "Lesson 2 / D", "items": ["D4"] }
+      ]
+    },
+    {
+      "episodeId": "QH-L2-03",
+      "wave": "P0",
+      "title": "Families Help One Another",
+      "singleCentralFocus": "Kindness, respect, cooperation, looking after family, tidying, helping at home",
+      "firstMidterm": true,
+      "sourceMappings": [
+        { "file": "Lesson 2 - My Family and I Questions and Answers.pdf", "page": 1, "section": "Q&A", "items": ["Q1", "Q2"] },
+        { "file": "Lesson 2 - My Family and I Worksheet.pdf", "page": 1, "section": "Section B", "items": ["B2", "B4"] },
+        { "file": "Lesson 2 - My Family and I Week 5 Support.pdf", "page": 1, "section": "Support", "items": ["W5-S1"] },
+        { "file": "Lesson 2 - My Family and I Week 5 Enrichment.pdf", "page": 1, "section": "Enrichment", "items": ["W5-E1"] },
+        { "file": "Study Materials for First Midterm Exam.pdf", "page": 3, "section": "Lesson 2 / B", "items": ["1", "2", "3", "4", "5", "6"] },
+        { "file": "Study Materials for First Midterm Exam.pdf", "page": 4, "section": "Lesson 2 / C", "items": ["1", "2"] }
+      ]
+    },
+    {
+      "episodeId": "QH-L3-01",
+      "wave": "P1",
+      "title": "Greetings of Peace",
+      "singleCentralFocus": "Greetings, peace, mercy, blessings; meaning and respectful exchange",
+      "firstMidterm": false,
+      "sourceMappings": [
+        { "file": "Lesson 3 - Greetings Questions and Answers.pdf", "page": 1, "section": "Q&A", "items": ["Q1"] },
+        { "file": "Lesson 3 - Greetings Worksheet.pdf", "page": 1, "section": "Section A", "items": ["A3", "A4", "A5"] },
+        { "file": "Lesson 3 - Greetings Worksheet.pdf", "page": 1, "section": "Section B", "items": ["B1", "B3"] },
+        { "file": "Lesson 3 - Greetings Worksheet.pdf", "page": 2, "section": "Section C", "items": ["C1", "C4"] }
+      ]
+    },
+    {
+      "episodeId": "QH-L3-02",
+      "wave": "P1",
+      "title": "Respecting Elders and Neighbors",
+      "singleCentralFocus": "Greeting family, teachers and neighbors; respecting older people; Qatari customs",
+      "firstMidterm": false,
+      "sourceMappings": [
+        { "file": "Lesson 3 - Greetings Questions and Answers.pdf", "page": 1, "section": "Q&A", "items": ["Q2", "Q3"] },
+        { "file": "Lesson 3 - Greetings Worksheet.pdf", "page": 1, "section": "Section A", "items": ["A1", "A2", "A6"] },
+        { "file": "Lesson 3 - Greetings Worksheet.pdf", "page": 1, "section": "Section B", "items": ["B2"] },
+        { "file": "Lesson 3 - Greetings Worksheet.pdf", "page": 2, "section": "Section C", "items": ["C2", "C3"] }
+      ]
+    },
+    {
+      "episodeId": "QH-QUIZ-01",
+      "wave": "P2",
+      "title": "Qatar's Flag and Symbols",
+      "singleCentralFocus": "Flag design and its meaning; riyal; Sidra tree; ruling family name",
+      "firstMidterm": false,
+      "sourceMappings": [
+        { "file": "Interhouse Qatar History Quiz.pdf", "page": 1, "section": "Section A (T/F)", "items": ["1", "4"] },
+        { "file": "Interhouse Qatar History Quiz.pdf", "page": 2, "section": "Section B (MCQ)", "items": ["4", "5", "15"] }
+      ]
+    },
+    {
+      "episodeId": "QH-QUIZ-02",
+      "wave": "P2",
+      "title": "Traditional Life in Qatar",
+      "singleCentralFocus": "Pearl diving/fishing, oysters, traditional home materials, falconry, camel racing, clothing, Souq Waqif",
+      "firstMidterm": false,
+      "sourceMappings": [
+        { "file": "Interhouse Qatar History Quiz.pdf", "page": 1, "section": "Section A (T/F)", "items": ["10"] },
+        { "file": "Interhouse Qatar History Quiz.pdf", "page": 2, "section": "Section B (MCQ)", "items": ["2", "7", "8", "10", "16", "17"] },
+        { "file": "Interhouse Qatar History Quiz.pdf", "page": 4, "section": "Short Answer", "items": ["1", "7", "8", "9"] }
+      ]
+    },
+    {
+      "episodeId": "QH-QUIZ-03",
+      "wave": "P2",
+      "title": "Heritage and Special Places",
+      "singleCentralFocus": "Al Zubarah, desert camping tents, Khor Al Adaid, museums, National Museum design",
+      "firstMidterm": false,
+      "sourceMappings": [
+        { "file": "Interhouse Qatar History Quiz.pdf", "page": 1, "section": "Section A (T/F)", "items": ["3", "9"] },
+        { "file": "Interhouse Qatar History Quiz.pdf", "page": 2, "section": "Section B (MCQ)", "items": ["1", "6", "14", "19", "20"] },
+        { "file": "Interhouse Qatar History Quiz.pdf", "page": 4, "section": "Short Answer", "items": ["2"] }
+      ]
+    },
+    {
+      "episodeId": "QH-QUIZ-04",
+      "wave": "P2",
+      "title": "Qatar Through Time",
+      "singleCentralFocus": "Founder in the school's quiz, independence in 1971, discovery/production of oil, older/modern Doha",
+      "firstMidterm": false,
+      "sourceMappings": [
+        { "file": "Interhouse Qatar History Quiz.pdf", "page": 1, "section": "Section A (T/F)", "items": ["2", "6", "7"] },
+        { "file": "Interhouse Qatar History Quiz.pdf", "page": 2, "section": "Section B (MCQ)", "items": ["11", "12"] },
+        { "file": "Interhouse Qatar History Quiz.pdf", "page": 4, "section": "Short Answer", "items": ["3", "4"] }
+      ]
+    },
+    {
+      "episodeId": "QH-QUIZ-05",
+      "wave": "P2",
+      "title": "Qatar Today and World Cup 2022",
+      "singleCentralFocus": "FIFA 2022, Lusail, stadium, main airport, National Sports Day; Qatar National Day values",
+      "firstMidterm": false,
+      "sourceMappings": [
+        { "file": "Interhouse Qatar History Quiz.pdf", "page": 1, "section": "Section A (T/F)", "items": ["5", "8"] },
+        { "file": "Interhouse Qatar History Quiz.pdf", "page": 2, "section": "Section B (MCQ)", "items": ["3", "9", "13", "18"] },
+        { "file": "Interhouse Qatar History Quiz.pdf", "page": 4, "section": "Short Answer", "items": ["5", "6"] }
+      ]
+    }
+  ]
+}
