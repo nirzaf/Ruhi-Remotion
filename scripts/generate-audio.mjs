@@ -1,0 +1,75 @@
+import {execFileSync} from "node:child_process";
+import {mkdir, readFile, rm, writeFile} from "node:fs/promises";
+import path from "node:path";
+import {fileURLToPath} from "node:url";
+
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const episodes = JSON.parse(await readFile(path.join(root, "src/episodes.json"), "utf8"));
+const outputDir = path.join(root, "public/audio");
+const tempDir = path.join(root, "tmp/narration");
+const sampleRate = 44100;
+const voice = process.env.NARRATION_VOICE ?? "Samantha";
+const voiceRate = process.env.NARRATION_RATE ?? "145";
+const mp3Bitrate = process.env.NARRATION_BITRATE ?? "160k";
+
+await mkdir(outputDir, {recursive: true});
+await mkdir(tempDir, {recursive: true});
+
+const audioDurations = {};
+
+for (const episode of episodes) {
+  audioDurations[episode.id] = {};
+  for (const scene of episode.scenes) {
+    const baseName = `${episode.id}-${scene.id}`;
+    const aiffPath = path.join(tempDir, `${baseName}.aiff`);
+    const mp3Path = path.join(outputDir, `${baseName}.mp3`);
+
+    execFileSync("say", ["-v", voice, "-r", voiceRate, "-o", aiffPath, scene.narration], {stdio: "inherit"});
+    execFileSync("ffmpeg", ["-hide_banner", "-loglevel", "error", "-y", "-i", aiffPath, "-ar", String(sampleRate), "-ac", "1", "-b:a", mp3Bitrate, mp3Path], {stdio: "inherit"});
+    const seconds = Number(execFileSync("ffprobe", ["-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", mp3Path], {encoding: "utf8"}).trim());
+    audioDurations[episode.id][scene.id] = {seconds: Number(seconds.toFixed(2)), frames: Math.ceil(seconds * 30)};
+  }
+}
+
+const chimePath = path.join(outputDir, "quiz-chime.wav");
+const notes = [
+  {frequency: 783.99, start: 0, duration: 0.42},
+  {frequency: 987.77, start: 0.16, duration: 0.5},
+  {frequency: 1174.66, start: 0.38, duration: 0.64},
+];
+const totalSamples = Math.ceil(sampleRate * 1.25);
+const data = Buffer.alloc(totalSamples * 2);
+
+for (let index = 0; index < totalSamples; index += 1) {
+  const time = index / sampleRate;
+  let value = 0;
+  for (const note of notes) {
+    const elapsed = time - note.start;
+    if (elapsed >= 0 && elapsed <= note.duration) {
+      const attack = Math.min(1, elapsed / 0.025);
+      const release = Math.min(1, (note.duration - elapsed) / 0.12);
+      const envelope = Math.max(0, Math.min(attack, release)) * Math.exp(-elapsed * 1.9);
+      value += Math.sin(2 * Math.PI * note.frequency * elapsed) * envelope * 0.19;
+    }
+  }
+  data.writeInt16LE(Math.max(-1, Math.min(1, value)) * 32767, index * 2);
+}
+
+const header = Buffer.alloc(44);
+header.write("RIFF", 0);
+header.writeUInt32LE(36 + data.length, 4);
+header.write("WAVE", 8);
+header.write("fmt ", 12);
+header.writeUInt32LE(16, 16);
+header.writeUInt16LE(1, 20);
+header.writeUInt16LE(1, 22);
+header.writeUInt32LE(sampleRate, 24);
+header.writeUInt32LE(sampleRate * 2, 28);
+header.writeUInt16LE(2, 32);
+header.writeUInt16LE(16, 34);
+header.write("data", 36);
+header.writeUInt32LE(data.length, 40);
+await writeFile(chimePath, Buffer.concat([header, data]));
+await writeFile(path.join(root, "src/audio-durations.json"), `${JSON.stringify(audioDurations, null, 2)}\n`);
+await rm(tempDir, {recursive: true, force: true});
+console.log(`Created narration for ${episodes.length} lessons with ${voice} at ${voiceRate} words per minute, plus a quiz chime.`);

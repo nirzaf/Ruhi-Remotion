@@ -1,0 +1,70 @@
+[
+  {
+    "id": "episode-1-justice",
+    "number": "01",
+    "title": "Justice & Injustice",
+    "subtitle": "Fairness at the Playground",
+    "pages": "Workbook pages 10–12",
+    "keyMessage": "Share, take turns, and make room for everyone.",
+    "scenes": [
+      { "id": "welcome", "heading": "A fair day at the playground", "visual": "playground", "narration": "Welcome to the playground. Today Ruhi and her friends are learning what fairness feels like." },
+      { "id": "unfair-share", "heading": "Is this fair?", "visual": "unfair-share", "narration": "A tray has six sweets. One child takes them all, while the friends beside her get none." },
+      { "id": "fair-share", "heading": "Everyone gets a share", "visual": "fair-share", "narration": "Ruhi pauses the game. The friends share the sweets so everyone can enjoy one together." },
+      { "id": "slide-turns", "heading": "Wait, then take a turn", "visual": "slide-turns", "narration": "Next, three children want the slide. They line up, wait patiently, and take turns." },
+      { "id": "invite", "heading": "Make room in the game", "visual": "invite", "narration": "A friend stands alone. Ruhi smiles and asks, Would you like to play with us?" },
+      { "id": "remember", "heading": "Fairness helps us belong", "visual": "remember", "narration": "Fairness means sharing, taking turns, and making sure nobody is left out." },
+      { "id": "quiz", "heading": "Your turn to think!", "visual": "quiz", "narration": "Your turn. If a child is left out of a game, what is one fair thing you could do?" }
+    ]
+  },
+  {
+    "id": "episode-2-wealth-poverty",
+    "number": "02",
+    "title": "Wealth & Poverty",
+    "subtitle": "More Than Money",
+    "pages": "Workbook pages 13–16",
+    "keyMessage": "Money does not decide how much a person matters.",
+    "scenes": [
+      { "id": "welcome", "heading": "A game at the market", "visual": "market", "narration": "At the market, Sami and Noor each bring play coins to choose a game together." },
+      { "id": "different-coins", "heading": "Different amounts", "visual": "different-coins", "narration": "Sami has many coins, and Noor has just a few. Families can have different amounts of money." },
+      { "id": "equal-worth", "heading": "People are more than money", "visual": "equal-worth", "narration": "Having more coins does not make Sami a better person. Having fewer does not make Noor less important." },
+      { "id": "share-game", "heading": "Choose a game together", "visual": "share-game", "narration": "They find a game they can both play. Sami shares the chalk, and Noor picks first." },
+      { "id": "friendship", "heading": "Friendship is not measured in coins", "visual": "friendship", "narration": "They laugh, draw, and take turns. Their friendship is not measured in coins." },
+      { "id": "respect", "heading": "Be kind and respectful", "visual": "respect", "narration": "We can be respectful when families have different amounts of money, and we never tease." },
+      { "id": "quiz", "heading": "Your turn to think!", "visual": "quiz", "narration": "Think about it. A friend has fewer coins. What kind thing could you do together?" }
+    ]
+  },
+  {
+    "id": "episode-3-opportunity",
+    "number": "03",
+    "title": "Equality of Opportunity",
+    "subtitle": "Everyone Gets a Chance",
+    "pages": "Workbook pages 17–20",
+    "keyMessage": "Everyone deserves a chance to join, choose, and try.",
+    "scenes": [
+      { "id": "welcome", "heading": "Different favourites", "visual": "garden", "narration": "In the garden, friends enjoy different foods and different games." },
+      { "id": "choices", "heading": "Our choices can be different", "visual": "choices", "narration": "Ruhi likes cucumbers, and Layla chooses mango. Both choices are good for them." },
+      { "id": "choose", "heading": "Everyone gets to choose", "visual": "choose", "narration": "At playtime, everyone gets a chance to choose an activity and try it." },
+      { "id": "game-options", "heading": "More ways to join", "visual": "game-options", "narration": "The group sets out a soft ball, a hoop, and picture cards so there are choices." },
+      { "id": "make-space", "heading": "Make space for a friend", "visual": "make-space", "narration": "A child wants more time to join. Friends make space and offer a turn." },
+      { "id": "opportunity", "heading": "A chance for everyone", "visual": "opportunity", "narration": "Fair opportunity means everyone has a chance to take part, even when we like different things." },
+      { "id": "quiz", "heading": "Your turn to think!", "visual": "quiz", "narration": "Your turn. What can you do to help every friend join a game?" }
+    ]
+  },
+  {
+    "id": "episode-4-challenging-injustice",
+    "number": "04",
+    "title": "Challenging Injustice",
+    "subtitle": "Make Things Right",
+    "pages": "Workbook pages 21–24",
+    "keyMessage": "Tell the truth, say sorry, and help repair the harm.",
+    "scenes": [
+      { "id": "welcome", "heading": "A moment at art time", "visual": "art-time", "narration": "During art time, Adam bumps a tall block tower, and it falls." },
+      { "id": "oops", "heading": "Mistakes can happen", "visual": "oops", "narration": "Adam feels worried. He could walk away, but he chooses to tell the truth." },
+      { "id": "truth", "heading": "Tell the truth and say sorry", "visual": "truth", "narration": "I knocked it over. I am sorry, Adam says to his friends." },
+      { "id": "listen", "heading": "Listen and work together", "visual": "listen", "narration": "His friends listen. Together, they gather the blocks and start again." },
+      { "id": "repair", "heading": "Help make it right", "visual": "repair", "narration": "Adam helps rebuild the tower, then checks that everyone is ready to play." },
+      { "id": "brave", "heading": "Speak kindly when something is unfair", "visual": "brave", "narration": "When we see a mistake or something unfair, we can speak kindly and help make it right." },
+      { "id": "quiz", "heading": "Your turn to think!", "visual": "quiz", "narration": "Quick question. What is one brave way to make things right after a mistake?" }
+    ]
+  }
+]

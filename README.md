@@ -1,54 +1,36 @@
-# Remotion video
+# Ruhi's Global Citizenship lessons
 
-<p align="center">
-  <a href="https://github.com/remotion-dev/logo">
-    <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-dark.apng">
-      <img alt="Animated Remotion Logo" src="https://github.com/remotion-dev/logo/raw/main/animated-logo-banner-light.gif">
-    </picture>
-  </a>
-</p>
+Four short Grade 1 lessons for Unit 1, Social Justice, built and rendered with Remotion. Each lesson is a separate 1920×1080 composition with animated vector artwork, spoken narration, matching on-screen captions, page references, and a pause-and-think question.
 
-Welcome to your Remotion project!
+The episode scripts adapt the lesson summaries supplied for workbook pages 10–24. The textbook itself was not present in the Grade 1 folder when this project was created, so details beyond those summaries are original child-friendly examples.
 
-## Commands
+## Episodes
 
-**Install Dependencies**
+| Composition | Workbook pages | Main idea |
+| --- | --- | --- |
+| `episode-1-justice` | 10–12 | Share, take turns, and include others |
+| `episode-2-wealth-poverty` | 13–16 | Money does not decide a person's worth |
+| `episode-3-opportunity` | 17–20 | Everyone deserves a chance to participate |
+| `episode-4-challenging-injustice` | 21–24 | Tell the truth, apologize, and help make things right |
 
-```console
-npm i --loglevel=error
-```
+## Run and render
 
-**Start Preview**
-
-```console
+```bash
+npm install
+npm run narration
 npm run dev
 ```
 
-**Render video**
+The narration command uses the built-in macOS `say` voice and `ffmpeg` to create local audio assets; no external AI or video service is used. It defaults to Samantha at 145 words per minute and 160 kbps. Override these defaults with `NARRATION_VOICE`, `NARRATION_RATE`, and `NARRATION_BITRATE` when running `npm run narration`. To render all four MP4 files with Remotion:
 
-```console
-npx remotion render
+```bash
+npm run render:all
 ```
 
-**Upgrade Remotion**
+MP4 files are written to `output/videos/`. To render one composition directly:
 
-```console
-npx remotion upgrade
+```bash
+npx remotion render src/index.ts episode-1-justice output/videos/episode-1-justice.mp4
 ```
 
-## Docs
-
-Get started with Remotion by reading the [fundamentals page](https://www.remotion.dev/docs/the-fundamentals).
-
-## Help
-
-We provide help on our [Discord server](https://discord.gg/6VzzNDwUwV).
-
-## Issues
-
-Found an issue with Remotion? [File an issue here](https://github.com/remotion-dev/remotion/issues/new).
-
-## License
-
-Note that for some entities a company license is needed. [Read the terms here](https://github.com/remotion-dev/remotion/blob/main/LICENSE.md).
+The episode text and scene order live in `src/episodes.json`. Shared character art and scene animation live in `src/video/`.

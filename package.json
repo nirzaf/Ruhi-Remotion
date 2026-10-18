@@ -1,7 +1,7 @@
 {
-  "name": "Ruhi-Remotion",
+  "name": "ruhi-global-citizenship-remotion",
   "version": "1.0.0",
-  "description": "My Remotion video",
+  "description": "Four Remotion animated lessons for Grade 1 Global Citizenship",
   "repository": {},
   "license": "UNLICENSED",
   "engines": {
@@ -26,7 +26,9 @@
     "dev": "remotion studio",
     "build": "remotion bundle",
     "upgrade": "remotion upgrade",
-    "lint": "eslint src && tsc"
+    "lint": "eslint src && tsc",
+    "narration": "node scripts/generate-audio.mjs",
+    "render:all": "node scripts/render-all.mjs"
   },
   "allowScripts": {
     "esbuild": false
