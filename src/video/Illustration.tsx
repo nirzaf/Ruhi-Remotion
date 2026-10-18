@@ -650,35 +650,23 @@ export const Illustration: React.FC<ArtProps> = ({scene, frame, durationInFrames
       {/* 1.2 Unfair Share */}
       {scene.visual === "unfair-share" && (
         <>
-          {/* Wooden Picnic Table with Gingham Runner */}
+          {/* Picnic ground blanket */}
           <div
             style={{
               position: "absolute",
-              left: 180,
-              bottom: 30,
-              width: 960,
-              height: 100,
-              background: "linear-gradient(180deg, #D97706 0%, #B45309 100%)",
-              borderRadius: "16px 16px 8px 8px",
-              boxShadow: "0 14px 28px rgba(0,0,0,0.18)",
-              zIndex: 3,
+              left: 60,
+              right: 60,
+              bottom: 16,
+              height: 48,
+              borderRadius: 24,
+              background: "repeating-linear-gradient(90deg, #FDE68A 0 25px, #FEF3C7 25px 50px)",
+              border: "3px dashed #F59E0B",
+              opacity: 0.8,
+              zIndex: 2,
             }}
-          >
-            {/* Gingham red-and-white runner */}
-            <div
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 30,
-                right: 30,
-                height: 28,
-                background: "repeating-linear-gradient(90deg, #EF4444 0 20px, #FFFFFF 20px 40px)",
-                opacity: 0.85,
-              }}
-            />
-          </div>
+          />
 
-          {/* Children standing behind the table */}
+          {/* Characters */}
           <Person friend={friends.nuh} left={pos3[0]} frame={frame} />
           <Person friend={{...friends.ruhi, expression: "surprised"}} left={pos3[1]} frame={frame} />
           <Person friend={{...friends.aima, expression: "sad"}} left={pos3[2]} frame={frame} />
@@ -687,76 +675,83 @@ export const Illustration: React.FC<ArtProps> = ({scene, frame, durationInFrames
           <div
             style={{
               position: "absolute",
-              left: 210,
-              bottom: 80,
-              width: 170,
-              height: 48,
-              borderRadius: "50%",
+              left: 320,
+              bottom: 75,
+              width: 175,
+              padding: "10px 14px",
+              borderRadius: 24,
               background: "#FFFFFF",
               border: "4px solid #F59E0B",
-              boxShadow: "0 8px 18px rgba(0,0,0,0.15)",
-              display: "grid",
-              placeItems: "center",
-              zIndex: 6,
+              boxShadow: "0 10px 24px rgba(245, 158, 11, 0.22)",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              zIndex: 8,
             }}
           >
-            <span style={{fontSize: 13, fontWeight: 900, color: "#D97706"}}>All 6 Treats!</span>
+            <div style={{display: "flex", flexWrap: "wrap", justifyContent: "center", gap: 6, width: 140, height: 65, position: "relative"}}>
+              {[0, 1, 2, 3, 4, 5].map((i) => (
+                <Candy
+                  key={i}
+                  left={(i % 3) * 44 + 4}
+                  top={Math.floor(i / 3) * 32}
+                  color={["#EF4444", "#F59E0B", "#3B82F6", "#10B981"][i % 4]}
+                  rotation={(i - 2.5) * 10}
+                  scale={0.85}
+                />
+              ))}
+            </div>
+            <span style={{fontSize: 14, fontWeight: 900, color: "#D97706", marginTop: 4}}>
+              All 6 Treats!
+            </span>
           </div>
-          {[0, 1, 2, 3, 4, 5].map((i) => (
-            <Candy
-              key={i}
-              left={215 + (i % 3) * 38}
-              top={410 - Math.floor(i / 3) * 26}
-              color={["#EF4444", "#F59E0B", "#3B82F6", "#10B981"][i % 4]}
-              rotation={(i - 2.5) * 12}
-            />
-          ))}
 
-          {/* Empty plates for Ruhi and Aima */}
+          {/* Ruhi's Empty Plate */}
           <div
             style={{
               position: "absolute",
-              left: 635,
-              bottom: 82,
-              width: 120,
-              height: 40,
-              borderRadius: "50%",
+              left: 745,
+              bottom: 75,
+              width: 140,
+              padding: "14px",
+              borderRadius: 20,
               background: "#FFFFFF",
               border: "3px solid #CBD5E1",
-              boxShadow: "0 6px 12px rgba(0,0,0,0.08)",
-              display: "grid",
-              placeItems: "center",
-              zIndex: 6,
+              boxShadow: "0 8px 18px rgba(0,0,0,0.06)",
+              textAlign: "center",
+              zIndex: 8,
             }}
           >
-            <span style={{fontSize: 12, fontWeight: 800, color: "#94A3B8"}}>Empty</span>
+            <div style={{fontSize: 28}}>🍽️</div>
+            <div style={{fontSize: 14, fontWeight: 800, color: "#94A3B8"}}>0 Treats</div>
           </div>
 
+          {/* Aima's Empty Plate */}
           <div
             style={{
               position: "absolute",
-              left: 1060,
-              bottom: 82,
-              width: 120,
-              height: 40,
-              borderRadius: "50%",
+              left: 1170,
+              bottom: 75,
+              width: 140,
+              padding: "14px",
+              borderRadius: 20,
               background: "#FFFFFF",
               border: "3px solid #CBD5E1",
-              boxShadow: "0 6px 12px rgba(0,0,0,0.08)",
-              display: "grid",
-              placeItems: "center",
-              zIndex: 6,
+              boxShadow: "0 8px 18px rgba(0,0,0,0.06)",
+              textAlign: "center",
+              zIndex: 8,
             }}
           >
-            <span style={{fontSize: 12, fontWeight: 800, color: "#94A3B8"}}>Empty</span>
+            <div style={{fontSize: 28}}>🍽️</div>
+            <div style={{fontSize: 14, fontWeight: 800, color: "#94A3B8"}}>0 Treats</div>
           </div>
 
-          {/* Question Callout */}
+          {/* Question Callout Banner */}
           <div
             style={{
               position: "absolute",
               left: 480,
-              top: 50,
+              top: 45,
               padding: "12px 28px",
               borderRadius: 20,
               background: "#FFFFFF",
@@ -776,61 +771,58 @@ export const Illustration: React.FC<ArtProps> = ({scene, frame, durationInFrames
       {/* 1.3 Fair Share */}
       {scene.visual === "fair-share" && (
         <>
-          {/* Wooden Picnic Table with Gingham Runner */}
+          {/* Picnic ground blanket */}
           <div
             style={{
               position: "absolute",
-              left: 180,
-              bottom: 30,
-              width: 960,
-              height: 100,
-              background: "linear-gradient(180deg, #D97706 0%, #B45309 100%)",
-              borderRadius: "16px 16px 8px 8px",
-              boxShadow: "0 14px 28px rgba(0,0,0,0.18)",
-              zIndex: 3,
+              left: 60,
+              right: 60,
+              bottom: 16,
+              height: 48,
+              borderRadius: 24,
+              background: "repeating-linear-gradient(90deg, #A7F3D0 0 25px, #D1FAE5 25px 50px)",
+              border: "3px dashed #10B981",
+              opacity: 0.8,
+              zIndex: 2,
             }}
-          >
-            <div
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 30,
-                right: 30,
-                height: 28,
-                background: "repeating-linear-gradient(90deg, #10B981 0 20px, #FFFFFF 20px 40px)",
-                opacity: 0.85,
-              }}
-            />
-          </div>
+          />
 
           <Person friend={friends.ruhi} left={pos3[0]} frame={frame} pose="cheer" />
           <Person friend={friends.aima} left={pos3[1]} frame={frame} pose="cheer" />
           <Person friend={friends.nuh} left={pos3[2]} frame={frame} pose="cheer" />
 
-          {/* Three equal plates with 2 candies each placed on the table */}
-          {[220, 645, 1070].map((plateX) => (
-            <React.Fragment key={plateX}>
-              <div
-                style={{
-                  position: "absolute",
-                  left: plateX,
-                  bottom: 80,
-                  width: 130,
-                  height: 42,
-                  borderRadius: "50%",
-                  background: "#FFFFFF",
-                  border: "4px solid #10B981",
-                  boxShadow: "0 8px 16px rgba(16, 185, 129, 0.18)",
-                  display: "grid",
-                  placeItems: "center",
-                  zIndex: 6,
-                }}
-              >
-                <span style={{fontSize: 12, fontWeight: 900, color: "#059669"}}>2 Treats</span>
+          {/* Three equal plates with 2 candies each */}
+          {[
+            {label: "Ruhi's Share", x: 320},
+            {label: "Aima's Share", x: 745},
+            {label: "Nuh's Share", x: 1170},
+          ].map((plate, pIdx) => (
+            <div
+              key={pIdx}
+              style={{
+                position: "absolute",
+                left: plate.x,
+                bottom: 75,
+                width: 145,
+                padding: "8px 10px",
+                borderRadius: 20,
+                background: "#FFFFFF",
+                border: "3.5px solid #10B981",
+                boxShadow: "0 8px 18px rgba(16, 185, 129, 0.18)",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                zIndex: 8,
+              }}
+            >
+              <div style={{display: "flex", gap: 10, height: 42, alignItems: "center"}}>
+                <Candy left={0} top={0} color="#EF4444" rotation={-10} scale={0.8} />
+                <Candy left={0} top={0} color="#3B82F6" rotation={10} scale={0.8} />
               </div>
-              <Candy left={plateX + 10} top={416} color="#EF4444" rotation={-12} />
-              <Candy left={plateX + 65} top={416} color="#3B82F6" rotation={14} />
-            </React.Fragment>
+              <span style={{fontSize: 13, fontWeight: 900, color: "#059669", marginTop: 4}}>
+                2 Treats Each!
+              </span>
+            </div>
           ))}
 
           <Heart left={580} top={45} size={92} frame={frame} />
@@ -1233,36 +1225,43 @@ export const Illustration: React.FC<ArtProps> = ({scene, frame, durationInFrames
       {/* 3.1 Garden Welcome */}
       {scene.visual === "garden" && (
         <>
-          {/* Raised Garden Planter with Fresh Veggies & Sunflowers */}
+          {/* Raised Garden Planter with Fresh Veggies */}
           <div
             style={{
               position: "absolute",
-              left: 460,
-              bottom: 45,
-              width: 400,
-              height: 160,
+              left: 450,
+              bottom: 30,
+              width: 420,
+              height: 140,
               zIndex: 3,
             }}
           >
             {/* Wooden planter box */}
             <div style={{position: "absolute", bottom: 0, width: "100%", height: 75, background: "#92400E", borderRadius: 12, border: "4px solid #78350F"}} />
-            {/* Crisp Cucumbers in planter */}
-            <svg style={{position: "absolute", left: 60, bottom: 45}} width="70" height="90" viewBox="0 0 70 90">
-              <ellipse cx="35" cy="50" rx="18" ry="38" fill="#22C55E" transform="rotate(-15 35 50)" />
-              <circle cx="28" cy="40" r="3" fill="#15803D" />
-              <circle cx="42" cy="58" r="3" fill="#15803D" />
+            {/* Cucumber vine on left */}
+            <svg style={{position: "absolute", left: 50, bottom: 45}} width="80" height="90" viewBox="0 0 80 90">
+              <ellipse cx="40" cy="50" rx="18" ry="38" fill="#22C55E" transform="rotate(-15 40 50)" />
+              <circle cx="32" cy="40" r="3" fill="#15803D" />
+              <circle cx="48" cy="58" r="3" fill="#15803D" />
+              <path d="M40 12 Q32 2 46 2" stroke="#15803D" strokeWidth="4" fill="none" />
             </svg>
-            {/* Ripe Golden Mango */}
-            <svg style={{position: "absolute", right: 60, bottom: 45}} width="75" height="90" viewBox="0 0 75 90">
-              <ellipse cx="38" cy="50" rx="26" ry="36" fill="#F59E0B" transform="rotate(20 38 50)" />
-              <ellipse cx="34" cy="45" rx="18" ry="26" fill="#FBBF24" transform="rotate(20 38 50)" />
-              <path d="M42 16 Q36 6 48 4" stroke="#15803D" strokeWidth="4" fill="none" />
+            {/* Sunflower in center */}
+            <svg style={{position: "absolute", left: 170, bottom: 40}} width="80" height="110" viewBox="0 0 80 110">
+              <line x1="40" y1="110" x2="40" y2="40" stroke="#15803D" strokeWidth="6" />
+              <circle cx="40" cy="40" r="26" fill="#FBBF24" />
+              <circle cx="40" cy="40" r="14" fill="#78350F" />
+            </svg>
+            {/* Sweet Golden Mangoes on right */}
+            <svg style={{position: "absolute", right: 50, bottom: 45}} width="80" height="90" viewBox="0 0 80 90">
+              <ellipse cx="40" cy="50" rx="26" ry="36" fill="#F59E0B" transform="rotate(20 40 50)" />
+              <ellipse cx="36" cy="45" rx="18" ry="26" fill="#FBBF24" transform="rotate(20 40 50)" />
+              <path d="M44 16 Q38 6 50 4" stroke="#15803D" strokeWidth="4" fill="none" />
             </svg>
           </div>
 
-          <Person friend={friends.ruhi} left={pos3[0]} frame={frame} pose="wave" />
-          <Person friend={friends.aima} left={pos3[1]} frame={frame} pose="wave" />
-          <Person friend={friends.nuh} left={pos3[2]} frame={frame} pose="wave" />
+          <Person friend={friends.ruhi} left={120} frame={frame} pose="wave" />
+          <Person friend={friends.aima} left={900} frame={frame} pose="wave" />
+          <Person friend={friends.nuh} left={1090} frame={frame} pose="wave" />
         </>
       )}
 
@@ -1603,63 +1602,73 @@ export const Illustration: React.FC<ArtProps> = ({scene, frame, durationInFrames
           <Person friend={{...friends.aima, expression: "thinking"}} left={pos3[1]} frame={frame} pose="thinking" />
           <Person friend={{...friends.nuh, expression: "thinking"}} left={pos3[2]} frame={frame} pose="thinking" />
 
-          {/* Big Golden Question Orb Card */}
+          {/* Sleek Golden Question Banner across the top */}
           <div
             style={{
               position: "absolute",
-              left: 530,
-              top: 35,
-              width: 250,
-              height: 250,
-              borderRadius: 36,
+              left: 360,
+              top: 15,
+              width: 600,
+              height: 90,
+              borderRadius: 24,
               background: "linear-gradient(135deg, #FFFFFF 0%, #FEF9C3 100%)",
-              border: "6px solid #F59E0B",
-              boxShadow: "0 16px 36px rgba(245, 158, 11, 0.22)",
+              border: "4px solid #F59E0B",
+              boxShadow: "0 12px 28px rgba(245, 158, 11, 0.22)",
               display: "flex",
-              flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
+              gap: 16,
               transform: `scale(${questionScale})`,
               zIndex: 10,
             }}
           >
-            {/* Glowing Big Question Mark */}
-            <span
+            {/* Glowing Question Mark Badge */}
+            <div
               style={{
-                fontSize: 130,
+                width: 56,
+                height: 56,
+                borderRadius: "50%",
+                background: "linear-gradient(135deg, #F59E0B 0%, #D97706 100%)",
+                display: "grid",
+                placeItems: "center",
+                color: "#FFFFFF",
+                fontSize: 38,
                 fontWeight: 900,
-                color: "#F59E0B",
-                lineHeight: 1,
-                textShadow: "0 4px 8px rgba(217, 119, 6, 0.25)",
+                boxShadow: "0 4px 10px rgba(217, 119, 6, 0.35)",
               }}
             >
               ?
-            </span>
-            <span style={{fontSize: 16, fontWeight: 900, color: "#B45309", letterSpacing: 1.2}}>
-              WHAT WOULD YOU DO?
-            </span>
+            </div>
+            <div>
+              <div style={{fontSize: 26, fontWeight: 900, color: "#92400E", letterSpacing: 0.5}}>
+                WHAT WOULD YOU DO?
+              </div>
+              <div style={{fontSize: 14, fontWeight: 800, color: "#B45309", letterSpacing: 1}}>
+                YOUR TURN TO THINK OF A FAIR ANSWER
+              </div>
+            </div>
           </div>
 
-          {/* Pause & Think Action Callout in the last 100 frames */}
+          {/* Pause & Think Action Callout in the last 120 frames */}
           {frame > durationInFrames - 120 && (
             <div
               style={{
                 position: "absolute",
-                left: 480,
-                top: 295,
-                padding: "14px 32px",
+                left: 440,
+                top: 120,
+                padding: "10px 28px",
                 borderRadius: 999,
                 background: "#FEF08A",
-                border: "4px solid #EAB308",
+                border: "3.5px solid #EAB308",
                 boxShadow: "0 10px 24px rgba(234, 179, 8, 0.25)",
                 display: "flex",
                 alignItems: "center",
-                gap: 12,
+                gap: 10,
                 zIndex: 12,
               }}
             >
-              <span style={{fontSize: 28}}>⏸️</span>
-              <span style={{fontSize: 24, fontWeight: 900, color: "#854D0E", letterSpacing: 1.2}}>
+              <span style={{fontSize: 24}}>⏸️</span>
+              <span style={{fontSize: 22, fontWeight: 900, color: "#854D0E", letterSpacing: 1}}>
                 PAUSE THE VIDEO &amp; THINK!
               </span>
             </div>

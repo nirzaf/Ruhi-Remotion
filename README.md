@@ -6,12 +6,25 @@ The episode scripts adapt the lesson summaries supplied for workbook pages 10–
 
 ## Episodes
 
-| Composition | Workbook pages | Main idea |
-| --- | --- | --- |
-| `episode-1-justice` | 10–12 | Share, take turns, and include others |
-| `episode-2-wealth-poverty` | 13–16 | Money does not decide a person's worth |
-| `episode-3-opportunity` | 17–20 | Everyone deserves a chance to participate |
-| `episode-4-challenging-injustice` | 21–24 | Tell the truth, apologize, and help make things right |
+| Composition | Workbook pages | Main idea | Characters |
+| --- | --- | --- | --- |
+| `episode-1-justice` | 10–12 | Share, take turns, and include others | Ruhi, Aima, Nuh |
+| `episode-2-wealth-poverty` | 13–16 | Money does not decide a person's worth | Nuh, Aima, Ruhi |
+| `episode-3-opportunity` | 17–20 | Everyone deserves a chance to participate | Ruhi, Aima, Nuh |
+| `episode-4-challenging-injustice` | 21–24 | Tell the truth, apologize, and help make things right | Nuh, Ruhi, Aima |
+
+## Characters
+
+- **Ruhi**: Cheerful leader with wavy hair, coral tee, and turquoise barrettes.
+- **Aima**: Sweet friend with twin puff buns, golden ribbons, and mint green star tee.
+- **Nuh**: Energetic friend with textured curly fade, athletic blue tee, and bright smile.
+
+## Video & Animation Features
+
+- **Dynamic Pixar/Storybook Characters**: Realistic eyes with specular gloss, dynamic periodic blinking, emotional eyebrows, mouth sync/expressions, idle breathing, and animated waving/reaching arms.
+- **Word-by-Word Karaoke Subtitles**: Real-time reading highlights timed to the voice narration to support Grade 1 literacy.
+- **Rich Storybook Scenery**: Drifting parallax clouds, rotating sun with halo rays, swaying wildflowers, full 3D playground slide, market stalls with star tokens, garden planter beds with fresh vegetables, and an indoor art classroom with wooden blocks and bunting.
+- **Floating Character Name Badges**: Color-coded badges for easy identification by young viewers.
 
 ## Run and render
 
