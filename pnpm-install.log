@@ -1,0 +1,70 @@
+Progress: resolved 0, reused 1, downloaded 0, added 0
+Progress: resolved 0, reused 47, downloaded 2, added 0
+Update available! 12.8.1 → 12.14.0.
+Changelog: https://pnpm.io/v/12.14.0
+To update, run: pnpm self-update
+Progress: resolved 0, reused 69, downloaded 6, added 0
+Progress: resolved 0, reused 70, downloaded 6, added 0
+Progress: resolved 0, reused 75, downloaded 10, added 0
+Progress: resolved 0, reused 79, downloaded 17, added 0
+Progress: resolved 0, reused 87, downloaded 25, added 0
+Progress: resolved 0, reused 90, downloaded 25, added 0
+Progress: resolved 0, reused 96, downloaded 25, added 0
+Downloading @remotion/compositor-win32-x64-msvc@4.0.536: 0.00 B/10.80 MB
+Downloading @remotion/compositor-win32-x64-msvc@4.0.536: 175.29 kB/10.80 MB
+Downloading @remotion/compositor-win32-x64-msvc@4.0.536: 4.34 MB/10.80 MB
+Downloading @remotion/compositor-win32-x64-msvc@4.0.536: 6.04 MB/10.80 MB
+Downloading @remotion/compositor-win32-x64-msvc@4.0.536: 10.80 MB/10.80 MB, done
+Progress: resolved 0, reused 121, downloaded 26, added 0
+Progress: resolved 0, reused 124, downloaded 30, added 0
+[WARN] Request took 11237ms: https://registry.npmjs.org/@typescript-eslint%2Feslint-plugin
+[WARN] Request took 11908ms: https://registry.npmjs.org/@typescript-eslint%2Fparser
+Progress: resolved 0, reused 137, downloaded 44, added 0
+Progress: resolved 0, reused 139, downloaded 53, added 0
+Downloading @rspack/binding-win32-x64-msvc@1.7.11: 0.00 B/18.35 MB
+Downloading @rspack/binding-win32-x64-msvc@1.7.11: 1.17 MB/18.35 MB
+Downloading @rspack/binding-win32-x64-msvc@1.7.11: 2.89 MB/18.35 MB
+Downloading @rspack/binding-win32-x64-msvc@1.7.11: 5.56 MB/18.35 MB
+Downloading @rspack/binding-win32-x64-msvc@1.7.11: 8.56 MB/18.35 MB
+Downloading @rspack/binding-win32-x64-msvc@1.7.11: 10.80 MB/18.35 MB
+Downloading @rspack/binding-win32-x64-msvc@1.7.11: 14.10 MB/18.35 MB
+Downloading @rspack/binding-win32-x64-msvc@1.7.11: 17.13 MB/18.35 MB
+Progress: resolved 0, reused 145, downloaded 122, added 0
+Packages are hard linked from the content-addressable store to the virtual store.
+  Content-addressable store is at: C:\Users\DELL\AppData\Local\pnpm\store\v11
+  Virtual store is at:             node_modules/.pnpm
+Progress: resolved 0, reused 145, downloaded 147, added 0
+Progress: resolved 0, reused 145, downloaded 158, added 0
+Progress: resolved 0, reused 145, downloaded 161, added 0
+Progress: resolved 0, reused 145, downloaded 170, added 0
+Progress: resolved 1, reused 145, downloaded 180, added 0
+Progress: resolved 123, reused 145, downloaded 193, added 108
+Progress: resolved 232, reused 145, downloaded 193, added 217
+Progress: resolved 300, reused 145, downloaded 193, added 287
+Progress: resolved 318, reused 145, downloaded 193, added 311
+Progress: resolved 331, reused 145, downloaded 193, added 322
+Packages: +331
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Progress: resolved 331, reused 145, downloaded 193, added 331, done
+
+dependencies:
++ @remotion/cli 4.0.536
++ react 19.2.3
++ react-dom 19.2.3
++ remotion 4.0.536
+
+devDependencies:
++ @remotion/eslint-config-flat 4.0.536
++ @types/react 19.2.7
++ @types/web 0.0.166
++ eslint 10.12.0
++ prettier 3.8.1
++ typescript 5.9.3
+
+Error: ERR_PNPM_IGNORED_BUILDS
+
+  × installing dependencies
+  ╰─▶ Ignored build scripts: esbuild@0.28.1
+  help: Run "pnpm approve-builds" to pick which dependencies should be allowed
+        to run scripts.
+
