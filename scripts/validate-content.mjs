@@ -1,5 +1,5 @@
 import {execFileSync} from "node:child_process";
-import {existsSync, readdirSync, statSync} from "node:fs";
+import {existsSync, readFileSync, readdirSync, statSync} from "node:fs";
 import {readFile} from "node:fs/promises";
 import path from "node:path";
 import {fileURLToPath} from "node:url";
@@ -173,7 +173,7 @@ async function validateQatarContent() {
       if (entry.isDirectory()) {
         scanSrcForPrivateImports(full);
       } else if (entry.name.endsWith(".ts") || entry.name.endsWith(".tsx")) {
-        const text = statSync(full).size > 0 ? execFileSync("cat", [full], {encoding: "utf8"}) : "";
+        const text = statSync(full).size > 0 ? readFileSync(full, "utf8") : "";
         if (text.includes("teacher-answers.private")) {
           errors.push(`AC-07: Video source file ${full} must never import teacher-answers.private.json`);
         }

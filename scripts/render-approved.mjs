@@ -4,6 +4,7 @@ import path from "node:path";
 import {fileURLToPath} from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const remotionCli = path.join(root, "node_modules", "@remotion", "cli", "remotion-cli.js");
 const videosDir = path.join(root, "out/videos");
 const thumbnailsDir = path.join(root, "out/thumbnails");
 const subtitlesDir = path.join(root, "out/subtitles");
@@ -34,8 +35,8 @@ const pilotScenes = [
 if (process.argv.includes("--full-remotion")) {
   console.log(`🎬 Rendering ${approvedEpisodeId} via full frame-by-frame Remotion CLI...`);
   const renderRes = spawnSync(
-    "npx",
-    ["remotion", "render", "src/index.ts", approvedEpisodeId, videoOut, "--codec", "h264", "--overwrite"],
+    process.execPath,
+    [remotionCli, "render", "src/index.ts", approvedEpisodeId, videoOut, "--codec", "h264", "--overwrite"],
     {cwd: root, stdio: "inherit"}
   );
   if (renderRes.status !== 0) {
@@ -53,9 +54,9 @@ if (process.argv.includes("--full-remotion")) {
     const fadeOutStart = Math.max(0.5, durationSec - 0.4);
 
     execFileSync(
-      "npx",
+      process.execPath,
       [
-        "remotion",
+        remotionCli,
         "still",
         "src/index.ts",
         approvedEpisodeId,
