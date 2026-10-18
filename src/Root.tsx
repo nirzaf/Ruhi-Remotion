@@ -1,6 +1,8 @@
 import React from "react";
 import {Composition, Folder} from "remotion";
 import {getQatarEpisodeDuration, QATAR_HISTORY_EPISODES} from "../content/episodes";
+import {DailyRoutineExplainer} from "./explainer/DailyRoutineExplainer";
+import {DAILY_ROUTINE_EXPLAINER_ID, DAILY_ROUTINE_TOTAL_FRAMES, EXPLAINER_FPS, EXPLAINER_HEIGHT, EXPLAINER_WIDTH} from "./explainer/explainerData";
 import {LessonVideo} from "./video/LessonVideo";
 import {durationForEpisode, EPISODES, FPS} from "./video/timing";
 import {EpisodeVideo} from "./videos/EpisodeVideo";
@@ -21,6 +23,16 @@ export const RemotionRoot: React.FC = () => {
           height={episode.height}
         />
       ))}
+
+      {/* 30s Explainer: My Daily Routine cutdown (own editable node for Studio) */}
+      <Composition
+        id={DAILY_ROUTINE_EXPLAINER_ID}
+        component={DailyRoutineExplainer}
+        durationInFrames={DAILY_ROUTINE_TOTAL_FRAMES}
+        fps={EXPLAINER_FPS}
+        width={EXPLAINER_WIDTH}
+        height={EXPLAINER_HEIGHT}
+      />
 
       {/* Existing Ruhi Global Citizenship Compositions preserved for compatibility */}
       <Folder name="Global-Citizenship-Unit-1">

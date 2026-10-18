@@ -1,0 +1,15 @@
+1
+00:00:00,000 --> 00:00:05,830
+Today we will learn about our daily routine.
+
+2
+00:00:05,830 --> 00:00:12,660
+In the morning, we wake up and brush our teeth.
+
+3
+00:00:12,660 --> 00:00:18,230
+We eat breakfast, get dressed, and go to school.
+
+4
+00:00:18,230 --> 00:00:23,230
+At night we sleep on time. That is our daily routine!
