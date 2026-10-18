@@ -1,14 +1,14 @@
 1
 00:00:00,000 --> 00:00:05,833
-Today we will learn about our daily routine.
+Welcome to Class 1! Today we will learn about our daily routine in order.
 
 2
 00:00:05,833 --> 00:00:12,667
-In the morning, we wake up and brush our teeth.
+First, in the morning, we wake up early feeling rested, wash, and brush our teeth.
 
 3
 00:00:12,667 --> 00:00:18,233
-We eat breakfast, get dressed, and go to school.
+Next, during the daytime, we eat breakfast, get dressed, and go to school.
 
 4
 00:00:18,233 --> 00:00:23,233

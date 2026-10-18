@@ -1,4 +1,5 @@
 import {execFileSync, spawnSync} from "node:child_process";
+import {readFileSync} from "node:fs";
 import {copyFile, mkdir, rm, writeFile} from "node:fs/promises";
 import path from "node:path";
 import {fileURLToPath} from "node:url";
@@ -21,16 +22,34 @@ const thumbOut = path.join(thumbnailsDir, `${approvedEpisodeId}.png`);
 const srtSrc = path.join(root, `public/captions/${approvedEpisodeId}.srt`);
 const srtOut = path.join(subtitlesDir, `${approvedEpisodeId}.srt`);
 
-const pilotScenes = [
-  {id: "scene-01", durationFrames: 300, sampleFrame: 45},
-  {id: "scene-02", durationFrames: 540, sampleFrame: 450},
-  {id: "scene-03", durationFrames: 780, sampleFrame: 1050},
-  {id: "scene-04", durationFrames: 720, sampleFrame: 1850},
-  {id: "scene-05", durationFrames: 720, sampleFrame: 2550},
-  {id: "scene-06", durationFrames: 780, sampleFrame: 3300},
-  {id: "scene-07", durationFrames: 900, sampleFrame: 4200},
-  {id: "scene-08", durationFrames: 360, sampleFrame: 4900},
-];
+function loadPilotEpisode() {
+  const tsText = readFileSync(path.join(root, "content/episodes.ts"), "utf8");
+  const arrayStart = tsText.indexOf("export const QATAR_HISTORY_EPISODES");
+  const bracketStart = tsText.indexOf("[", arrayStart);
+  const exportEnd = tsText.lastIndexOf("export const getQatarEpisodeDuration");
+  const arrayLiteral = tsText.slice(bracketStart, exportEnd).trim().replace(/;$/, "");
+  const episodes = Function(`"use strict"; return (${arrayLiteral});`)();
+  return episodes.find((ep) => ep.id === approvedEpisodeId);
+}
+
+function splitIntoCaptionSegments(text) {
+  const rawSentences = text
+    .split(/(?<=[.!?])\s+/)
+    .map((s) => s.trim())
+    .filter(Boolean);
+  if (rawSentences.length <= 1) {
+    return [text];
+  }
+  const merged = [];
+  for (const sentence of rawSentences) {
+    if (merged.length > 0 && merged[merged.length - 1].length + 1 + sentence.length <= 115) {
+      merged[merged.length - 1] = `${merged[merged.length - 1]} ${sentence}`;
+    } else {
+      merged.push(sentence);
+    }
+  }
+  return merged;
+}
 
 if (process.argv.includes("--full-remotion")) {
   console.log(`🎬 Rendering ${approvedEpisodeId} via full frame-by-frame Remotion CLI...`);
@@ -44,30 +63,64 @@ if (process.argv.includes("--full-remotion")) {
   }
 } else {
   console.log(`🎬 Rendering ${approvedEpisodeId} (1920x1080 @ 30fps, H.264/AAC, 170s / 5100 frames)...`);
+  const pilotEpisode = loadPilotEpisode();
   const segmentPaths = [];
+  let sceneStartFrame = 0;
+  let firstStillPng = "";
 
-  for (const scene of pilotScenes) {
-    const stillPng = path.join(tempRenderDir, `${scene.id}.png`);
+  for (const scene of pilotEpisode.scenes) {
     const segmentMp4 = path.join(tempRenderDir, `${scene.id}.mp4`);
     const audioMp3 = path.join(root, `public/audio/qatar-history/${approvedEpisodeId}-${scene.id}.mp3`);
     const durationSec = scene.durationFrames / 30;
     const fadeOutStart = Math.max(0.5, durationSec - 0.4);
 
-    execFileSync(
-      process.execPath,
-      [
-        remotionCli,
-        "still",
-        "src/index.ts",
-        approvedEpisodeId,
-        stillPng,
-        `--frame=${scene.sampleFrame}`,
-        "--image-format=png",
-        "--overwrite",
-        "--log=error",
-      ],
-      {cwd: root, stdio: "inherit"}
-    );
+    const captionSegments = splitIntoCaptionSegments(scene.narrationText);
+    const totalChars = Math.max(1, captionSegments.reduce((sum, s) => sum + s.length, 0));
+    const speechWindowFrames = Math.max(1, scene.durationFrames * 0.92);
+
+    const ffmpegInputs = [];
+    const concatStreams = [];
+    let cumChars = 0;
+    let prevEndFrame = 0;
+
+    for (let j = 0; j < captionSegments.length; j++) {
+      cumChars += captionSegments[j].length;
+      const isLast = j === captionSegments.length - 1;
+      const endFrame = isLast
+        ? scene.durationFrames
+        : Math.max(prevEndFrame + 15, Math.round((cumChars / totalChars) * speechWindowFrames));
+      const segFrames = Math.max(1, endFrame - prevEndFrame);
+      const localMidFrame = Math.max(55, Math.floor((prevEndFrame + endFrame) / 2));
+      const episodeFrame = sceneStartFrame + Math.min(scene.durationFrames - 10, localMidFrame);
+      const stillPng = path.join(tempRenderDir, `${scene.id}-seg-${j + 1}.png`);
+
+      if (!firstStillPng) {
+        firstStillPng = stillPng;
+      }
+
+      execFileSync(
+        process.execPath,
+        [
+          remotionCli,
+          "still",
+          "src/index.ts",
+          approvedEpisodeId,
+          stillPng,
+          `--frame=${episodeFrame}`,
+          "--image-format=png",
+          "--overwrite",
+          "--log=error",
+        ],
+        {cwd: root, stdio: "inherit"}
+      );
+
+      ffmpegInputs.push("-loop", "1", "-framerate", "30", "-t", String(segFrames / 30), "-i", stillPng);
+      concatStreams.push(`[${j}:v]`);
+      prevEndFrame = endFrame;
+    }
+
+    const audioInputIdx = captionSegments.length;
+    const filterComplex = `${concatStreams.join("")}concat=n=${captionSegments.length}:v=1:a=0,scale=1920:1080,format=yuv420p,fade=t=in:st=0:d=0.35,fade=t=out:st=${fadeOutStart}:d=0.35[v];[${audioInputIdx}:a]aresample=48000,apad=whole_dur=${durationSec}[a]`;
 
     execFileSync(
       "ffmpeg",
@@ -76,18 +129,11 @@ if (process.argv.includes("--full-remotion")) {
         "-loglevel",
         "error",
         "-y",
-        "-loop",
-        "1",
-        "-framerate",
-        "30",
-        "-t",
-        String(durationSec),
-        "-i",
-        stillPng,
+        ...ffmpegInputs,
         "-i",
         audioMp3,
         "-filter_complex",
-        `[0:v]scale=1920:1080,format=yuv420p,fade=t=in:st=0:d=0.35,fade=t=out:st=${fadeOutStart}:d=0.35[v];[1:a]aresample=48000,apad=whole_dur=${durationSec}[a]`,
+        filterComplex,
         "-map",
         "[v]",
         "-map",
@@ -113,6 +159,7 @@ if (process.argv.includes("--full-remotion")) {
     );
 
     segmentPaths.push(segmentMp4);
+    sceneStartFrame += scene.durationFrames;
   }
 
   const concatListPath = path.join(tempRenderDir, "concat.txt");
@@ -156,10 +203,9 @@ if (process.argv.includes("--full-remotion")) {
     {cwd: root, stdio: "inherit"}
   );
 
-  const firstScenePng = path.join(tempRenderDir, "scene-01.png");
   execFileSync(
     "ffmpeg",
-    ["-hide_banner", "-loglevel", "error", "-y", "-i", firstScenePng, "-vf", "scale=1280:720", thumbOut],
+    ["-hide_banner", "-loglevel", "error", "-y", "-i", firstStillPng, "-vf", "scale=1280:720", thumbOut],
     {cwd: root, stdio: "inherit"}
   );
 }

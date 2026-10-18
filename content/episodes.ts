@@ -166,7 +166,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-01",
         kind: "title",
         heading: "Healthy Habits and Prayer",
-        durationFrames: 330,
+        durationFrames: 390,
         narrationText:
           "Welcome to Class 1 Qatar History and Citizenship! Today we will learn about our daily healthy habits, ablution, and our morning prayer, Al Fajr.",
         narrationAsset: "audio/qatar-history/QH-L1-02-scene-01.mp3",
@@ -179,7 +179,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-02",
         kind: "explain",
         heading: "Cleanliness and Ablution",
-        durationFrames: 540,
+        durationFrames: 495,
         narrationText:
           "Keeping ourselves clean is an important daily habit. Every morning we wash with clean water and brush our teeth. Before we pray, we perform ablution with clean water so we are pure and ready for prayer.",
         narrationAsset: "audio/qatar-history/QH-L1-02-scene-02.mp3",
@@ -192,7 +192,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-03",
         kind: "demonstrate",
         heading: "Morning Prayer (Al Fajr) and Rest",
-        durationFrames: 540,
+        durationFrames: 420,
         narrationText:
           "In the early morning, Muslims pray the Al Fajr prayer to start the day in peace. At night, going to bed on time gives our body healthy rest so we can wake up fresh and ready.",
         narrationAsset: "audio/qatar-history/QH-L1-02-scene-03.mp3",
@@ -208,7 +208,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-04",
         kind: "recap",
         heading: "Remembering Our Healthy Habits",
-        durationFrames: 540,
+        durationFrames: 510,
         narrationText:
           "Let us remember our healthy habits in order! First, we brush our teeth and wash with clean water. Second, we perform ablution and pray Al Fajr in the morning. Third, we sleep on time every night.",
         narrationAsset: "audio/qatar-history/QH-L1-02-scene-04.mp3",
@@ -221,7 +221,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-05",
         kind: "handoff",
         heading: "Ready for Practice",
-        durationFrames: 360,
+        durationFrames: 375,
         narrationText:
           "Great listening! You have learned about healthy habits, ablution, and the Al Fajr morning prayer. Now let us try a practice question from your school study material.",
         narrationAsset: "audio/qatar-history/QH-L1-02-scene-05.mp3",
@@ -247,7 +247,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-01",
         kind: "title",
         heading: "A Good Student and Friend",
-        durationFrames: 330,
+        durationFrames: 300,
         narrationText:
           "Welcome to Class 1! Today we will learn how to be a good student and a kind, helpful friend at school every day.",
         narrationAsset: "audio/qatar-history/QH-L1-03-scene-01.mp3",
@@ -260,7 +260,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-02",
         kind: "demonstrate",
         heading: "Listening and Keeping Our Classroom Clean",
-        durationFrames: 570,
+        durationFrames: 450,
         narrationText:
           "In our classroom, a good student respects the teacher and listens carefully to instructions. We help our classmates kindly, share our supplies, and always put trash in the bin to keep our school clean.",
         narrationAsset: "audio/qatar-history/QH-L1-03-scene-02.mp3",
@@ -273,7 +273,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-03",
         kind: "demonstrate",
         heading: "Visiting the School Clinic",
-        durationFrames: 480,
+        durationFrames: 315,
         narrationText:
           "If we ever feel sick or hurt while we are at school, we tell our teacher right away and visit the school clinic so the nurse can care for us.",
         narrationAsset: "audio/qatar-history/QH-L1-03-scene-03.mp3",
@@ -286,7 +286,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-04",
         kind: "recap",
         heading: "Caring for Our School",
-        durationFrames: 510,
+        durationFrames: 375,
         narrationText:
           "Let us review! Good students listen to their teacher, follow school rules, keep their classroom neat and clean, and treat every classmate with kindness and respect.",
         narrationAsset: "audio/qatar-history/QH-L1-03-scene-04.mp3",
@@ -299,7 +299,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-05",
         kind: "handoff",
         heading: "Ready for Practice",
-        durationFrames: 330,
+        durationFrames: 285,
         narrationText:
           "Wonderful job! You know how to be a caring student and friend. Now let us try a school question together.",
         narrationAsset: "audio/qatar-history/QH-L1-03-scene-05.mp3",
@@ -325,7 +325,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-01",
         kind: "title",
         heading: "Everyone Has Interests and Strengths",
-        durationFrames: 360,
+        durationFrames: 345,
         narrationText:
           "Welcome to Class 1! Today we will learn about our favorite hobbies, our strengths, and what makes every child special and unique.",
         narrationAsset: "audio/qatar-history/QH-L1-04-scene-01.mp3",
@@ -338,7 +338,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-02",
         kind: "demonstrate",
         heading: "Reading, Drawing, and Playing Safely",
-        durationFrames: 600,
+        durationFrames: 540,
         narrationText:
           "Every child has wonderful interests! Some children love reading stories, some enjoy drawing colorful pictures, and others like playing team games. We can talk confidently about our hobbies while keeping private personal details safe.",
         narrationAsset: "audio/qatar-history/QH-L1-04-scene-02.mp3",
@@ -351,7 +351,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-03",
         kind: "handoff",
         heading: "Ready for Practice",
-        durationFrames: 360,
+        durationFrames: 315,
         narrationText:
           "Great work! You have learned how everyone has special hobbies and strengths. Now let us try a school question from Lesson 1.",
         narrationAsset: "audio/qatar-history/QH-L1-04-scene-03.mp3",
@@ -377,7 +377,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-01",
         kind: "title",
         heading: "My Small Family",
-        durationFrames: 360,
+        durationFrames: 330,
         narrationText:
           "Welcome to Lesson 2 of Class 1 Qatar History and Citizenship! Today we will learn about the members of our small family at home.",
         narrationAsset: "audio/qatar-history/QH-L2-01-scene-01.mp3",
@@ -390,7 +390,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-02",
         kind: "demonstrate",
         heading: "Father, Mother, Brother, and Sister",
-        durationFrames: 570,
+        durationFrames: 420,
         narrationText:
           "A small or simple family lives together in one home. It includes our parents—our father and our mother—and the children, such as a brother and a sister, who love and care for one another.",
         narrationAsset: "audio/qatar-history/QH-L2-01-scene-02.mp3",
@@ -403,7 +403,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-03",
         kind: "handoff",
         heading: "Ready for Practice",
-        durationFrames: 360,
+        durationFrames: 300,
         narrationText:
           "Wonderful listening! You know all the members of a small family. Now let us try a practice question from your school study material.",
         narrationAsset: "audio/qatar-history/QH-L2-01-scene-03.mp3",
@@ -429,7 +429,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-01",
         kind: "title",
         heading: "My Extended Family",
-        durationFrames: 360,
+        durationFrames: 315,
         narrationText:
           "Welcome back to Lesson 2! Today we will learn about our bigger extended family and see how relatives connect on our family tree.",
         narrationAsset: "audio/qatar-history/QH-L2-02-scene-01.mp3",
@@ -442,7 +442,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-02",
         kind: "demonstrate",
         heading: "Grandparents, Aunts, Uncles, and Cousins",
-        durationFrames: 600,
+        durationFrames: 450,
         narrationText:
           "Our extended family includes our loving grandfather and grandmother, our paternal and maternal aunts and uncles, and our cousins. Together, they form our big, caring family tree.",
         narrationAsset: "audio/qatar-history/QH-L2-02-scene-02.mp3",
@@ -455,7 +455,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-03",
         kind: "handoff",
         heading: "Ready for Practice",
-        durationFrames: 360,
+        durationFrames: 315,
         narrationText:
           "Great job learning about grandparents, aunts, uncles, and cousins! Now let us try a school question about our extended family.",
         narrationAsset: "audio/qatar-history/QH-L2-02-scene-03.mp3",
@@ -481,7 +481,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-01",
         kind: "title",
         heading: "Families Help One Another",
-        durationFrames: 360,
+        durationFrames: 330,
         narrationText:
           "Welcome to Class 1! Today we will learn how family members show kindness, respect, and cooperation by helping one another at home.",
         narrationAsset: "audio/qatar-history/QH-L2-03-scene-01.mp3",
@@ -494,7 +494,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-02",
         kind: "demonstrate",
         heading: "Tidying Up and Cooperating",
-        durationFrames: 570,
+        durationFrames: 420,
         narrationText:
           "At home, we cooperate with our parents, brothers, and sisters. We tidy up our toys after playing, keep our room clean, and speak to every family member with warmth and respect.",
         narrationAsset: "audio/qatar-history/QH-L2-03-scene-02.mp3",
@@ -507,7 +507,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-03",
         kind: "handoff",
         heading: "Ready for Practice",
-        durationFrames: 360,
+        durationFrames: 300,
         narrationText:
           "Wonderful! You have learned how families care for and help one another. Now let us try a school question about helping our family.",
         narrationAsset: "audio/qatar-history/QH-L2-03-scene-03.mp3",
@@ -537,7 +537,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-01",
         kind: "title",
         heading: "Greetings of Peace",
-        durationFrames: 360,
+        durationFrames: 345,
         narrationText:
           "Welcome to Lesson 3 of Class 1 Qatar History and Citizenship! Today we will learn about the greeting of peace and its warm meaning.",
         narrationAsset: "audio/qatar-history/QH-L3-01-scene-01.mp3",
@@ -550,7 +550,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-02",
         kind: "demonstrate",
         heading: "Peace, Mercy, and Blessings",
-        durationFrames: 570,
+        durationFrames: 495,
         narrationText:
           "When we greet others with Assalamu Alaikum, it means Peace be upon you. We reply warmly with Wa Alaikum Assalam, sharing a kind smile, peace, mercy, and blessings with everyone we meet.",
         narrationAsset: "audio/qatar-history/QH-L3-01-scene-02.mp3",
@@ -563,7 +563,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-03",
         kind: "handoff",
         heading: "Ready for Practice",
-        durationFrames: 360,
+        durationFrames: 285,
         narrationText:
           "Great job learning the greeting of peace! Now let us try a Lesson 3 practice question from your school worksheet.",
         narrationAsset: "audio/qatar-history/QH-L3-01-scene-03.mp3",
@@ -589,7 +589,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-01",
         kind: "title",
         heading: "Respecting Elders and Neighbors",
-        durationFrames: 360,
+        durationFrames: 315,
         narrationText:
           "Welcome back to Lesson 3! Today we will learn about greeting our elders, our teachers, and our neighbors with polite respect.",
         narrationAsset: "audio/qatar-history/QH-L3-02-scene-01.mp3",
@@ -602,7 +602,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-02",
         kind: "demonstrate",
         heading: "Greeting Family, Teachers, and Neighbors",
-        durationFrames: 570,
+        durationFrames: 450,
         narrationText:
           "In Qatari customs, younger people greet older people first to show special respect. Every day we greet our parents at home, welcome our teachers at school, and speak kindly to our neighbors.",
         narrationAsset: "audio/qatar-history/QH-L3-02-scene-02.mp3",
@@ -615,7 +615,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-03",
         kind: "handoff",
         heading: "Ready for Practice",
-        durationFrames: 360,
+        durationFrames: 330,
         narrationText:
           "Wonderful listening! You know how to greet elders, teachers, and neighbors with respect. Now let us try a Lesson 3 question.",
         narrationAsset: "audio/qatar-history/QH-L3-02-scene-03.mp3",
@@ -645,7 +645,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-01",
         kind: "title",
         heading: "Qatar's Flag and Symbols",
-        durationFrames: 360,
+        durationFrames: 285,
         narrationText:
           "Welcome to our optional enrichment lesson on Qatar's flag, currency, and cherished national symbols.",
         narrationAsset: "audio/qatar-history/QH-QUIZ-01-scene-01.mp3",
@@ -658,7 +658,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-02",
         kind: "demonstrate",
         heading: "Maroon, White, and Nine Triangles",
-        durationFrames: 600,
+        durationFrames: 495,
         narrationText:
           "Qatar's national flag is maroon and white with nine white serrated points. Our national currency is the Qatari Riyal, the ruling family is Al Thani, and the strong Sidra tree is a proud symbol of Qatar.",
         narrationAsset: "audio/qatar-history/QH-QUIZ-01-scene-02.mp3",
@@ -671,7 +671,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-03",
         kind: "handoff",
         heading: "Ready for Enrichment Quiz",
-        durationFrames: 360,
+        durationFrames: 285,
         narrationText:
           "Great work exploring Qatar's flag and national symbols! Now let us try an optional Inter-House Quiz question.",
         narrationAsset: "audio/qatar-history/QH-QUIZ-01-scene-03.mp3",
@@ -697,7 +697,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-01",
         kind: "title",
         heading: "Traditional Life in Qatar",
-        durationFrames: 360,
+        durationFrames: 300,
         narrationText:
           "Welcome to our optional enrichment lesson on traditional life, heritage crafts, and historic markets in Qatar.",
         narrationAsset: "audio/qatar-history/QH-QUIZ-02-scene-01.mp3",
@@ -710,7 +710,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-02",
         kind: "demonstrate",
         heading: "Pearl Diving, Souq Waqif, and Heritage Sports",
-        durationFrames: 600,
+        durationFrames: 450,
         narrationText:
           "In the past, people in Qatar sailed wooden dhows for pearl diving and fishing, built homes from coral rock and mud, enjoyed falconry and camel racing, and traded together at Souq Waqif.",
         narrationAsset: "audio/qatar-history/QH-QUIZ-02-scene-02.mp3",
@@ -723,7 +723,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-03",
         kind: "handoff",
         heading: "Ready for Enrichment Quiz",
-        durationFrames: 360,
+        durationFrames: 255,
         narrationText:
           "Wonderful listening! Now let us try an optional Inter-House Quiz question about traditional life in Qatar.",
         narrationAsset: "audio/qatar-history/QH-QUIZ-02-scene-03.mp3",
@@ -749,7 +749,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-01",
         kind: "title",
         heading: "Heritage and Special Places",
-        durationFrames: 360,
+        durationFrames: 285,
         narrationText:
           "Welcome to our optional enrichment lesson on Qatar's famous heritage sites, museums, and natural wonders.",
         narrationAsset: "audio/qatar-history/QH-QUIZ-03-scene-01.mp3",
@@ -762,7 +762,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-02",
         kind: "demonstrate",
         heading: "Al Zubarah, Khor Al Adaid, and Desert Rose Design",
-        durationFrames: 600,
+        durationFrames: 465,
         narrationText:
           "Special places in Qatar include historic Al Zubarah Fort, the beautiful Inland Sea at Khor Al Adaid where sand dunes meet the water, and the National Museum of Qatar inspired by the desert rose.",
         narrationAsset: "audio/qatar-history/QH-QUIZ-03-scene-02.mp3",
@@ -775,7 +775,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-03",
         kind: "handoff",
         heading: "Ready for Enrichment Quiz",
-        durationFrames: 360,
+        durationFrames: 270,
         narrationText:
           "Great job! Now let us try an optional quiz question about heritage sites and special places in Qatar.",
         narrationAsset: "audio/qatar-history/QH-QUIZ-03-scene-03.mp3",
@@ -801,7 +801,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-01",
         kind: "title",
         heading: "Qatar Through Time",
-        durationFrames: 360,
+        durationFrames: 270,
         narrationText:
           "Welcome to our optional enrichment lesson on Qatar through time and key milestones in our nation's history.",
         narrationAsset: "audio/qatar-history/QH-QUIZ-04-scene-01.mp3",
@@ -814,7 +814,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-02",
         kind: "demonstrate",
         heading: "Key Dates in the School Quiz",
-        durationFrames: 600,
+        durationFrames: 465,
         narrationText:
           "Our school quiz highlights Sheikh Jassim bin Mohammed Al Thani, the discovery of oil that helped build modern cities, Qatar's independence in 1971, and how Doha grew from past to present.",
         narrationAsset: "audio/qatar-history/QH-QUIZ-04-scene-02.mp3",
@@ -827,7 +827,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-03",
         kind: "handoff",
         heading: "Ready for Enrichment Quiz",
-        durationFrames: 360,
+        durationFrames: 270,
         narrationText:
           "Wonderful! You have learned about Qatar's history through time. Now let us try an optional quiz question.",
         narrationAsset: "audio/qatar-history/QH-QUIZ-04-scene-03.mp3",
@@ -853,7 +853,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-01",
         kind: "title",
         heading: "Qatar Today and World Cup 2022",
-        durationFrames: 360,
+        durationFrames: 315,
         narrationText:
           "Welcome to our optional enrichment lesson on modern Qatar, national celebrations, and the 2022 FIFA World Cup.",
         narrationAsset: "audio/qatar-history/QH-QUIZ-05-scene-01.mp3",
@@ -866,7 +866,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-02",
         kind: "demonstrate",
         heading: "Modern Landmarks and National Sports Day",
-        durationFrames: 600,
+        durationFrames: 540,
         narrationText:
           "Qatar welcomed the world for the FIFA World Cup in 2022 with landmarks like Lusail Stadium and Hamad International Airport. Every February we celebrate National Sports Day, and on December 18th we celebrate Qatar National Day.",
         narrationAsset: "audio/qatar-history/QH-QUIZ-05-scene-02.mp3",
@@ -879,7 +879,7 @@ export const QATAR_HISTORY_EPISODES: Episode[] = [
         id: "scene-03",
         kind: "handoff",
         heading: "Ready for Enrichment Quiz",
-        durationFrames: 360,
+        durationFrames: 255,
         narrationText:
           "Great job learning about modern Qatar! Now let us try an optional Inter-House Quiz question.",
         narrationAsset: "audio/qatar-history/QH-QUIZ-05-scene-03.mp3",

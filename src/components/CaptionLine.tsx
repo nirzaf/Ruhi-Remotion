@@ -8,12 +8,23 @@ type CaptionLineProps = {
   durationFrames?: number;
 };
 
-function splitIntoCaptionSegments(text: string): string[] {
-  const sentences = text
+export function splitIntoCaptionSegments(text: string): string[] {
+  const rawSentences = text
     .split(/(?<=[.!?])\s+/)
     .map((s) => s.trim())
     .filter(Boolean);
-  return sentences.length > 0 ? sentences : [text];
+  if (rawSentences.length <= 1) {
+    return [text];
+  }
+  const merged: string[] = [];
+  for (const sentence of rawSentences) {
+    if (merged.length > 0 && merged[merged.length - 1].length + 1 + sentence.length <= 115) {
+      merged[merged.length - 1] = `${merged[merged.length - 1]} ${sentence}`;
+    } else {
+      merged.push(sentence);
+    }
+  }
+  return merged;
 }
 
 export const CaptionLine: React.FC<CaptionLineProps> = ({
